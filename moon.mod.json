@@ -1,0 +1,20 @@
+{
+  "name": "ubugeeei/pkl-unofficial-doc",
+  "version": "0.1.0",
+  "deps": {
+    "mizchi/markdown": "0.4.9",
+    "moonbitlang/async": "0.19.0",
+    "moonbitlang/x": "0.4.43"
+  },
+  "readme": "README.md",
+  "repository": "https://github.com/ubugeeei/pkl-unofficial-doc",
+  "license": "Apache-2.0",
+  "keywords": [
+    "pkl",
+    "documentation",
+    "moonbit",
+    "static-site"
+  ],
+  "description": "Unofficial documentation site for the Pkl language.",
+  "preferred-target": "js"
+}

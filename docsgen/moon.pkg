@@ -1,0 +1,11 @@
+import {
+  "mizchi/markdown/highlight_bash" @highlight_bash,
+  "mizchi/markdown/highlight_json" @highlight_json,
+  "mizchi/markdown/highlight_moonbit" @highlight_moonbit,
+  "mizchi/markdown" @markdown,
+  "moonbitlang/core/string",
+}
+
+import {
+  "moonbitlang/x/fs" @fs,
+} for "test"

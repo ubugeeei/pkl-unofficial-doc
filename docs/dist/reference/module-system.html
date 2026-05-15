@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module System Reference - Pkl</title>
+  <meta name="description" content="Module declarations, imports, amends, extends, source graphs, and cache boundaries.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-section="Reference">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span><small>Unofficial documentation for the Pkl language.</small></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span><small>Install the Pkl CLI, run a module, then choose a learning path.</small></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span><small>The smallest useful model of the Pkl language.</small></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span><small>How Pkl files compose through declarations, imports, amends, and extends.</small></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span><small>How to design reusable Pkl templates, environment overlays, and extension points.</small></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span><small>Object bodies, member lookup, listings, mappings, amendments, and PCF shape.</small></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span><small>Conditionals, operators, function declarations, lambdas, calls, and callable values.</small></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span><small>Primitive annotations, nullable values, unions, classes, callables, and numeric predicates.</small></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span><small>Class contracts, defaults, typed objects, inheritance, methods, and current support.</small></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span><small>Practical patterns for source-backed module graphs and cache-aware edits.</small></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span><small>Practical patterns for numeric constraints, type aliases, predicate factories, and diagnostics.</small></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span><small>Evaluate Pkl modules and choose output formats with the Pkl CLI.</small></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span><small>How to reduce broken Pkl modules, classify failures, and read diagnostics.</small></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span><small>CLI, package, and integration surfaces readers commonly need.</small></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span><small>A compact map of Pkl syntax accepted by the parser and implemented semantically.</small></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span><small>Expression operators, precedence, narrowing behavior, and implementation notes.</small></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span><small>Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.</small></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span><small>Syntax and semantic rules separated from implementation notes.</small></a><a class="nav-link is-active" href="../reference/module-system.html"><span>Module System Reference</span><small>Module declarations, imports, amends, extends, source graphs, and cache boundaries.</small></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span><small>Evaluation, typechecking, imports, constraints, and renderer semantics.</small></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span><small>Diagnostic stages, failure shapes, current messages, and future editor integration.</small></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span><small>What this unofficial site covers and where it still needs work.</small></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span><small>How to approach pkl: modules and core built-ins.</small></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span><small>PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.</small></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span><small>Build, test, generate, and serve this documentation site.</small></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span><small>How official Pkl docs, examples, fixtures, and release notes guide this site.</small></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span><small>How this documentation relates to official Pkl docs, examples, and release notes.</small></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span><small>How to update Markdown, generated output, and source-alignment notes together.</small></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Reference</p>
+          <h1>Module System Reference</h1>
+          <p>Module declarations, imports, amends, extends, source graphs, and cache boundaries.</p>
+        </header>
+        <div class="markdown-body"><h1>Module System Reference</h1>
+<p>The module system is the boundary between one Pkl source file and the rest of a
+configuration graph.</p>
+<h2>Module Declaration</h2>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">module</span> app<span class="tok-punctuation">.</span>config</span></code></pre></div>
+<p>A declaration names the module. Pkl preserves module
+names for parsing and diagnostics while evaluating the module to its top-level
+object value.</p>
+<h2>Import Declarations</h2>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;database.pkl&quot;</span> <span class="tok-keyword">as</span> db</span>
+<span class="line"></span>
+<span class="line"><span class="tok-property">databaseHost</span> <span class="tok-operator">=</span> db<span class="tok-punctuation">.</span>host</span></code></pre></div>
+<p>Relative imports resolve from the importing source path. <code>pkl:</code> imports are
+handled by the built-in resolver for the implemented stdlib surface.</p>
+<h2>Import Expressions</h2>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">database</span> <span class="tok-operator">=</span> <span class="tok-keyword">import</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;database.pkl&quot;</span><span class="tok-punctuation">)</span></span>
+<span class="line"><span class="tok-property">host</span> <span class="tok-operator">=</span> database<span class="tok-punctuation">.</span>host</span></code></pre></div>
+<p>Import expressions and import declarations share the same source graph. Use
+declarations for named dependencies and expression imports when the imported
+module value participates in another expression.</p>
+<h2>Amends</h2>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;base.pkl&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-number">9000</span></span></code></pre></div>
+<p><code>amends</code> starts from a parent module value, then applies the child module's
+members. It is the primary template specialization mechanism.</p>
+<h2>Extends</h2>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">extends</span> <span class="tok-string">&quot;template.pkl&quot;</span></span></code></pre></div>
+<p><code>extends</code> is parsed and evaluated for the implemented subset. Use it when the
+relationship is closer to inheritance than environment specialization.</p>
+<h2>Source Graph</h2>
+<p>Host tools provide source text through <code>AnalysisSession</code>.</p>
+<div class="code-block" data-language="moonbit"><div class="code-block-toolbar"><span class="code-language">moonbit</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #ff7b72">let</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">session</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">=</span><span style="color: #c9d1d9"> </span><span style="color: #d2a8ff">@</span><span style="color: #c9d1d9">pkl</span><span style="color: #c9d1d9">.</span><span style="color: #ffa657">AnalysisSession</span><span style="color: #c9d1d9">::</span><span style="color: #c9d1d9">new</span><span style="color: #c9d1d9">(</span><span style="color: #c9d1d9">)</span></span>
+<span class="line"><span style="color: #c9d1d9">session</span><span style="color: #c9d1d9">.</span><span style="color: #c9d1d9">set_source</span><span style="color: #c9d1d9">(</span><span style="color: #a5d6ff">&quot;main.pkl&quot;</span><span style="color: #c9d1d9">,</span><span style="color: #c9d1d9"> </span><span style="color: #a5d6ff">&quot;import \&quot;base.pkl\&quot; as base\nbase.name&quot;</span><span style="color: #c9d1d9">)</span></span>
+<span class="line"><span style="color: #ff7b72">let</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">checked</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">=</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">session</span><span style="color: #c9d1d9">.</span><span style="color: #c9d1d9">typecheck_path</span><span style="color: #c9d1d9">(</span><span style="color: #a5d6ff">&quot;main.pkl&quot;</span><span style="color: #c9d1d9">)</span></span></code></pre></div>
+<p>The session is the cache boundary for parse, typecheck, and evaluation queries.
+When a source changes, only dependent paths should recompute.</p>
+<h2>Built-in Modules</h2>
+<p>The resolver can synthesize selected <code>pkl:</code> modules as MoonBit-owned Pkl source.
+This keeps imports uniform: stdlib support grows as source and evaluator support
+grow, not as a separate foreign runtime.</p>
+<h2>Failure Modes</h2>
+<p>Module diagnostics should distinguish:</p>
+<ul>
+<li>missing source</li>
+<li>cyclic imports</li>
+<li>unsupported <code>pkl:</code> module</li>
+<li>imported module parse/typecheck/eval failure</li>
+<li>qualified type resolution failure</li>
+</ul>
+</div>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authoring Templates - Pkl</title>
+  <meta name="description" content="How to design reusable Pkl templates, environment overlays, and extension points.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-section="Learn">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span><small>Unofficial documentation for the Pkl language.</small></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span><small>Install the Pkl CLI, run a module, then choose a learning path.</small></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span><small>The smallest useful model of the Pkl language.</small></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span><small>How Pkl files compose through declarations, imports, amends, and extends.</small></a><a class="nav-link is-active" href="../learn/authoring-templates.html"><span>Authoring Templates</span><small>How to design reusable Pkl templates, environment overlays, and extension points.</small></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span><small>Object bodies, member lookup, listings, mappings, amendments, and PCF shape.</small></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span><small>Conditionals, operators, function declarations, lambdas, calls, and callable values.</small></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span><small>Primitive annotations, nullable values, unions, classes, callables, and numeric predicates.</small></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span><small>Class contracts, defaults, typed objects, inheritance, methods, and current support.</small></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span><small>Practical patterns for source-backed module graphs and cache-aware edits.</small></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span><small>Practical patterns for numeric constraints, type aliases, predicate factories, and diagnostics.</small></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span><small>Evaluate Pkl modules and choose output formats with the Pkl CLI.</small></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span><small>How to reduce broken Pkl modules, classify failures, and read diagnostics.</small></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span><small>CLI, package, and integration surfaces readers commonly need.</small></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span><small>A compact map of Pkl syntax accepted by the parser and implemented semantically.</small></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span><small>Expression operators, precedence, narrowing behavior, and implementation notes.</small></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span><small>Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.</small></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span><small>Syntax and semantic rules separated from implementation notes.</small></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span><small>Module declarations, imports, amends, extends, source graphs, and cache boundaries.</small></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span><small>Evaluation, typechecking, imports, constraints, and renderer semantics.</small></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span><small>Diagnostic stages, failure shapes, current messages, and future editor integration.</small></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span><small>What this unofficial site covers and where it still needs work.</small></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span><small>How to approach pkl: modules and core built-ins.</small></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span><small>PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.</small></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span><small>Build, test, generate, and serve this documentation site.</small></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span><small>How official Pkl docs, examples, fixtures, and release notes guide this site.</small></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span><small>How this documentation relates to official Pkl docs, examples, and release notes.</small></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span><small>How to update Markdown, generated output, and source-alignment notes together.</small></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Learn</p>
+          <h1>Authoring Templates</h1>
+          <p>How to design reusable Pkl templates, environment overlays, and extension points.</p>
+        </header>
+        <div class="markdown-body"><h1>Authoring Templates</h1>
+<p>Templates are the point where Pkl starts to feel different from plain data.
+Instead of copying a complete configuration per environment, write a base module
+that declares the shape and defaults, then use smaller modules to amend it.</p>
+<h2>Template Contract</h2>
+<p>A good template tells readers three things:</p>
+<ul>
+<li>
+<p>which members are required</p>
+</li>
+<li>
+<p>which members have safe defaults</p>
+</li>
+<li>
+<p>which members are intended extension points</p>
+</li>
+</ul>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-comment">// service.pkl</span></span>
+<span class="line"><span class="tok-keyword">class</span> Service <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">name</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span>
+<span class="line">  <span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
+<span class="line">  <span class="tok-property">replicas</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span>isPositive<span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">1</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="tok-property">service</span><span class="tok-operator">:</span> <span class="tok-property">Service</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> Service <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>The class is the contract. The <code>service</code> value is the default instance. A
+specialized module can amend the value without restating the whole object.</p>
+<h2>Environment Overlays</h2>
+<p>Use <code>amends</code> when the child module is still the same configuration with a
+smaller set of differences.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-comment">// prod.pkl</span></span>
+<span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;service.pkl&quot;</span></span>
+<span class="line"></span>
+<span class="line">service <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">replicas</span> <span class="tok-operator">=</span> <span class="tok-number">4</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>The implementation merges module members from the parent, then applies the
+child's overrides. This is the same mental model as object amendment, lifted to
+the module boundary.</p>
+<h2>Library Modules</h2>
+<p>Use imports when a module is a library rather than a parent template.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-comment">// ports.pkl</span></span>
+<span class="line"><span class="tok-property">api</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
+<span class="line"><span class="tok-property">admin</span> <span class="tok-operator">=</span> <span class="tok-number">9090</span></span></code></pre></div>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;ports.pkl&quot;</span> <span class="tok-keyword">as</span> ports</span>
+<span class="line"></span>
+<span class="line">service <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">port</span> <span class="tok-operator">=</span> ports<span class="tok-punctuation">.</span>api</span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>This keeps reusable constants or class declarations separate from the module
+that owns the rendered output.</p>
+<h2>Extension Points</h2>
+<p>Prefer explicit nested objects for areas users are expected to change.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line">service <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
+<span class="line">  runtime <span class="tok-punctuation">{</span></span>
+<span class="line">    <span class="tok-property">image</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;example/api&quot;</span></span>
+<span class="line">    <span class="tok-property">args</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Listing</span> <span class="tok-punctuation">{</span><span class="tok-punctuation">}</span></span>
+<span class="line">  <span class="tok-punctuation">}</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>Then the child module has a stable target:</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;service.pkl&quot;</span></span>
+<span class="line"></span>
+<span class="line">service <span class="tok-punctuation">{</span></span>
+<span class="line">  runtime <span class="tok-punctuation">{</span></span>
+<span class="line">    <span class="tok-property">args</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Listing</span> <span class="tok-punctuation">{</span></span>
+<span class="line">      <span class="tok-string">&quot;--log-level=debug&quot;</span></span>
+<span class="line">    <span class="tok-punctuation">}</span></span>
+<span class="line">  <span class="tok-punctuation">}</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<h2>Avoid Template Drift</h2>
+<p>Avoid copying the entire base module into every environment. Once values are
+copied, the base template stops being useful and readers must diff files by
+hand.</p>
+<p>Instead:</p>
+<ul>
+<li>
+<p>put required shape in a class</p>
+</li>
+<li>
+<p>put shared defaults in the base module</p>
+</li>
+<li>
+<p>keep environment files small</p>
+</li>
+<li>
+<p>use type aliases for repeated constraints</p>
+</li>
+<li>
+<p>keep host-tool-specific output concerns out of the template when possible</p>
+</li>
+</ul>
+<h2>Current Implementation Notes</h2>
+<p>Pkl's core template path includes module <code>amends</code>, module
+<code>extends</code>, object amendments, typed object expressions, class property defaults,
+and numeric constraints. Broad stdlib helpers, generators, and non-PCF output
+formats are still roadmap work, so examples in this site stay on the supported
+subset unless marked otherwise.</p>
+</div>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

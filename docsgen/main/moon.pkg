@@ -1,0 +1,9 @@
+import {
+  "ubugeeei/pkl-unofficial-doc/docsgen" @docsgen,
+  "moonbitlang/x/fs" @fs,
+  "moonbitlang/x/sys" @sys,
+}
+
+options(
+  "is-main": true,
+)

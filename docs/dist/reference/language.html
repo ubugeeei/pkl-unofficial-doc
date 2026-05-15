@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Language Spec - Pkl</title>
+  <meta name="description" content="Syntax and semantic rules separated from implementation notes.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-section="Reference">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span><small>Unofficial documentation for the Pkl language.</small></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span><small>Install the Pkl CLI, run a module, then choose a learning path.</small></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span><small>The smallest useful model of the Pkl language.</small></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span><small>How Pkl files compose through declarations, imports, amends, and extends.</small></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span><small>How to design reusable Pkl templates, environment overlays, and extension points.</small></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span><small>Object bodies, member lookup, listings, mappings, amendments, and PCF shape.</small></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span><small>Conditionals, operators, function declarations, lambdas, calls, and callable values.</small></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span><small>Primitive annotations, nullable values, unions, classes, callables, and numeric predicates.</small></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span><small>Class contracts, defaults, typed objects, inheritance, methods, and current support.</small></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span><small>Practical patterns for source-backed module graphs and cache-aware edits.</small></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span><small>Practical patterns for numeric constraints, type aliases, predicate factories, and diagnostics.</small></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span><small>Evaluate Pkl modules and choose output formats with the Pkl CLI.</small></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span><small>How to reduce broken Pkl modules, classify failures, and read diagnostics.</small></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span><small>CLI, package, and integration surfaces readers commonly need.</small></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span><small>A compact map of Pkl syntax accepted by the parser and implemented semantically.</small></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span><small>Expression operators, precedence, narrowing behavior, and implementation notes.</small></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span><small>Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.</small></a><a class="nav-link is-active" href="../reference/language.html"><span>Language Spec</span><small>Syntax and semantic rules separated from implementation notes.</small></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span><small>Module declarations, imports, amends, extends, source graphs, and cache boundaries.</small></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span><small>Evaluation, typechecking, imports, constraints, and renderer semantics.</small></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span><small>Diagnostic stages, failure shapes, current messages, and future editor integration.</small></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span><small>What this unofficial site covers and where it still needs work.</small></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span><small>How to approach pkl: modules and core built-ins.</small></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span><small>PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.</small></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span><small>Build, test, generate, and serve this documentation site.</small></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span><small>How official Pkl docs, examples, fixtures, and release notes guide this site.</small></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span><small>How this documentation relates to official Pkl docs, examples, and release notes.</small></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span><small>How to update Markdown, generated output, and source-alignment notes together.</small></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Reference</p>
+          <h1>Language Spec</h1>
+          <p>Syntax and semantic rules separated from implementation notes.</p>
+        </header>
+        <div class="markdown-body"><h1>Language Spec</h1>
+<p>This page is the reader-facing shape of the language contract. The official Pkl
+documentation and CLI behavior remain the source of truth; this page exists to
+make the concepts easier to scan.</p>
+<h2>Syntax Map</h2>
+<p>Use <strong>Syntax Reference</strong> for the compact grammar map. The high-level shape is:</p>
+<ul>
+<li>modules: declarations, imports, relations, bindings, and declarations</li>
+<li>module system: source graphs, <code>pkl:</code> built-ins, cache boundaries, and</li>
+</ul>
+<p>relation failures</p>
+<ul>
+<li>expressions: literals, access, calls, lambdas, conditionals, operators, and</li>
+</ul>
+<p>object construction</p>
+<ul>
+<li>object bodies: properties, shorthand object members, listings, mappings, and</li>
+</ul>
+<p>amendments</p>
+<ul>
+<li>types: primitives, nullable types, collections, unions, aliases, classes, and</li>
+</ul>
+<p>constrained annotations</p>
+<h2>Expressions</h2>
+<p>The parser accepts integer arithmetic, booleans, strings, <code>null</code>, identifiers,
+parentheses, object literals, collection literals, member access, calls,
+lambdas, conditionals, imports, and a broad slice of upstream parser fixtures.
+Use <strong>Operators Reference</strong> for precedence and narrowing behavior.</p>
+<h2>Modules</h2>
+<p>Supported module-level forms include:</p>
+<ul>
+<li>
+<p><code>module</code> declarations</p>
+</li>
+<li>
+<p><code>amends</code> and <code>extends</code> relations</p>
+</li>
+<li>
+<p>imports with aliases</p>
+</li>
+<li>
+<p>top-level properties</p>
+</li>
+<li>
+<p><code>local</code> module bindings</p>
+</li>
+<li>
+<p>class, function, and typealias declarations for the implemented subset</p>
+</li>
+</ul>
+<p>Use <strong>Module System Reference</strong> for import resolution, source graph semantics,
+<code>amends</code>, and <code>extends</code>.</p>
+<h2>Types</h2>
+<p>Pkl typechecking covers primitive types, nullable types, collections, union-style
+narrowing, class inheritance, imported class metadata, and constrained
+annotations.</p>
+<h2>Semantic Model</h2>
+<p>Pkl evaluation produces a structured module value made from primitives, objects,
+listings, mappings, classes, and callables.</p>
+<p>The typechecker runs over the parsed program before evaluation and reports
+diagnostics for mismatched annotations, missing members, invalid callable calls,
+and supported constraint failures.</p>
+<p>Imports tie semantics to a source graph: imported modules must be resolved,
+checked, and evaluated before dependent expressions can complete.</p>
+<h2>Standard Library</h2>
+<p>Use <strong>Standard Library</strong> for the <code>pkl:</code> modules, core built-ins, and links to the
+official reference when behavior is too broad for this compact guide.</p>
+<h2>Output Model</h2>
+<p>Use <strong>Output Formats</strong> for PCF, JSON, YAML, plist, properties, and the way CLI
+renderers connect evaluated values to downstream files.</p>
+<h2>Diagnostics</h2>
+<p>Diagnostics are grouped by stage: parse, unsupported syntax, typecheck,
+evaluation, and renderer. Use <strong>Diagnostics Reference</strong> for the failure model and
+editor-integration direction.</p>
+<h2>Compatibility Boundary</h2>
+<p>The docs use three labels in prose:</p>
+<ul>
+<li><strong>Pkl model</strong>: the language concept readers should learn.</li>
+<li><strong>Official source</strong>: where upstream docs, examples, or CLI behavior define the</li>
+</ul>
+<p>rule.</p>
+<ul>
+<li>
+<p><strong>Editorial note</strong>: why this site presents or groups the material differently.</p>
+</li>
+</ul>
+<p>Every user-facing page should make the boundary clear when this site is
+summarizing, reorganizing, or adding commentary around official material.</p>
+<h2>Compatibility Notes</h2>
+<p>Compatibility notes should point readers back to official docs, release notes,
+or source examples when exact behavior matters.</p>
+</div>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

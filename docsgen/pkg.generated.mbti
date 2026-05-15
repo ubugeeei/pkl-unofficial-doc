@@ -1,0 +1,39 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "ubugeeei/pkl-unofficial-doc/docsgen"
+
+// Values
+pub fn page_from_markdown(String, String) -> DocPage
+
+pub fn render_site(Array[DocPage]) -> Array[RenderedPage]
+
+pub fn site_assets() -> Array[SiteAsset]
+
+// Errors
+
+// Types and methods
+pub(all) struct DocPage {
+  slug : String
+  href : String
+  path : String
+  source_path : String
+  title : String
+  section : String
+  description : String
+  order : Int
+  html : String
+}
+
+pub(all) struct RenderedPage {
+  path : String
+  html : String
+}
+
+pub(all) struct SiteAsset {
+  path : String
+  content : String
+}
+
+// Type aliases
+
+// Traits
+

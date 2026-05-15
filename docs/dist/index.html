@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pkl</title>
+  <meta name="description" content="Unofficial documentation for the Pkl language.">
+  <link rel="icon" type="image/svg+xml" href="assets/pkl-icon.svg">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="home-page" data-section="Overview">
+  <main class="home-stage">
+    <section class="brand-system" aria-labelledby="home-title">
+      <div class="brand-copy">
+        <a class="home-brand" href="index.html" aria-label="Pkl home"><img src="assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+        <p class="home-kicker">Unofficial language documentation</p>
+        <h1 id="home-title">Pkl</h1>
+        <p class="home-lede">Learn Pkl's configuration model, read the language rules, and follow a clearer path through the ecosystem without confusing this site with Apple's official docs.</p>
+      </div>
+      <svg class="brand-mark" viewBox="0 0 520 360" role="img" aria-label="Pkl language specimen mark">
+  <g class="specimen-lines" aria-hidden="true">
+    <path d="M70 86H236"></path>
+    <path d="M70 123H188"></path>
+    <path d="M70 160H252"></path>
+    <path d="M70 197H216"></path>
+    <path d="M70 234H270"></path>
+  </g>
+  <path class="specimen-spine" d="M382 46c-64 0-73 48-73 82 0 32-23 43-54 52 31 9 54 20 54 52 0 34 9 82 73 82"></path>
+  <path class="specimen-echo" d="M408 66c-42 3-50 34-50 61 0 28-16 42-38 53 22 11 38 25 38 53 0 27 8 58 50 61"></path>
+  <path class="specimen-thread" d="M68 282c70-26 126-19 168 13 48 36 106 31 178-17">
+    <animate attributeName="opacity" values=".34;.58;.34" dur="10s" repeatCount="indefinite"></animate>
+  </path>
+</svg>
+    </section>
+    <nav class="home-index" aria-label="Primary"><a href="learn/">Getting Started</a><a href="reference/api.html">API Reference</a><a href="reference/language.html">Language Spec</a></nav>
+    <section class="track-grid" aria-label="Documentation paths">
+  <a class="track" href="learn/index.html"><span>Learn</span><strong>Build the first mental model.</strong><small>Values, objects, modules, imports, constraints, and rendering.</small></a>
+  <a class="track" href="reference/api.html"><span>API</span><strong>Map the implementation surface.</strong><small>Parser, evaluator, typechecker, analysis session, and renderer entry points.</small></a>
+  <a class="track" href="reference/language.html"><span>Spec</span><strong>Separate language rules from source notes.</strong><small>Syntax, semantics, compatibility notes, and official source links.</small></a>
+</section>
+    <div class="home-meta" aria-label="Implementation stack">
+      <span>parser: mizchi/cst</span>
+      <span>analysis cache: mizchi/ripple</span>
+      <span>source: Markdown</span>
+    </div>
+    <article class="home-notes markdown-body"><h1>Pkl</h1>
+<blockquote>
+<p>This is an unofficial documentation site for the Pkl language. It is not the
+official Apple Pkl documentation.</p>
+</blockquote>
+<p>The site is organized around three reader jobs:</p>
+<ul>
+<li><strong>Learn Pkl</strong>: move from module shape to objects, collections, types,</li>
+</ul>
+<p>templates, functions, classes, constraints, imports, debugging, evaluation,
+and output.</p>
+<ul>
+<li><strong>Reference</strong>: keep CLI usage, syntax, operators, modules, semantics,</li>
+</ul>
+<p>standard library expectations, diagnostics, and output formats easy to scan.</p>
+<ul>
+<li><strong>Language Spec</strong>: separate syntax, operators, module rules, semantics,</li>
+</ul>
+<p>diagnostics, standard library expectations, output formats, and
+coverage notes so readers can tell what is language behavior and what is this
+site's editorial boundary.</p>
+<h2>Why This Structure</h2>
+<p>The original Pkl docs mix learning material, reference material, and ecosystem
+surfaces in ways that make it hard to choose a path. This version keeps the
+learning flow linear, keeps reference pages scannable, and treats language rules
+as a contract that can be compared with official Pkl behavior.</p>
+<h2>Current Focus</h2>
+<p>This site treats Pkl as the primary subject. It teaches the language model
+first, then marks source links, compatibility notes, and documentation coverage
+where a reader needs to know how this unofficial site relates to the official
+project.</p>
+<h2>Map</h2>
+<ul>
+<li><strong>Getting Started</strong>: Pkl CLI installation, first module, and output rendering.</li>
+<li><strong>Authoring Templates</strong>: how to shape reusable base modules and environment</li>
+</ul>
+<p>overlays.</p>
+<ul>
+<li><strong>Functions and Control Flow</strong>: conditionals, operators, declarations,</li>
+</ul>
+<p>lambdas, and callable values.</p>
+<ul>
+<li><strong>Classes and Methods</strong>: class contracts, defaults, inheritance, typed</li>
+</ul>
+<p>objects, and method calls.</p>
+<ul>
+<li><strong>Modules and Imports</strong>: module declarations, <code>amends</code>, <code>extends</code>, aliases,</li>
+</ul>
+<p>source graphs, and cache boundaries.</p>
+<ul>
+<li><strong>Objects and Collections</strong>: object bodies, member lookup, listings, mappings,</li>
+</ul>
+<p>amendments, and rendering shape.</p>
+<ul>
+<li><strong>Types and Constraints</strong>: primitive annotations, nullable types, collection</li>
+</ul>
+<p>generics, unions, classes, callable annotations, and numeric constraints.</p>
+<ul>
+<li><strong>Constraints in Practice</strong>: how to apply built-ins, type aliases, predicate</li>
+</ul>
+<p>factories, class property constraints, and callable boundaries.</p>
+<ul>
+<li><strong>Debugging and Diagnostics</strong>: reduce failures through syntax, imports,</li>
+</ul>
+<p>typing, constraints, evaluation, and rendering.</p>
+<ul>
+<li><strong>Language Spec</strong>: syntax map, operator rules, module system, semantic model,</li>
+</ul>
+<p>compatibility boundary, and official source links.</p>
+<ul>
+<li><strong>Standard Library</strong>: <code>pkl:</code> modules, core built-ins, and how to approach the</li>
+</ul>
+<p>official standard library reference.</p>
+<ul>
+<li><strong>Source Alignment</strong>: how this site uses official docs, examples, release</li>
+</ul>
+<p>notes, and fixtures without inheriting the upstream information architecture.</p>
+</article>
+  </main>
+  <script src="assets/site.js"></script>
+</body>
+</html>

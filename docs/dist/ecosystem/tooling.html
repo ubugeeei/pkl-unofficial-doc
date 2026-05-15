@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tooling - Pkl</title>
+  <meta name="description" content="Build, test, generate, and serve this documentation site.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-section="Contributing">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span><small>Unofficial documentation for the Pkl language.</small></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span><small>Install the Pkl CLI, run a module, then choose a learning path.</small></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span><small>The smallest useful model of the Pkl language.</small></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span><small>How Pkl files compose through declarations, imports, amends, and extends.</small></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span><small>How to design reusable Pkl templates, environment overlays, and extension points.</small></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span><small>Object bodies, member lookup, listings, mappings, amendments, and PCF shape.</small></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span><small>Conditionals, operators, function declarations, lambdas, calls, and callable values.</small></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span><small>Primitive annotations, nullable values, unions, classes, callables, and numeric predicates.</small></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span><small>Class contracts, defaults, typed objects, inheritance, methods, and current support.</small></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span><small>Practical patterns for source-backed module graphs and cache-aware edits.</small></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span><small>Practical patterns for numeric constraints, type aliases, predicate factories, and diagnostics.</small></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span><small>Evaluate Pkl modules and choose output formats with the Pkl CLI.</small></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span><small>How to reduce broken Pkl modules, classify failures, and read diagnostics.</small></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span><small>CLI, package, and integration surfaces readers commonly need.</small></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span><small>A compact map of Pkl syntax accepted by the parser and implemented semantically.</small></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span><small>Expression operators, precedence, narrowing behavior, and implementation notes.</small></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span><small>Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.</small></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span><small>Syntax and semantic rules separated from implementation notes.</small></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span><small>Module declarations, imports, amends, extends, source graphs, and cache boundaries.</small></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span><small>Evaluation, typechecking, imports, constraints, and renderer semantics.</small></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span><small>Diagnostic stages, failure shapes, current messages, and future editor integration.</small></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span><small>What this unofficial site covers and where it still needs work.</small></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span><small>How to approach pkl: modules and core built-ins.</small></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span><small>PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.</small></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link is-active" href="../ecosystem/tooling.html"><span>Tooling</span><small>Build, test, generate, and serve this documentation site.</small></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span><small>How official Pkl docs, examples, fixtures, and release notes guide this site.</small></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span><small>How this documentation relates to official Pkl docs, examples, and release notes.</small></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span><small>How to update Markdown, generated output, and source-alignment notes together.</small></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Contributing</p>
+          <h1>Tooling</h1>
+          <p>Build, test, generate, and serve this documentation site.</p>
+        </header>
+        <div class="markdown-body"><h1>Tooling</h1>
+<p>This page is repository maintenance material. The Learn path uses the official
+<code>pkl</code> CLI; the commands here are only for building this static documentation
+site.</p>
+<h2>Generate</h2>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">run</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docsgen/main</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/content</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/dist</span></span></code></pre></div>
+<p>The docs source lives in Markdown under <code>docs/content</code>. The static site is
+pre-rendered into <code>docs/dist</code> by <code>docsgen</code>, which uses <code>mizchi/markdown</code> for the
+Markdown-to-HTML step.</p>
+<h2>Serve</h2>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">run</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docsserve/main</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">native</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/dist</span><span style="color: #c9d1d9"> </span><span style="color: #79c0ff">4173</span></span></code></pre></div>
+<p><code>docsserve</code> is a small native MoonBit file server built on <code>moonbitlang/async</code>.
+Change the final argument when port <code>4173</code> is already in use.</p>
+<h2>Check</h2>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">fmt</span></span>
+<span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">check</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--deny-warn</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span>
+<span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span>
+<span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">info</span></span></code></pre></div>
+<h2>Site Shape</h2>
+<ul>
+<li>
+<p><code>docs/content</code> is the editable Markdown source.</p>
+</li>
+<li>
+<p><code>docs/assets</code> contains copied static assets.</p>
+</li>
+<li>
+<p><code>docsgen</code> renders Markdown, navigation, CSS, and browser behavior.</p>
+</li>
+<li>
+<p><code>docsserve</code> serves the generated <code>docs/dist</code> tree locally.</p>
+</li>
+</ul>
+<h2>Coverage Discipline</h2>
+<p>When the docs add or revise language behavior:</p>
+<ul>
+<li>
+<p>Learn pages for workflow-level behavior</p>
+</li>
+<li>
+<p>Reference pages for syntax, semantics, API, and stdlib shape</p>
+</li>
+<li>
+<p>Coverage Status for remaining documentation gaps</p>
+</li>
+<li>
+<p>Compatibility for source links and official behavior boundaries</p>
+</li>
+</ul>
+<p>This keeps documentation tied to official Pkl behavior instead of drifting into
+a parallel language.</p>
+</div>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

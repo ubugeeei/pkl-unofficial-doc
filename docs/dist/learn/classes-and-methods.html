@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classes and Methods - Pkl</title>
+  <meta name="description" content="Class contracts, defaults, typed objects, inheritance, methods, and current support.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-section="Learn">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span><small>Unofficial documentation for the Pkl language.</small></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span><small>Install the Pkl CLI, run a module, then choose a learning path.</small></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span><small>The smallest useful model of the Pkl language.</small></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span><small>How Pkl files compose through declarations, imports, amends, and extends.</small></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span><small>How to design reusable Pkl templates, environment overlays, and extension points.</small></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span><small>Object bodies, member lookup, listings, mappings, amendments, and PCF shape.</small></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span><small>Conditionals, operators, function declarations, lambdas, calls, and callable values.</small></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span><small>Primitive annotations, nullable values, unions, classes, callables, and numeric predicates.</small></a><a class="nav-link is-active" href="../learn/classes-and-methods.html"><span>Classes and Methods</span><small>Class contracts, defaults, typed objects, inheritance, methods, and current support.</small></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span><small>Practical patterns for source-backed module graphs and cache-aware edits.</small></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span><small>Practical patterns for numeric constraints, type aliases, predicate factories, and diagnostics.</small></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span><small>Evaluate Pkl modules and choose output formats with the Pkl CLI.</small></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span><small>How to reduce broken Pkl modules, classify failures, and read diagnostics.</small></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span><small>CLI, package, and integration surfaces readers commonly need.</small></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span><small>A compact map of Pkl syntax accepted by the parser and implemented semantically.</small></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span><small>Expression operators, precedence, narrowing behavior, and implementation notes.</small></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span><small>Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.</small></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span><small>Syntax and semantic rules separated from implementation notes.</small></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span><small>Module declarations, imports, amends, extends, source graphs, and cache boundaries.</small></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span><small>Evaluation, typechecking, imports, constraints, and renderer semantics.</small></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span><small>Diagnostic stages, failure shapes, current messages, and future editor integration.</small></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span><small>What this unofficial site covers and where it still needs work.</small></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span><small>How to approach pkl: modules and core built-ins.</small></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span><small>PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.</small></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span><small>Build, test, generate, and serve this documentation site.</small></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span><small>How official Pkl docs, examples, fixtures, and release notes guide this site.</small></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span><small>How this documentation relates to official Pkl docs, examples, and release notes.</small></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span><small>How to update Markdown, generated output, and source-alignment notes together.</small></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Learn</p>
+          <h1>Classes and Methods</h1>
+          <p>Class contracts, defaults, typed objects, inheritance, methods, and current support.</p>
+        </header>
+        <div class="markdown-body"><h1>Classes and Methods</h1>
+<p>Classes are contracts for objects. They are the strongest way to make reusable
+configuration safe because they put shape, defaults, and validation in one
+place.</p>
+<h2>Class Properties</h2>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">class</span> Server <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">host</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span>
+<span class="line">  <span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>A property without a default must be supplied by the object. A property with a
+default can be omitted by a typed object expression.</p>
+<h2>Typed Objects</h2>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">server</span><span class="tok-operator">:</span> <span class="tok-property">Server</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> Server <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;localhost&quot;</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>The implementation checks supplied members against the class contract and
+materializes class defaults during evaluation for the implemented subset.</p>
+<h2>Defaults as Documentation</h2>
+<p>Defaults should be boring and production-safe.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">class</span> Retry <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">attempts</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">10</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">3</span></span>
+<span class="line">  <span class="tok-property">backoffMs</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span>isPositive<span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">250</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>If a default is surprising, omit it and force each caller to choose.</p>
+<h2>Inheritance</h2>
+<p>Use inheritance for a stable family of object contracts.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">class</span> Endpoint <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">host</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="tok-keyword">class</span> HttpEndpoint <span class="tok-keyword">extends</span> Endpoint <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">80</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>Pkl merges inherited property contracts and defaults through the class model. Use
+the official reference for exhaustive behavior around generic classes and
+external class integration.</p>
+<h2>Methods</h2>
+<p>Methods attach behavior to a class contract.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">class</span> Service <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">name</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span>
+<span class="line"></span>
+<span class="line">  <span class="tok-keyword">function</span> <span class="tok-call">label</span><span class="tok-punctuation">(</span><span class="tok-property">prefix</span><span class="tok-operator">:</span> <span class="tok-type">String</span><span class="tok-punctuation">)</span><span class="tok-operator">:</span> <span class="tok-type">String</span> <span class="tok-operator">=</span> prefix <span class="tok-operator">+</span> <span class="tok-string">&quot;-&quot;</span> <span class="tok-operator">+</span> name</span>
+<span class="line"><span class="tok-punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="tok-property">service</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> Service <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="tok-property">label</span> <span class="tok-operator">=</span> service<span class="tok-punctuation">.</span><span class="tok-call">label</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;prod&quot;</span><span class="tok-punctuation">)</span></span></code></pre></div>
+<p>Method declarations are kept separate from object value members. Method calls
+bind the receiver and arguments at the call boundary.</p>
+<h2>Imported Contracts</h2>
+<p>Imported modules can carry class declarations. Use qualified names when a
+contract lives in another module.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;library.pkl&quot;</span> <span class="tok-keyword">as</span> library</span>
+<span class="line"></span>
+<span class="line"><span class="tok-property">person</span><span class="tok-operator">:</span> library<span class="tok-punctuation">.</span><span class="tok-property">Person</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> library<span class="tok-punctuation">.</span>Person <span class="tok-punctuation">{</span></span>
+<span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;Ada&quot;</span></span>
+<span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>This is an important source-graph feature: tools should make every imported
+source reachable before checking or evaluating a module.</p>
+<h2>Current Boundaries</h2>
+<p>Core model:</p>
+<ul>
+<li>
+<p>class property annotations and defaults</p>
+</li>
+<li>
+<p>typed object checking</p>
+</li>
+<li>
+<p>typed object default materialization</p>
+</li>
+<li>
+<p>inheritance for property contracts and defaults</p>
+</li>
+<li>
+<p>imported class metadata for supported qualified names</p>
+</li>
+<li>
+<p>method declarations and calls</p>
+</li>
+</ul>
+<p>Topics that deserve deeper examples:</p>
+<ul>
+<li>generic class parameters</li>
+<li>broader stdlib class integration</li>
+<li>deeper external class semantics</li>
+<li>richer constructor-like patterns</li>
+</ul>
+</div>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
