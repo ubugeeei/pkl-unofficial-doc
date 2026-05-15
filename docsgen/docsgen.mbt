@@ -826,7 +826,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|  <title>\{escaped_title}</title>
     $|  <meta name="description" content="\{escaped_description}">
     $|  <link rel="icon" type="image/svg+xml" href="assets/pkl-icon.svg">
-    $|  <link rel="stylesheet" href="assets/site.css">
+    $|  <link rel="stylesheet" href="assets/site-20260515.css">
     $|</head>
     $|<body class="home-page" data-section="\{html_escape(current.section)}">
     $|  <main class="home-stage">
@@ -848,7 +848,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|    </div>
     $|    <article class="home-notes markdown-body">\{current.html}</article>
     $|  </main>
-    $|  <script src="assets/site.js"></script>
+    $|  <script src="assets/site-20260515.js"></script>
     $|</body>
     $|</html>
   )
@@ -882,7 +882,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|  <title>\{escaped_title}</title>
     $|  <meta name="description" content="\{escaped_description}">
     $|  <link rel="icon" type="image/svg+xml" href="\{depth_prefix(current.path)}assets/pkl-icon.svg">
-    $|  <link rel="stylesheet" href="\{depth_prefix(current.path)}assets/site.css">
+    $|  <link rel="stylesheet" href="\{depth_prefix(current.path)}assets/site-20260515.css">
     $|</head>
     $|<body data-section="\{html_escape(current.section)}">
     $|  <header class="topbar">
@@ -905,7 +905,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|      </article>
     $|    </main>
     $|  </div>
-    $|  <script src="\{depth_prefix(current.path)}assets/site.js"></script>
+    $|  <script src="\{depth_prefix(current.path)}assets/site-20260515.js"></script>
     $|</body>
     $|</html>
   )
@@ -926,8 +926,8 @@ pub fn render_site(pages : Array[DocPage]) -> Array[RenderedPage] {
 ///|
 pub fn site_assets() -> Array[SiteAsset] {
   [
-    SiteAsset::{ path: "assets/site.css", content: site_css() },
-    SiteAsset::{ path: "assets/site.js", content: site_js() },
+    SiteAsset::{ path: "assets/site-20260515.css", content: site_css() },
+    SiteAsset::{ path: "assets/site-20260515.js", content: site_js() },
   ]
 }
 
