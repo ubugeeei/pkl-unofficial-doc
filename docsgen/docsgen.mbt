@@ -1373,7 +1373,7 @@ fn site_css() -> String {
     #|  overflow: auto;
     #|  border-radius: 6px;
     #|  background: var(--code);
-    #|  padding: 14px 16px 15px;
+    #|  padding: 12px 16px 13px;
     #|  color: var(--code-text);
     #|}
     #|
@@ -1381,6 +1381,8 @@ fn site_css() -> String {
     #|  background: transparent;
     #|  padding: 0;
     #|  color: inherit;
+    #|  display: block;
+    #|  line-height: 1.42;
     #|}
     #|
     #|.markdown-body .code-block {
@@ -1450,7 +1452,7 @@ fn site_css() -> String {
     #|
     #|.markdown-body .highlight .line {
     #|  display: block;
-    #|  min-height: 1.55em;
+    #|  min-height: 1.42em;
     #|}
     #|
     #|.tok-keyword {

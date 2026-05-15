@@ -204,6 +204,25 @@ test "documentation layout uses a wider desktop canvas" {
 }
 
 ///|
+test "code blocks use compact line rhythm" {
+  let css = site_assets()[0].content
+  inspect(css.contains("padding: 12px 16px 13px;"), content="true")
+  inspect(
+    css.contains(
+      ".markdown-body pre code {\n  background: transparent;\n  padding: 0;\n  color: inherit;\n  display: block;\n  line-height: 1.42;",
+    ),
+    content="true",
+  )
+  inspect(
+    css.contains(
+      ".markdown-body .highlight .line {\n  display: block;\n  min-height: 1.42em;",
+    ),
+    content="true",
+  )
+  inspect(css.contains("min-height: 1.55em;"), content="false")
+}
+
+///|
 test "documentation covers learning api language and ecosystem paths" {
   let expected = [
     "docs/content/learn/authoring-templates.md", "docs/content/learn/classes-and-methods.md",
