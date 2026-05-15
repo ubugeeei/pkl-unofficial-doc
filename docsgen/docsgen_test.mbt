@@ -114,6 +114,15 @@ test "rendered site shell exposes learning api and spec routes" {
     home.html.contains("Unofficial language documentation"),
     content="true",
   )
+  inspect(home.html.contains("Unofficial guide for Pkl."), content="true")
+  inspect(
+    home.html.contains("apple/pkl is the Apple project and canonical source"),
+    content="true",
+  )
+  inspect(
+    home.html.contains("without confusing this site with Apple's official docs"),
+    content="false",
+  )
   inspect(home.html.contains("assets/pkl-icon.svg"), content="true")
   inspect(
     home.html.contains("<meta property=\"og:title\" content=\"Pkl\">"),
