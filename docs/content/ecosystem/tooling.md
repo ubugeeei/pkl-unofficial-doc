@@ -39,6 +39,19 @@ moon test --target js
 moon info
 ```
 
+## Deploy
+
+```bash
+pnpm install
+vpx void project link pkl-unofficial-doc
+vpx void deploy
+```
+
+`void.json` declares this as a static Void app, uses the MoonBit docs generator
+as the build command, and publishes `docs/dist`. The project link command is a
+one-time local setup step. When `docs/dist` is already generated, use
+`vpx void deploy --dir docs/dist` to upload the pre-built static directory.
+
 ## Site Shape
 
 - `docs/content` is the editable Markdown source.

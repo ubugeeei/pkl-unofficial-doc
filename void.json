@@ -1,0 +1,7 @@
+{
+  "inference": {
+    "appType": "static",
+    "build": "moon run docsgen/main --target js -- docs/content docs/dist",
+    "outputDir": "docs/dist"
+  }
+}

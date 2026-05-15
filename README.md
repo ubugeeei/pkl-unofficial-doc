@@ -29,4 +29,16 @@ moon test --target js
 moon info
 ```
 
+Deploy to Void:
+
+```bash
+pnpm install
+vpx void project link pkl-unofficial-doc
+vpx void deploy
+```
+
+The Void config runs the MoonBit docs generator and treats `docs/dist` as a
+static output directory. If the site is already generated,
+`vpx void deploy --dir docs/dist` can publish the pre-built directory directly.
+
 Open `http://127.0.0.1:4173/index.html`.

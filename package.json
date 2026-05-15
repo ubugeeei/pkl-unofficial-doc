@@ -1,0 +1,14 @@
+{
+  "name": "pkl-unofficial-doc",
+  "private": true,
+  "scripts": {
+    "build": "moon run docsgen/main --target js -- docs/content docs/dist",
+    "serve": "moon run docsserve/main --target native -- docs/dist 4173",
+    "check": "moon fmt && moon check --deny-warn --target js && moon test --target js && moon info",
+    "deploy": "void deploy"
+  },
+  "devDependencies": {
+    "vite": "^8.0.0",
+    "void": "0.7.6"
+  }
+}

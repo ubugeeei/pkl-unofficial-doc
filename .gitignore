@@ -1,6 +1,8 @@
 .DS_Store
+node_modules/
 _build/
 .mooncakes/
 .moonagent/
+.void/
 .repos/
 specs/.pkspec/
