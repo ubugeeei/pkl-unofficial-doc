@@ -616,6 +616,61 @@ fn nav_html(current : DocPage, pages : Array[DocPage]) -> String {
 }
 
 ///|
+fn page_nav_link(
+  current : DocPage,
+  target : DocPage,
+  label : String,
+  rel : String,
+  class_name : String,
+) -> String {
+  "<a class=\"page-nav-link " +
+  class_name +
+  "\" rel=\"" +
+  rel +
+  "\" href=\"" +
+  html_escape(nav_href(current, target)) +
+  "\"><span>" +
+  label +
+  "</span><strong>" +
+  html_escape(target.title) +
+  "</strong></a>"
+}
+
+///|
+fn page_nav_html(current : DocPage, pages : Array[DocPage]) -> String {
+  let sorted = sorted_pages(pages)
+  let mut index = -1
+  let mut cursor = 0
+  for page in sorted {
+    if page.slug == current.slug {
+      index = cursor
+    }
+    cursor += 1
+  }
+  if index < 0 {
+    return ""
+  }
+  let links : Array[String] = []
+  if index > 0 {
+    links.push(
+      page_nav_link(current, sorted[index - 1], "Previous", "prev", "is-prev"),
+    )
+  }
+  if index + 1 < sorted.length() {
+    links.push(
+      page_nav_link(current, sorted[index + 1], "Next", "next", "is-next"),
+    )
+  }
+  if links.length() == 0 {
+    ""
+  } else {
+    "<nav class=\"page-nav\" aria-label=\"Page navigation\">" +
+    links.join("") +
+    "</nav>"
+  }
+}
+
+///|
 fn top_links(current : DocPage, pages : Array[DocPage]) -> String {
   let links : Array[String] = []
   for page in sorted_pages(pages) {
@@ -726,6 +781,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
   let escaped_title = html_escape(page_title(current))
   let escaped_description = html_escape(current.description)
   let nav = nav_html(current, pages)
+  let page_nav = page_nav_html(current, pages)
   let top = top_links(current, pages)
   (
     $|<!doctype html>
@@ -755,6 +811,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|          <p>\{escaped_description}</p>
     $|        </header>
     $|        <div class="markdown-body">\{current.html}</div>
+    $|        \{page_nav}
     $|      </article>
     $|    </main>
     $|  </div>
@@ -1504,6 +1561,44 @@ fn site_css() -> String {
     #|  color: var(--muted);
     #|}
     #|
+    #|.page-nav {
+    #|  display: grid;
+    #|  grid-template-columns: repeat(2, minmax(0, 1fr));
+    #|  gap: 24px;
+    #|  margin-top: 54px;
+    #|  border-top: 1px solid var(--line);
+    #|  padding-top: 18px;
+    #|}
+    #|
+    #|.page-nav-link {
+    #|  display: grid;
+    #|  gap: 6px;
+    #|  color: var(--ink);
+    #|  text-decoration: none;
+    #|}
+    #|
+    #|.page-nav-link span {
+    #|  color: var(--muted);
+    #|  font-size: 11px;
+    #|  font-weight: 760;
+    #|  text-transform: uppercase;
+    #|}
+    #|
+    #|.page-nav-link strong {
+    #|  font-size: 16px;
+    #|  line-height: 1.3;
+    #|}
+    #|
+    #|.page-nav-link.is-next {
+    #|  text-align: right;
+    #|}
+    #|
+    #|.page-nav-link:hover strong,
+    #|.page-nav-link:focus-visible strong {
+    #|  text-decoration: underline;
+    #|  text-underline-offset: 4px;
+    #|}
+    #|
     #|@media (max-width: 920px) {
     #|  .topnav {
     #|    display: none;
@@ -1570,6 +1665,14 @@ fn site_css() -> String {
     #|
     #|  .brand-copy h1 {
     #|    font-size: 50px;
+    #|  }
+    #|
+    #|  .page-nav {
+    #|    grid-template-columns: 1fr;
+    #|  }
+    #|
+    #|  .page-nav-link.is-next {
+    #|    text-align: left;
     #|  }
     #|
     #|}

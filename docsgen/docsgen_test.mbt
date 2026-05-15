@@ -166,6 +166,30 @@ test "rendered site shell exposes learning api and spec routes" {
   inspect(learn.html.contains("<small>API surface</small>"), content="false")
   inspect(learn.html.contains("<small>Language rules</small>"), content="false")
   inspect(learn.html.contains("<small>"), content="false")
+  inspect(learn.html.contains("class=\"page-nav\""), content="true")
+  inspect(
+    learn.html.contains("rel=\"prev\" href=\"../index.html\""),
+    content="true",
+  )
+  inspect(
+    learn.html.contains("<span>Previous</span><strong>Home</strong>"),
+    content="true",
+  )
+  inspect(
+    learn.html.contains("rel=\"next\" href=\"../reference/api.html\""),
+    content="true",
+  )
+  inspect(
+    learn.html.contains("<span>Next</span><strong>API</strong>"),
+    content="true",
+  )
+  let language = rendered[3]
+  inspect(language.html.contains("class=\"page-nav\""), content="true")
+  inspect(
+    language.html.contains("rel=\"prev\" href=\"../reference/api.html\""),
+    content="true",
+  )
+  inspect(language.html.contains("rel=\"next\""), content="false")
 }
 
 ///|
@@ -190,6 +214,7 @@ test "site theme stays neutral and markdown first" {
   inspect(css.contains(".topbar {\n  position: sticky;"), content="true")
   inspect(css.contains(".home-index {\n  position: sticky;"), content="true")
   inspect(css.contains("backdrop-filter: blur(18px);"), content="true")
+  inspect(css.contains(".page-nav"), content="true")
   inspect(css.contains(".copy-code-button"), content="true")
   inspect(js.contains("navigator.clipboard.writeText"), content="true")
   inspect(js.contains("document.execCommand(\"copy\")"), content="true")
