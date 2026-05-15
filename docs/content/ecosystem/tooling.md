@@ -11,6 +11,17 @@ This page separates Pkl tools from this site's authoring tools. Readers only
 need the official `pkl` CLI and editor support. Contributors to this site also
 need the static-site build commands.
 
+## Canonical Boundary
+
+The canonical implementation of Pkl is
+[apple/pkl](https://github.com/apple/pkl). Language behavior, CLI flags,
+standard-library behavior, bindings, and tool compatibility should be checked
+against Apple Pkl first.
+
+The mizchi-origin MoonBit port is an unofficial implementation. It can be useful
+for experiments, parser work, documentation prototyping, and compatibility
+comparison, but it is not the source of truth for Pkl itself.
+
 ## Pkl Tools
 
 | Tool | Use |
@@ -28,6 +39,10 @@ reader-facing workflows.
 
 The documentation source lives in Markdown under `docs/content`. The site is
 pre-rendered into static HTML under `docs/dist`.
+
+MoonBit appears here as site infrastructure and repository tooling. It should
+not be read as a claim that the MoonBit port is the canonical Pkl
+implementation.
 
 ```bash
 moon run docsgen/main --target js -- docs/content docs/dist

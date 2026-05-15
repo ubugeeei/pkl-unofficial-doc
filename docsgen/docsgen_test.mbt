@@ -482,6 +482,29 @@ test "documentation covers learning api language and ecosystem paths" {
   inspect(doc_tools.contains("Pkldoc"), content="true")
   inspect(doc_tools.contains("package documentation"), content="true")
   inspect(doc_tools.contains("doc comments"), content="true")
+  let tooling = @fs.read_file_to_string("docs/content/ecosystem/tooling.md") catch {
+    _ => ""
+  }
+  inspect(tooling.contains("apple/pkl"), content="true")
+  inspect(tooling.contains("canonical implementation"), content="true")
+  inspect(tooling.contains("mizchi-origin MoonBit port"), content="true")
+  inspect(tooling.contains("unofficial implementation"), content="true")
+  let compatibility = @fs.read_file_to_string(
+    "docs/content/ecosystem/compatibility.md",
+  ) catch {
+    _ => ""
+  }
+  inspect(compatibility.contains("apple/pkl"), content="true")
+  inspect(compatibility.contains("canonical implementation"), content="true")
+  inspect(compatibility.contains("mizchi-origin MoonBit port"), content="true")
+  let source_alignment = @fs.read_file_to_string(
+    "docs/content/ecosystem/upstream-fixtures.md",
+  ) catch {
+    _ => ""
+  }
+  inspect(source_alignment.contains("apple/pkl"), content="true")
+  inspect(source_alignment.contains("MoonBit port"), content="true")
+  inspect(source_alignment.contains("comparison target"), content="true")
 }
 
 ///|

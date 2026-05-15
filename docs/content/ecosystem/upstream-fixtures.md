@@ -11,6 +11,11 @@ This site should be opinionated about structure while staying humble about
 truth. Apple Pkl, the official CLI, official package docs, and release notes are
 the upstream sources. This site reorganizes and explains them.
 
+Here, Apple Pkl means the
+[apple/pkl](https://github.com/apple/pkl) repository and the tools it publishes.
+The mizchi-origin MoonBit port is a useful unofficial comparison target, but it
+does not define the language.
+
 ## Source Types
 
 | Source | Use |
@@ -21,6 +26,7 @@ the upstream sources. This site reorganizes and explains them.
 | Package docs | exhaustive signatures for stdlib and bindings |
 | Release notes | behavior changes across versions |
 | Examples and fixtures | runnable confirmation that prose matches behavior |
+| MoonBit port notes | downstream comparison notes only |
 
 ## How to Write From Sources
 
@@ -53,5 +59,6 @@ Link to official sources when:
 - package signatures are exhaustive
 - language behavior depends on a precise version
 - an editor or binding has its own release cadence
+- MoonBit port behavior differs from apple/pkl behavior
 
 Keep the local prose focused on orientation, tradeoffs, and learning order.

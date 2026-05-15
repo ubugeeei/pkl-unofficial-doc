@@ -29,6 +29,14 @@
 <p>This page separates Pkl tools from this site's authoring tools. Readers only
 need the official <code>pkl</code> CLI and editor support. Contributors to this site also
 need the static-site build commands.</p>
+<h2>Canonical Boundary</h2>
+<p>The canonical implementation of Pkl is
+<a href="https://github.com/apple/pkl">apple/pkl</a>. Language behavior, CLI flags,
+standard-library behavior, bindings, and tool compatibility should be checked
+against Apple Pkl first.</p>
+<p>The mizchi-origin MoonBit port is an unofficial implementation. It can be useful
+for experiments, parser work, documentation prototyping, and compatibility
+comparison, but it is not the source of truth for Pkl itself.</p>
 <h2>Pkl Tools</h2>
 <table>
 <thead>
@@ -65,6 +73,9 @@ reader-facing workflows.</p>
 <h2>Site Source</h2>
 <p>The documentation source lives in Markdown under <code>docs/content</code>. The site is
 pre-rendered into static HTML under <code>docs/dist</code>.</p>
+<p>MoonBit appears here as site infrastructure and repository tooling. It should
+not be read as a claim that the MoonBit port is the canonical Pkl
+implementation.</p>
 <div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">run</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docsgen/main</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/content</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/dist</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">run</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docsserve/main</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">native</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/dist</span><span style="color: #c9d1d9"> </span><span style="color: #79c0ff">4173</span></span></code></pre></div>
 <p>The local server is only for previewing generated HTML. It is not a Pkl
 installation path.</p>

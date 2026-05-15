@@ -29,6 +29,10 @@
 <p>This site is an unofficial Pkl language reference. It should be useful because
 it reorganizes the learning path, not because it pretends to replace Apple's
 official documentation or implementation.</p>
+<p>Pkl's canonical implementation is
+<a href="https://github.com/apple/pkl">apple/pkl</a>. A mizchi-origin MoonBit port is an
+unofficial implementation and should be treated as a downstream comparison
+target, not as the baseline for language behavior.</p>
 <h2>Sources of Truth</h2>
 <table>
 <thead>
@@ -38,6 +42,10 @@ official documentation or implementation.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>apple/pkl</code></td>
+<td>canonical implementation and official repository</td>
+</tr>
 <tr>
 <td>Official Pkl docs</td>
 <td>language behavior, CLI behavior, package docs, and tool manuals</td>
@@ -79,16 +87,12 @@ official documentation or implementation.</p>
 <h2>Compatibility Labels</h2>
 <p>Pages should make the boundary clear:</p>
 <ul>
-<li>
-<p><strong>Pkl model</strong>: the language behavior readers should learn.</p>
-</li>
-<li>
-<p><strong>Official source</strong>: where the behavior is specified, documented, or executed.</p>
-</li>
-<li>
-<p><strong>Editorial note</strong>: why this site groups or explains the material differently.</p>
-</li>
+<li><strong>Pkl model</strong>: the language behavior readers should learn.</li>
+<li><strong>Official source</strong>: where the behavior is specified, documented, or executed.</li>
+<li><strong>Editorial note</strong>: why this site groups or explains the material differently.</li>
+<li><strong>Unofficial implementation note</strong>: where a downstream implementation, such as</li>
 </ul>
+<p>the MoonBit port, differs from or is still catching up with Apple Pkl.</p>
 <p>Avoid presenting commentary as specification. If a page compresses behavior,
 include a link to the relevant official source.</p>
 <h2>Version Discipline</h2>
@@ -100,6 +104,7 @@ difference matters.</p>
 <li>Do not mirror the official information architecture.</li>
 <li>Do not send beginners away for basic setup that belongs in Getting Started.</li>
 <li>Do not turn implementation notes into the main language narrative.</li>
+<li>Do not let MoonBit-port behavior override Apple Pkl behavior.</li>
 <li>Do not copy generated package documentation when a focused link is clearer.</li>
 </ul>
 </div>

@@ -11,10 +11,16 @@ This site is an unofficial Pkl language reference. It should be useful because
 it reorganizes the learning path, not because it pretends to replace Apple's
 official documentation or implementation.
 
+Pkl's canonical implementation is
+[apple/pkl](https://github.com/apple/pkl). A mizchi-origin MoonBit port is an
+unofficial implementation and should be treated as a downstream comparison
+target, not as the baseline for language behavior.
+
 ## Sources of Truth
 
 | Source | Role |
 | --- | --- |
+| `apple/pkl` | canonical implementation and official repository |
 | Official Pkl docs | language behavior, CLI behavior, package docs, and tool manuals |
 | Pkl CLI | executable behavior for evaluation, tests, packages, resources, and output |
 | Official tools | editor support, language server behavior, Pkldoc, and build integrations |
@@ -37,6 +43,8 @@ Pages should make the boundary clear:
 - **Pkl model**: the language behavior readers should learn.
 - **Official source**: where the behavior is specified, documented, or executed.
 - **Editorial note**: why this site groups or explains the material differently.
+- **Unofficial implementation note**: where a downstream implementation, such as
+  the MoonBit port, differs from or is still catching up with Apple Pkl.
 
 Avoid presenting commentary as specification. If a page compresses behavior,
 include a link to the relevant official source.
@@ -52,4 +60,5 @@ difference matters.
 - Do not mirror the official information architecture.
 - Do not send beginners away for basic setup that belongs in Getting Started.
 - Do not turn implementation notes into the main language narrative.
+- Do not let MoonBit-port behavior override Apple Pkl behavior.
 - Do not copy generated package documentation when a focused link is clearer.

@@ -28,6 +28,10 @@ This keeps docs from becoming a wishlist detached from actual reader needs.
 The static site generator is written in MoonBit. These commands are for site
 contributors, not for installing or using Pkl.
 
+When documentation describes Pkl behavior, verify it against apple/pkl. Treat
+MoonBit-port behavior as an unofficial implementation note unless the page is
+explicitly about that port.
+
 ```bash
 moon fmt
 moon check --deny-warn --target js
