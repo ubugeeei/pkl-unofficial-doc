@@ -265,6 +265,52 @@ body.home-page {
   text-underline-offset: 4px;
 }
 
+.site-attribution {
+  display: grid;
+  gap: 10px;
+  margin-top: 44px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid rgba(237, 242, 223, 0.08);
+  padding: 16px 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.home-attribution {
+  margin-top: 22px;
+}
+
+.site-attribution p {
+  max-width: 780px;
+  margin: 0;
+}
+
+.site-attribution strong {
+  color: var(--ink);
+  font-weight: 620;
+}
+
+.site-attribution nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.site-attribution a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-attribution a:hover,
+.site-attribution a:focus-visible {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .home-notes {
   width: min(760px, 100%);
   margin-top: 44px;

@@ -173,6 +173,21 @@ test "rendered site shell exposes learning api and spec routes" {
   inspect(home.html.contains("track-grid"), content="true")
   inspect(home.html.contains("https://github.com/apple/pkl"), content="true")
   inspect(
+    home.html.contains("class=\"site-attribution home-attribution\""),
+    content="true",
+  )
+  inspect(home.html.contains("Pkl is an Apple project."), content="true")
+  inspect(home.html.contains("Official Pkl repository"), content="true")
+  inspect(
+    home.html.contains("https://github.com/apple/pkl/blob/main/LICENSE.txt"),
+    content="true",
+  )
+  inspect(
+    home.html.contains("https://github.com/apple/pkl/blob/main/NOTICE.txt"),
+    content="true",
+  )
+  inspect(home.html.contains("not affiliated with Apple"), content="true")
+  inspect(
     home.html.contains("https://github.com/ubugeeei/pkl-unofficial-doc"),
     content="true",
   )
@@ -212,6 +227,17 @@ test "rendered site shell exposes learning api and spec routes" {
     content="true",
   )
   inspect(learn.html.contains("https://github.com/apple/pkl"), content="true")
+  inspect(learn.html.contains("class=\"site-attribution\""), content="true")
+  inspect(learn.html.contains("Pkl is an Apple project."), content="true")
+  inspect(learn.html.contains("Official Pkl repository"), content="true")
+  inspect(
+    learn.html.contains("https://github.com/apple/pkl/blob/main/LICENSE.txt"),
+    content="true",
+  )
+  inspect(
+    learn.html.contains("https://github.com/apple/pkl/blob/main/NOTICE.txt"),
+    content="true",
+  )
   inspect(
     learn.html.contains("https://github.com/ubugeeei/pkl-unofficial-doc"),
     content="true",
@@ -300,6 +326,8 @@ test "site theme stays neutral and markdown first" {
     content="true",
   )
   inspect(css.contains("backdrop-filter: blur(18px);"), content="true")
+  inspect(css.contains(".site-attribution"), content="true")
+  inspect(css.contains(".home-attribution"), content="true")
   inspect(css.contains(".page-nav"), content="true")
   inspect(css.contains(".copy-code-button"), content="true")
   inspect(css.contains(".install-tabs"), content="true")

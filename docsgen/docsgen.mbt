@@ -799,6 +799,13 @@ fn github_links_html(class_name : String) -> String {
 }
 
 ///|
+fn attribution_html(class_name : String) -> String {
+  "<aside class=\"" +
+  class_name +
+  "\" aria-label=\"Attribution and licensing\"><p><strong>Pkl is an Apple project.</strong> This site is unofficial, independently maintained, and not affiliated with Apple.</p><nav aria-label=\"Pkl source and license links\"><a href=\"https://github.com/apple/pkl\" target=\"_blank\" rel=\"noreferrer\">Official Pkl repository</a><a href=\"https://github.com/apple/pkl/blob/main/LICENSE.txt\" target=\"_blank\" rel=\"noreferrer\">Apache-2.0 license</a><a href=\"https://github.com/apple/pkl/blob/main/NOTICE.txt\" target=\"_blank\" rel=\"noreferrer\">NOTICE</a></nav></aside>"
+}
+
+///|
 fn canonical_url(current : DocPage) -> String {
   if current.slug == "index" {
     "https://pkl-unofficial-doc.void.app/"
@@ -857,6 +864,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
   let tracks = home_tracks_html()
   let mark = brand_mark_html()
   let github = github_links_html("home-source-links")
+  let attribution = attribution_html("site-attribution home-attribution")
   let social = social_meta_html(current)
   (
     $|<!doctype html>
@@ -867,6 +875,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|  <title>\{escaped_title}</title>
     $|  <meta name="description" content="\{escaped_description}">
     $|\{social}
+    $|  <link rel="license" href="https://github.com/apple/pkl/blob/main/LICENSE.txt">
     $|  <link rel="icon" type="image/svg+xml" href="assets/pkl-icon.svg">
     $|  <link rel="stylesheet" href="assets/site-20260515b.css">
     $|</head>
@@ -889,6 +898,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|      <span>status: unofficial</span>
     $|      \{github}
     $|    </div>
+    $|    \{attribution}
     $|    <article class="home-notes markdown-body">\{current.html}</article>
     $|  </main>
     $|  <script src="assets/site-20260515b.js"></script>
@@ -917,6 +927,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
   let page_nav = page_nav_html(current, pages)
   let top = top_links(current, pages)
   let github = github_links_html("source-links")
+  let attribution = attribution_html("site-attribution")
   let social = social_meta_html(current)
   (
     $|<!doctype html>
@@ -927,6 +938,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|  <title>\{escaped_title}</title>
     $|  <meta name="description" content="\{escaped_description}">
     $|\{social}
+    $|  <link rel="license" href="https://github.com/apple/pkl/blob/main/LICENSE.txt">
     $|  <link rel="icon" type="image/svg+xml" href="\{depth_prefix(current.path)}assets/pkl-icon.svg">
     $|  <link rel="stylesheet" href="\{depth_prefix(current.path)}assets/site-20260515b.css">
     $|</head>
@@ -948,6 +960,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|          <p>\{escaped_description}</p>
     $|        </header>
     $|        <div class="markdown-body">\{current.html}</div>
+    $|        \{attribution}
     $|        \{page_nav}
     $|      </article>
     $|    </main>
@@ -1366,6 +1379,52 @@ fn site_css() -> String {
     #|.home-source-links a:focus-visible,
     #|.source-links a:hover,
     #|.source-links a:focus-visible {
+    #|  color: var(--ink);
+    #|  text-decoration: underline;
+    #|  text-underline-offset: 4px;
+    #|}
+    #|
+    #|.site-attribution {
+    #|  display: grid;
+    #|  gap: 10px;
+    #|  margin-top: 44px;
+    #|  border-top: 1px solid var(--line);
+    #|  border-bottom: 1px solid rgba(237, 242, 223, 0.08);
+    #|  padding: 16px 0 18px;
+    #|  color: var(--muted);
+    #|  font-size: 13px;
+    #|  line-height: 1.55;
+    #|}
+    #|
+    #|.home-attribution {
+    #|  margin-top: 22px;
+    #|}
+    #|
+    #|.site-attribution p {
+    #|  max-width: 780px;
+    #|  margin: 0;
+    #|}
+    #|
+    #|.site-attribution strong {
+    #|  color: var(--ink);
+    #|  font-weight: 620;
+    #|}
+    #|
+    #|.site-attribution nav {
+    #|  display: flex;
+    #|  flex-wrap: wrap;
+    #|  gap: 10px 18px;
+    #|  font-size: 12px;
+    #|  font-weight: 650;
+    #|}
+    #|
+    #|.site-attribution a {
+    #|  color: var(--accent);
+    #|  text-decoration: none;
+    #|}
+    #|
+    #|.site-attribution a:hover,
+    #|.site-attribution a:focus-visible {
     #|  color: var(--ink);
     #|  text-decoration: underline;
     #|  text-underline-offset: 4px;
