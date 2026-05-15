@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tooling - Pkl</title>
-  <meta name="description" content="Official Pkl tools and the local static-site build workflow.">
+  <meta name="description" content="Official Pkl tools, editor integrations, documentation generators, and build integrations.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Tooling - Pkl">
-  <meta property="og:description" content="Official Pkl tools and the local static-site build workflow.">
+  <meta property="og:description" content="Official Pkl tools, editor integrations, documentation generators, and build integrations.">
   <meta property="og:url" content="https://pkl-unofficial-doc.void.app/ecosystem/tooling.html">
   <meta property="og:image" content="https://pkl-unofficial-doc.void.app/assets/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -15,7 +15,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tooling - Pkl">
-  <meta name="twitter:description" content="Official Pkl tools and the local static-site build workflow.">
+  <meta name="twitter:description" content="Official Pkl tools, editor integrations, documentation generators, and build integrations.">
   <meta name="twitter:image" content="https://pkl-unofficial-doc.void.app/assets/og-image.png">
   <link rel="license" href="https://github.com/apple/pkl/blob/main/LICENSE.txt">
   <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
@@ -36,86 +36,135 @@
         <header class="doc-header">
           <p class="section-label">Ecosystem</p>
           <h1>Tooling</h1>
-          <p>Official Pkl tools and the local static-site build workflow.</p>
+          <p>Official Pkl tools, editor integrations, documentation generators, and build integrations.</p>
         </header>
         <div class="markdown-body"><h1>Tooling</h1>
-<p>This page separates Pkl tools from this site's authoring tools. Readers only
-need the official <code>pkl</code> CLI and editor support. Contributors to this site also
-need the static-site build commands.</p>
-<h2>Canonical Boundary</h2>
-<p>The canonical implementation of Pkl is
-<a href="https://github.com/apple/pkl">apple/pkl</a>. Language behavior, CLI flags,
-standard-library behavior, bindings, and tool compatibility should be checked
-against Apple Pkl first.</p>
-<p>The mizchi-origin MoonBit port is an unofficial implementation. It can be useful
-for experiments, parser work, documentation prototyping, and compatibility
-comparison, but it is not the source of truth for Pkl itself.</p>
-<h2>Pkl Tools</h2>
+<p>This page is for Pkl users choosing tools around the Apple Pkl ecosystem. It is
+not a contributor setup page for this documentation site, and it is not a page
+about downstream implementations.</p>
+<p>Use <a href="https://github.com/apple/pkl">apple/pkl</a> and the official
+<a href="https://pkl-lang.org/main/current/tools.html">Pkl Tools</a> page as the authority
+for releases, behavior, and compatibility.</p>
+<h2>Tool Map</h2>
 <table>
 <thead>
 <tr>
 <th>Tool</th>
-<th>Use</th>
+<th>Audience</th>
+<th>Use it for</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>pkl</code> CLI</td>
-<td>evaluate, test, package, inspect, and run server mode</td>
+<td>everyone</td>
+<td>evaluating modules, rendering output, testing packages, running server mode, inspecting projects</td>
+</tr>
+<tr>
+<td>Gradle Plugin</td>
+<td>JVM teams</td>
+<td>build-time evaluation, Java/Kotlin code generation, Pkldoc generation</td>
 </tr>
 <tr>
 <td>Pkldoc</td>
-<td>generate package documentation from public contracts</td>
+<td>library authors</td>
+<td>searchable package documentation from public Pkl modules and doc comments</td>
 </tr>
 <tr>
-<td>VS Code extension</td>
-<td>editor support for Visual Studio Code</td>
+<td>IntelliJ Plugin</td>
+<td>JetBrains users</td>
+<td>completion, navigation, diagnostics, and refactoring in IntelliJ Platform IDEs</td>
 </tr>
 <tr>
-<td>IntelliJ plugin</td>
-<td>editor support for IntelliJ Platform IDEs</td>
+<td>VS Code Extension</td>
+<td>VS Code users</td>
+<td>completion, diagnostics, formatting, and editor feedback</td>
 </tr>
 <tr>
-<td>Language Server</td>
-<td>protocol layer for other editors</td>
+<td>Neovim Plugin</td>
+<td>Neovim users</td>
+<td>editor support backed by the Pkl language server</td>
+</tr>
+<tr>
+<td>Pkl Language Server</td>
+<td>editor/plugin authors</td>
+<td>low-level LSP integration for editor plugins</td>
+</tr>
+<tr>
+<td>Code generators</td>
+<td>application teams</td>
+<td>typed Java, Kotlin, Swift, and Go-facing configuration APIs</td>
 </tr>
 </tbody>
 </table>
-<p>Use <strong>CLI Reference</strong>, <strong>Editor Support</strong>, and <strong>Documentation Tools</strong> for the
-reader-facing workflows.</p>
-<h2>Site Source</h2>
-<p>The documentation source lives in Markdown under <code>docs/content</code>. The site is
-pre-rendered into static HTML under <code>docs/dist</code>.</p>
-<p>MoonBit appears here as site infrastructure and repository tooling. It should
-not be read as a claim that the MoonBit port is the canonical Pkl
-implementation.</p>
-<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">run</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docsgen/main</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/content</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/dist</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">run</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docsserve/main</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">native</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/dist</span><span style="color: #c9d1d9"> </span><span style="color: #79c0ff">4173</span></span></code></pre></div>
-<p>The local server is only for previewing generated HTML. It is not a Pkl
-installation path.</p>
-<h2>Contributor Checks</h2>
-<p>Run the generator tests before changing site structure or Markdown components.</p>
-<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">fmt</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">check</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--deny-warn</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">info</span></span></code></pre></div>
-<p>In the standalone documentation repository, the package scripts wrap the same
-steps:</p>
-<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pnpm</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">check</span></span><span class="line"><span style="color: #d2a8ff">pnpm</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">build</span></span></code></pre></div>
-<h2>Coverage Discipline</h2>
-<p>When a page changes user-facing behavior, update the affected area:</p>
-<ul>
-<li>Learn pages for workflow-level behavior</li>
-<li>Reference pages for CLI, integration, syntax, object model, semantics, API,</li>
-</ul>
-<p>and stdlib shape</p>
-<ul>
-<li>Ecosystem pages for editor support, Pkldoc, package documentation, and source</li>
-</ul>
-<p>alignment</p>
+<h2>Start With the CLI</h2>
+<p>The CLI is the operational center of Pkl. Learn it first, then add editor or
+build integrations around the workflows you actually need.</p>
+<table>
+<thead>
+<tr>
+<th>Command family</th>
+<th>What it anchors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pkl eval</code></td>
+<td>rendering configuration to JSON, YAML, plist, or other output formats</td>
+</tr>
+<tr>
+<td><code>pkl test</code></td>
+<td>validating examples, fixtures, and package contracts</td>
+</tr>
+<tr>
+<td><code>pkl repl</code></td>
+<td>exploring expressions and standard-library behavior</td>
+</tr>
+<tr>
+<td><code>pkl server</code></td>
+<td>embedding Pkl behind language bindings and long-running clients</td>
+</tr>
+<tr>
+<td>project/package commands</td>
+<td>dependency resolution, package metadata, and publishing workflows</td>
+</tr>
+</tbody>
+</table>
+<p>See <strong>CLI Reference</strong> for command shape and output behavior.</p>
+<h2>Build and Documentation Tools</h2>
+<p>Use the <strong>Gradle Plugin</strong> when Pkl evaluation, Java/Kotlin code generation, or
+Pkldoc generation needs to be part of a JVM build. It is the cleanest path for
+teams that already rely on Gradle.</p>
+<p>Use <strong>Pkldoc</strong> when you publish reusable Pkl modules. Pkldoc turns module names,
+classes, functions, properties, and Markdown doc comments into navigable package
+documentation.</p>
+<p>Use <strong>code generators</strong> when application code should consume configuration
+through typed APIs instead of raw maps. Pkl's official docs cover Java, Kotlin,
+Swift, and Go-facing integration surfaces.</p>
+<h2>Editor Tools</h2>
+<p>Editor support should be selected by editor, not by implementation.</p>
 <ul>
 <li>
-<p>Coverage Status for known documentation gaps</p>
+<p><strong>IntelliJ Plugin</strong> for JetBrains IDEs.</p>
+</li>
+<li>
+<p><strong>VS Code Extension</strong> for VS Code.</p>
+</li>
+<li>
+<p><strong>Neovim Plugin</strong> for Neovim.</p>
+</li>
+<li>
+<p><strong>Pkl Language Server</strong> for plugin authors and editor integrations.</p>
 </li>
 </ul>
-<p>This keeps documentation tied to actual reader jobs instead of growing into a
-flat pile of notes.</p>
+<p>For day-to-day setup, use <strong>Editor Support</strong>. For protocol-level details, use
+the official Language Server documentation.</p>
+<h2>What This Page Is Not</h2>
+<p>This page should not list this site's Markdown generator, local preview server,
+deployment command, or MoonBit implementation work. Those are contributor and
+implementation concerns, not Pkl tooling for readers.</p>
+<p>Use <strong>Contributor Workflow</strong> for documentation-site commands and
+<strong>Compatibility</strong> for notes about unofficial implementations.</p>
 </div>
         <aside class="site-attribution" aria-label="Attribution and licensing"><p><strong>Pkl is an Apple project.</strong> This site is unofficial, independently maintained, and not affiliated with Apple.</p><nav aria-label="Pkl source and license links"><a href="https://github.com/apple/pkl" target="_blank" rel="noreferrer">Official Pkl repository</a><a href="https://github.com/apple/pkl/blob/main/LICENSE.txt" target="_blank" rel="noreferrer">Apache-2.0 license</a><a href="https://github.com/apple/pkl/blob/main/NOTICE.txt" target="_blank" rel="noreferrer">NOTICE</a></nav></aside>
         <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/output-formats.html"><span>Previous</span><strong>Output Formats</strong></a><a class="page-nav-link is-next" rel="next" href="../ecosystem/upstream-fixtures.html"><span>Next</span><strong>Source Alignment</strong></a></nav>

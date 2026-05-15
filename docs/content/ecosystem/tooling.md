@@ -1,86 +1,79 @@
 ---
 title: Tooling
 section: Ecosystem
-description: Official Pkl tools and the local static-site build workflow.
+description: Official Pkl tools, editor integrations, documentation generators, and build integrations.
 order: 200
 ---
 
 # Tooling
 
-This page separates Pkl tools from this site's authoring tools. Readers only
-need the official `pkl` CLI and editor support. Contributors to this site also
-need the static-site build commands.
+This page is for Pkl users choosing tools around the Apple Pkl ecosystem. It is
+not a contributor setup page for this documentation site, and it is not a page
+about downstream implementations.
 
-## Canonical Boundary
+Use [apple/pkl](https://github.com/apple/pkl) and the official
+[Pkl Tools](https://pkl-lang.org/main/current/tools.html) page as the authority
+for releases, behavior, and compatibility.
 
-The canonical implementation of Pkl is
-[apple/pkl](https://github.com/apple/pkl). Language behavior, CLI flags,
-standard-library behavior, bindings, and tool compatibility should be checked
-against Apple Pkl first.
+## Tool Map
 
-The mizchi-origin MoonBit port is an unofficial implementation. It can be useful
-for experiments, parser work, documentation prototyping, and compatibility
-comparison, but it is not the source of truth for Pkl itself.
+| Tool | Audience | Use it for |
+| --- | --- | --- |
+| `pkl` CLI | everyone | evaluating modules, rendering output, testing packages, running server mode, inspecting projects |
+| Gradle Plugin | JVM teams | build-time evaluation, Java/Kotlin code generation, Pkldoc generation |
+| Pkldoc | library authors | searchable package documentation from public Pkl modules and doc comments |
+| IntelliJ Plugin | JetBrains users | completion, navigation, diagnostics, and refactoring in IntelliJ Platform IDEs |
+| VS Code Extension | VS Code users | completion, diagnostics, formatting, and editor feedback |
+| Neovim Plugin | Neovim users | editor support backed by the Pkl language server |
+| Pkl Language Server | editor/plugin authors | low-level LSP integration for editor plugins |
+| Code generators | application teams | typed Java, Kotlin, Swift, and Go-facing configuration APIs |
 
-## Pkl Tools
+## Start With the CLI
 
-| Tool | Use |
+The CLI is the operational center of Pkl. Learn it first, then add editor or
+build integrations around the workflows you actually need.
+
+| Command family | What it anchors |
 | --- | --- |
-| `pkl` CLI | evaluate, test, package, inspect, and run server mode |
-| Pkldoc | generate package documentation from public contracts |
-| VS Code extension | editor support for Visual Studio Code |
-| IntelliJ plugin | editor support for IntelliJ Platform IDEs |
-| Language Server | protocol layer for other editors |
+| `pkl eval` | rendering configuration to JSON, YAML, plist, or other output formats |
+| `pkl test` | validating examples, fixtures, and package contracts |
+| `pkl repl` | exploring expressions and standard-library behavior |
+| `pkl server` | embedding Pkl behind language bindings and long-running clients |
+| project/package commands | dependency resolution, package metadata, and publishing workflows |
 
-Use **CLI Reference**, **Editor Support**, and **Documentation Tools** for the
-reader-facing workflows.
+See **CLI Reference** for command shape and output behavior.
 
-## Site Source
+## Build and Documentation Tools
 
-The documentation source lives in Markdown under `docs/content`. The site is
-pre-rendered into static HTML under `docs/dist`.
+Use the **Gradle Plugin** when Pkl evaluation, Java/Kotlin code generation, or
+Pkldoc generation needs to be part of a JVM build. It is the cleanest path for
+teams that already rely on Gradle.
 
-MoonBit appears here as site infrastructure and repository tooling. It should
-not be read as a claim that the MoonBit port is the canonical Pkl
-implementation.
+Use **Pkldoc** when you publish reusable Pkl modules. Pkldoc turns module names,
+classes, functions, properties, and Markdown doc comments into navigable package
+documentation.
 
-```bash
-moon run docsgen/main --target js -- docs/content docs/dist
-moon run docsserve/main --target native -- docs/dist 4173
-```
+Use **code generators** when application code should consume configuration
+through typed APIs instead of raw maps. Pkl's official docs cover Java, Kotlin,
+Swift, and Go-facing integration surfaces.
 
-The local server is only for previewing generated HTML. It is not a Pkl
-installation path.
+## Editor Tools
 
-## Contributor Checks
+Editor support should be selected by editor, not by implementation.
 
-Run the generator tests before changing site structure or Markdown components.
+- **IntelliJ Plugin** for JetBrains IDEs.
+- **VS Code Extension** for VS Code.
+- **Neovim Plugin** for Neovim.
+- **Pkl Language Server** for plugin authors and editor integrations.
 
-```bash
-moon fmt
-moon check --deny-warn --target js
-moon test --target js
-moon info
-```
+For day-to-day setup, use **Editor Support**. For protocol-level details, use
+the official Language Server documentation.
 
-In the standalone documentation repository, the package scripts wrap the same
-steps:
+## What This Page Is Not
 
-```bash
-pnpm check
-pnpm build
-```
+This page should not list this site's Markdown generator, local preview server,
+deployment command, or MoonBit implementation work. Those are contributor and
+implementation concerns, not Pkl tooling for readers.
 
-## Coverage Discipline
-
-When a page changes user-facing behavior, update the affected area:
-
-- Learn pages for workflow-level behavior
-- Reference pages for CLI, integration, syntax, object model, semantics, API,
-  and stdlib shape
-- Ecosystem pages for editor support, Pkldoc, package documentation, and source
-  alignment
-- Coverage Status for known documentation gaps
-
-This keeps documentation tied to actual reader jobs instead of growing into a
-flat pile of notes.
+Use **Contributor Workflow** for documentation-site commands and
+**Compatibility** for notes about unofficial implementations.

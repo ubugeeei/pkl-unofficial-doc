@@ -573,9 +573,25 @@ test "documentation covers learning api language and ecosystem paths" {
     _ => ""
   }
   inspect(tooling.contains("apple/pkl"), content="true")
-  inspect(tooling.contains("canonical implementation"), content="true")
-  inspect(tooling.contains("mizchi-origin MoonBit port"), content="true")
-  inspect(tooling.contains("unofficial implementation"), content="true")
+  inspect(
+    tooling.contains("https://pkl-lang.org/main/current/tools.html"),
+    content="true",
+  )
+  inspect(tooling.contains("Gradle Plugin"), content="true")
+  inspect(tooling.contains("Pkldoc"), content="true")
+  inspect(tooling.contains("Language Server"), content="true")
+  inspect(tooling.contains("Neovim"), content="true")
+  inspect(tooling.contains("moon run"), content="false")
+  inspect(tooling.contains("pnpm build"), content="false")
+  inspect(tooling.contains("static-site build"), content="false")
+  inspect(tooling.contains("mizchi-origin MoonBit port"), content="false")
+  let tooling_page = page_from_markdown(
+    "docs/content/ecosystem/tooling.md", tooling,
+  )
+  inspect(
+    tooling_page.html.contains("everyday end-user command.</p>"),
+    content="false",
+  )
   let compatibility = @fs.read_file_to_string(
     "docs/content/ecosystem/compatibility.md",
   ) catch {
