@@ -15,7 +15,6 @@ value; in Pkl, import clauses are resolved through
 
 ```pkl
 module demo
-
 name = "hawk"
 age = 2
 ```
@@ -29,7 +28,6 @@ object literals and module results.
 bird = new {
   name = "hawk"
 }
-
 bird.name
 ```
 
@@ -41,7 +39,6 @@ plain-function predicate factories.
 
 ```pkl
 const function above(n) = (x) -> x > n
-
 class Service {
   replicas: Int(above(0))
 }

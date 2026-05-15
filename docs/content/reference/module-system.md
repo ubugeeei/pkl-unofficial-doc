@@ -24,7 +24,6 @@ object value.
 
 ```pkl
 import "database.pkl" as db
-
 databaseHost = db.host
 ```
 
@@ -46,7 +45,6 @@ module value participates in another expression.
 
 ```pkl
 amends "base.pkl"
-
 port = 9000
 ```
 

@@ -31,7 +31,6 @@ Keep the smallest file that still fails.
 class Service {
   port: Int(isBetween(1, 65535))
 }
-
 service: Service = new Service {
   port = 70000
 }
@@ -53,7 +52,6 @@ name = "api"
 ```pkl
 // main.pkl
 import "base.pkl" as base
-
 name = base.name
 ```
 

@@ -55,7 +55,6 @@ Use inheritance for a stable family of object contracts.
 class Endpoint {
   host: String
 }
-
 class HttpEndpoint extends Endpoint {
   port: Int(isBetween(1, 65535)) = 80
 }
@@ -72,14 +71,11 @@ Methods attach behavior to a class contract.
 ```pkl
 class Service {
   name: String
-
   function label(prefix: String): String = prefix + "-" + name
 }
-
 service = new Service {
   name = "api"
 }
-
 label = service.label("prod")
 ```
 
@@ -93,7 +89,6 @@ contract lives in another module.
 
 ```pkl
 import "library.pkl" as library
-
 person: library.Person = new library.Person {
   name = "Ada"
 }

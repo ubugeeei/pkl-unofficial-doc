@@ -53,7 +53,6 @@ materializes class defaults during evaluation for the implemented subset.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">class</span> Endpoint <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">host</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-keyword">class</span> HttpEndpoint <span class="tok-keyword">extends</span> Endpoint <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">80</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
@@ -64,14 +63,11 @@ external class integration.</p>
 <p>Methods attach behavior to a class contract.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">class</span> Service <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">name</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span>
-<span class="line"></span>
 <span class="line">  <span class="tok-keyword">function</span> <span class="tok-call">label</span><span class="tok-punctuation">(</span><span class="tok-property">prefix</span><span class="tok-operator">:</span> <span class="tok-type">String</span><span class="tok-punctuation">)</span><span class="tok-operator">:</span> <span class="tok-type">String</span> <span class="tok-operator">=</span> prefix <span class="tok-operator">+</span> <span class="tok-string">&quot;-&quot;</span> <span class="tok-operator">+</span> name</span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">service</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> Service <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">label</span> <span class="tok-operator">=</span> service<span class="tok-punctuation">.</span><span class="tok-call">label</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;prod&quot;</span><span class="tok-punctuation">)</span></span></code></pre></div>
 <p>Method declarations are kept separate from object value members. Method calls
 bind the receiver and arguments at the call boundary.</p>
@@ -79,7 +75,6 @@ bind the receiver and arguments at the call boundary.</p>
 <p>Imported modules can carry class declarations. Use qualified names when a
 contract lives in another module.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;library.pkl&quot;</span> <span class="tok-keyword">as</span> library</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">person</span><span class="tok-operator">:</span> library<span class="tok-punctuation">.</span><span class="tok-property">Person</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> library<span class="tok-punctuation">.</span>Person <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;Ada&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>

@@ -17,7 +17,6 @@ inside the configuration.
 
 ```pkl
 environment = "prod"
-
 replicas = if (environment == "prod") 4 else 1
 ```
 
@@ -48,7 +47,6 @@ Nullable annotations allow absence while keeping non-null values typed.
 
 ```pkl
 label: String? = null
-
 displayName =
   if (label != null) label else "unnamed"
 ```
@@ -63,7 +61,6 @@ Function declarations name reusable rules.
 ```pkl
 function clampPort(port: Int): Int =
   if (port < 1) 1 else if (port > 65535) 65535 else port
-
 port = clampPort(9000)
 ```
 
@@ -87,7 +84,6 @@ Callable values can be stored and passed around in the implemented runtime.
 
 ```pkl
 function checkPort(p: Int(isBetween(1, 65535))): Int = p
-
 selected = checkPort
 port = selected(8080)
 ```

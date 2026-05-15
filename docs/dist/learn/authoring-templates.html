@@ -47,7 +47,6 @@ that declares the shape and defaults, then use smaller modules to amend it.</p>
 <span class="line">  <span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
 <span class="line">  <span class="tok-property">replicas</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span>isPositive<span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">1</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">service</span><span class="tok-operator">:</span> <span class="tok-property">Service</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> Service <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
@@ -58,7 +57,6 @@ specialized module can amend the value without restating the whole object.</p>
 smaller set of differences.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-comment">// prod.pkl</span></span>
 <span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;service.pkl&quot;</span></span>
-<span class="line"></span>
 <span class="line">service <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">replicas</span> <span class="tok-operator">=</span> <span class="tok-number">4</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
@@ -71,7 +69,6 @@ the module boundary.</p>
 <span class="line"><span class="tok-property">api</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
 <span class="line"><span class="tok-property">admin</span> <span class="tok-operator">=</span> <span class="tok-number">9090</span></span></code></pre></div>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;ports.pkl&quot;</span> <span class="tok-keyword">as</span> ports</span>
-<span class="line"></span>
 <span class="line">service <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">port</span> <span class="tok-operator">=</span> ports<span class="tok-punctuation">.</span>api</span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
@@ -88,7 +85,6 @@ that owns the rendered output.</p>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
 <p>Then the child module has a stable target:</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;service.pkl&quot;</span></span>
-<span class="line"></span>
 <span class="line">service <span class="tok-punctuation">{</span></span>
 <span class="line">  runtime <span class="tok-punctuation">{</span></span>
 <span class="line">    <span class="tok-property">args</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Listing</span> <span class="tok-punctuation">{</span></span>

@@ -31,7 +31,6 @@ Objects are the center of that model.</p>
 <span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
 <span class="line">  <span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">label</span> <span class="tok-operator">=</span> service<span class="tok-punctuation">.</span>name</span></code></pre></div>
 <h2>Object Members</h2>
 <p>Object members are named values. A module's top-level properties form the module
@@ -48,7 +47,6 @@ module.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line">server <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;localhost&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">hostname</span> <span class="tok-operator">=</span> server<span class="tok-punctuation">.</span>host</span></code></pre></div>
 <p>Pkl's type model tracks object members enough to reject missing fields in
 the implemented subset.</p>
@@ -58,7 +56,6 @@ the implemented subset.</p>
 <span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
 <span class="line">  <span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">dev</span> <span class="tok-operator">=</span> <span class="tok-punctuation">(</span>base<span class="tok-punctuation">)</span> <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-number">9000</span></span>
 <span class="line">  <span class="tok-property">debug</span> <span class="tok-operator">=</span> <span class="tok-literal">true</span></span>
@@ -71,7 +68,6 @@ environment-specific delta.</p>
 <span class="line">  <span class="tok-string">&quot;moonbit&quot;</span></span>
 <span class="line">  <span class="tok-string">&quot;pkl&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">first</span> <span class="tok-operator">=</span> tags<span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span></span></code></pre></div>
 <p>Current implementation status: explicit <code>new Listing { ... }</code> values and
 subscript access are supported. Broad <code>pkl:base</code> collection methods such as
@@ -82,7 +78,6 @@ subscript access are supported. Broad <code>pkl:base</code> collection methods s
 <span class="line">  <span class="tok-punctuation">[</span><span class="tok-string">&quot;api&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
 <span class="line">  <span class="tok-punctuation">[</span><span class="tok-string">&quot;admin&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-number">9000</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">apiPort</span> <span class="tok-operator">=</span> ports<span class="tok-punctuation">[</span><span class="tok-string">&quot;api&quot;</span><span class="tok-punctuation">]</span></span></code></pre></div>
 <p>Current implementation status: explicit <code>new Mapping { [key] = value }</code> values
 and subscript access are supported. Mapping methods such as <code>keys</code>, <code>values</code>,

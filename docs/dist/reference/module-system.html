@@ -34,7 +34,6 @@ names for parsing and diagnostics while evaluating the module to its top-level
 object value.</p>
 <h2>Import Declarations</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;database.pkl&quot;</span> <span class="tok-keyword">as</span> db</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">databaseHost</span> <span class="tok-operator">=</span> db<span class="tok-punctuation">.</span>host</span></code></pre></div>
 <p>Relative imports resolve from the importing source path. <code>pkl:</code> imports are
 handled by the built-in resolver for the implemented stdlib surface.</p>
@@ -46,7 +45,6 @@ declarations for named dependencies and expression imports when the imported
 module value participates in another expression.</p>
 <h2>Amends</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;base.pkl&quot;</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-number">9000</span></span></code></pre></div>
 <p><code>amends</code> starts from a parent module value, then applies the child module's
 members. It is the primary template specialization mechanism.</p>

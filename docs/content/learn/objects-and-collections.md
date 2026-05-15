@@ -15,7 +15,6 @@ service = new {
   name = "api"
   port = 8080
 }
-
 label = service.name
 ```
 
@@ -43,7 +42,6 @@ Member lookup uses dot access:
 server {
   host = "localhost"
 }
-
 hostname = server.host
 ```
 
@@ -59,7 +57,6 @@ base = new {
   name = "api"
   port = 8080
 }
-
 dev = (base) {
   port = 9000
   debug = true
@@ -78,7 +75,6 @@ tags = new Listing {
   "moonbit"
   "pkl"
 }
-
 first = tags[0]
 ```
 
@@ -95,7 +91,6 @@ ports = new Mapping {
   ["api"] = 8080
   ["admin"] = 9000
 }
-
 apiPort = ports["api"]
 ```
 

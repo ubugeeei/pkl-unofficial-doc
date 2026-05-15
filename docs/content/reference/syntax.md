@@ -15,10 +15,8 @@ use Coverage Status for documentation depth.
 
 ```pkl
 module app.config
-
 amends "base.pkl"
 extends "template.pkl"
-
 import "db.pkl" as db
 ```
 

@@ -44,7 +44,6 @@ ports: Listing<Int> = new Listing {
   8080
   9000
 }
-
 labels: Mapping<String, String> = new Mapping {
   ["api"] = "public"
 }
@@ -71,7 +70,6 @@ function asPort(x: String | Int): Int =
 
 ```pkl
 typealias Port = Int(isBetween(1, 65535))
-
 port: Port = 8080
 ```
 
@@ -87,7 +85,6 @@ class Service {
   name: String
   port: Int = 8080
 }
-
 service: Service = new {
   name = "api"
 }
@@ -103,7 +100,6 @@ Functions and lambdas can carry parameter and return annotations.
 
 ```pkl
 function add(x: Int, y: Int): Int = x + y
-
 inc = (x: Int): Int -> x + 1
 ```
 
@@ -133,7 +129,6 @@ modifier-qualified function declarations.
 
 ```pkl
 const function above(n) = (x) -> x > n
-
 replicas: Int(above(0)) = 3
 ```
 

@@ -45,7 +45,6 @@ implemented subset.</p>
 <span class="line">  <span class="tok-number">8080</span></span>
 <span class="line">  <span class="tok-number">9000</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">labels</span><span class="tok-operator">:</span> <span class="tok-type">Mapping</span><span class="tok-operator">&lt;</span><span class="tok-type">String</span><span class="tok-punctuation">,</span> <span class="tok-type">String</span><span class="tok-operator">&gt;</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Mapping</span> <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-punctuation">[</span><span class="tok-string">&quot;api&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;public&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
@@ -59,7 +58,6 @@ roadmap item.</p>
 <span class="line">  <span class="tok-keyword">if</span> <span class="tok-punctuation">(</span>x <span class="tok-keyword">is</span> <span class="tok-type">Int</span><span class="tok-punctuation">)</span> x <span class="tok-keyword">else</span> <span class="tok-number">0</span></span></code></pre></div>
 <h2>Type Aliases</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">typealias</span> <span class="tok-property">Port</span> <span class="tok-operator">=</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-property">Port</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span></code></pre></div>
 <p>Simple type aliases flow through value annotations, object members, callable
 returns, and parts of the callable constraint path.</p>
@@ -69,7 +67,6 @@ returns, and parts of the callable constraint path.</p>
 <span class="line">  <span class="tok-property">name</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span>
 <span class="line">  <span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">service</span><span class="tok-operator">:</span> <span class="tok-property">Service</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
@@ -79,7 +76,6 @@ generic class model.</p>
 <h2>Callables</h2>
 <p>Functions and lambdas can carry parameter and return annotations.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">function</span> <span class="tok-call">add</span><span class="tok-punctuation">(</span><span class="tok-property">x</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">,</span> <span class="tok-property">y</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">)</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">=</span> x <span class="tok-operator">+</span> y</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">inc</span> <span class="tok-operator">=</span> <span class="tok-punctuation">(</span><span class="tok-property">x</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">)</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">-</span><span class="tok-operator">&gt;</span> x <span class="tok-operator">+</span> <span class="tok-number">1</span></span></code></pre></div>
 <p>Runtime validation applies at function/lambda returns and class method returns
 when annotations require it.</p>
@@ -120,7 +116,6 @@ when annotations require it.</p>
 <p>User-defined numeric predicate factories are supported for plain and
 modifier-qualified function declarations.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">const</span> <span class="tok-keyword">function</span> <span class="tok-call">above</span><span class="tok-punctuation">(</span>n<span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-punctuation">(</span>x<span class="tok-punctuation">)</span> <span class="tok-operator">-</span><span class="tok-operator">&gt;</span> x <span class="tok-operator">&gt;</span> n</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">replicas</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">above</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">3</span></span></code></pre></div>
 <p>String, Float, Regex, and collection-element constraints are Pkl concepts that
 deserve dedicated examples as this site grows.</p>

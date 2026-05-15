@@ -35,13 +35,11 @@ tooling author.</p>
 <span class="line"><span class="tok-property">replicas</span> <span class="tok-operator">=</span> <span class="tok-number">1</span></span></code></pre></div>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-comment">// prod.pkl</span></span>
 <span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;base.pkl&quot;</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">replicas</span> <span class="tok-operator">=</span> <span class="tok-number">4</span></span></code></pre></div>
 <p>The CLI loads the imported source graph before typechecking or evaluation.</p>
 <h2>Named Imports</h2>
 <p>Use named imports when the imported module is a dependency, not a base template.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;database.pkl&quot;</span> <span class="tok-keyword">as</span> db</span>
-<span class="line"></span>
 <span class="line">service <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> db<span class="tok-punctuation">.</span>host</span>
 <span class="line">  <span class="tok-property">port</span> <span class="tok-operator">=</span> db<span class="tok-punctuation">.</span>port</span>

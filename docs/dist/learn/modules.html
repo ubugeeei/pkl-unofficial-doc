@@ -29,11 +29,8 @@
 modules, expose top-level properties, define local helpers, and reuse another
 module through <code>amends</code> or <code>extends</code>.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">module</span> app<span class="tok-punctuation">.</span>config</span>
-<span class="line"></span>
 <span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;base.pkl&quot;</span> <span class="tok-keyword">as</span> base</span>
-<span class="line"></span>
 <span class="line"><span class="tok-keyword">local</span> <span class="tok-property">defaultPort</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">name</span> <span class="tok-operator">=</span> base<span class="tok-punctuation">.</span>name</span>
 <span class="line"><span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> defaultPort</span></code></pre></div>
 <h2>Module Declaration</h2>
@@ -45,7 +42,6 @@ stable contract.</p>
 <h2>Imports</h2>
 <p>Imports bind another module's evaluated exports under an alias.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">import</span> <span class="tok-string">&quot;database.pkl&quot;</span> <span class="tok-keyword">as</span> db</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">url</span> <span class="tok-operator">=</span> db<span class="tok-punctuation">.</span>host <span class="tok-operator">+</span> <span class="tok-string">&quot;:&quot;</span> <span class="tok-operator">+</span> db<span class="tok-punctuation">.</span>port</span></code></pre></div>
 <p>Relative import paths are resolved from the importing file. <code>AnalysisSession</code>
 stores each source by path and caches parse, typecheck, and evaluation work
@@ -59,7 +55,6 @@ through the same source graph in the CLI and <code>AnalysisSession</code>.</p>
 <h2>Amends and Extends</h2>
 <p><code>amends</code> and <code>extends</code> reuse another module as a base object.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">amends</span> <span class="tok-string">&quot;base.pkl&quot;</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-number">9000</span></span></code></pre></div>
 <p><code>amends</code> is the common configuration-specialization path: start with a template,
 override the pieces this module owns, and keep the rest from the base.</p>

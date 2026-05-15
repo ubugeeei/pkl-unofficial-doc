@@ -229,6 +229,24 @@ test "code blocks use compact line rhythm" {
 }
 
 ///|
+test "documentation code samples do not render empty spacer lines" {
+  let pages = [
+    "docs/content/learn/authoring-templates.md", "docs/content/learn/classes-and-methods.md",
+    "docs/content/learn/constraints-in-practice.md", "docs/content/learn/core-concepts.md",
+    "docs/content/learn/debugging-diagnostics.md", "docs/content/learn/functions-and-control-flow.md",
+    "docs/content/learn/imports-and-modules.md", "docs/content/learn/modules.md",
+    "docs/content/learn/objects-and-collections.md", "docs/content/learn/types-and-constraints.md",
+    "docs/content/reference/module-system.md", "docs/content/reference/stdlib.md",
+    "docs/content/reference/syntax.md",
+  ]
+  for path in pages {
+    let source = @fs.read_file_to_string(path) catch { _ => "" }
+    let page = page_from_markdown(path, source)
+    inspect(page.html.contains("<span class=\"line\"></span>"), content="false")
+  }
+}
+
+///|
 test "documentation covers learning api language and ecosystem paths" {
   let expected = [
     "docs/content/learn/authoring-templates.md", "docs/content/learn/classes-and-methods.md",

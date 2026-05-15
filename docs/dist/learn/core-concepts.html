@@ -30,7 +30,6 @@
 value; in Pkl, import clauses are resolved through
 <code>AnalysisSession</code>.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">module</span> demo</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;hawk&quot;</span></span>
 <span class="line"><span class="tok-property">age</span> <span class="tok-operator">=</span> <span class="tok-number">2</span></span></code></pre></div>
 <h2>Objects</h2>
@@ -39,14 +38,12 @@ object literals and module results.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">bird</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;hawk&quot;</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span>
-<span class="line"></span>
 <span class="line">bird<span class="tok-punctuation">.</span>name</span></code></pre></div>
 <h2>Constraints</h2>
 <p>Pkl supports constraints as part of typed module design,
 including <code>isBetween</code>, <code>isPositive</code>, <code>isGreaterThan</code>, <code>isLessThan</code>, negation, and
 plain-function predicate factories.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">const</span> <span class="tok-keyword">function</span> <span class="tok-call">above</span><span class="tok-punctuation">(</span>n<span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-punctuation">(</span>x<span class="tok-punctuation">)</span> <span class="tok-operator">-</span><span class="tok-operator">&gt;</span> x <span class="tok-operator">&gt;</span> n</span>
-<span class="line"></span>
 <span class="line"><span class="tok-keyword">class</span> Service <span class="tok-punctuation">{</span></span>
 <span class="line">  <span class="tok-property">replicas</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">above</span><span class="tok-punctuation">(</span><span class="tok-number">0</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span></span>
 <span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>

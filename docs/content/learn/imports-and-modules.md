@@ -24,7 +24,6 @@ replicas = 1
 ```pkl
 // prod.pkl
 amends "base.pkl"
-
 replicas = 4
 ```
 
@@ -36,7 +35,6 @@ Use named imports when the imported module is a dependency, not a base template.
 
 ```pkl
 import "database.pkl" as db
-
 service {
   host = db.host
   port = db.port

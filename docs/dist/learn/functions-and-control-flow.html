@@ -31,7 +31,6 @@ inside the configuration.</p>
 <h2>Conditionals</h2>
 <p><code>if</code> expressions choose between values.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">environment</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;prod&quot;</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">replicas</span> <span class="tok-operator">=</span> <span class="tok-keyword">if</span> <span class="tok-punctuation">(</span><span class="tok-property">environment</span> <span class="tok-operator">=</span><span class="tok-operator">=</span> <span class="tok-string">&quot;prod&quot;</span><span class="tok-punctuation">)</span> <span class="tok-number">4</span> <span class="tok-keyword">else</span> <span class="tok-number">1</span></span></code></pre></div>
 <p>Both branches should produce values that satisfy the surrounding annotation.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">=</span></span>
@@ -47,7 +46,6 @@ and unary operators in the core expression path.</p>
 <h2>Null Handling</h2>
 <p>Nullable annotations allow absence while keeping non-null values typed.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">label</span><span class="tok-operator">:</span> <span class="tok-type">String</span><span class="tok-operator">?</span> <span class="tok-operator">=</span> <span class="tok-literal">null</span></span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">displayName</span> <span class="tok-operator">=</span></span>
 <span class="line">  <span class="tok-keyword">if</span> <span class="tok-punctuation">(</span>label <span class="tok-operator">!</span><span class="tok-operator">=</span> <span class="tok-literal">null</span><span class="tok-punctuation">)</span> label <span class="tok-keyword">else</span> <span class="tok-string">&quot;unnamed&quot;</span></span></code></pre></div>
 <p>Use a null guard when the expression needs a definite value. The typechecker
@@ -56,7 +54,6 @@ understands the implemented null guard path.</p>
 <p>Function declarations name reusable rules.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">function</span> <span class="tok-call">clampPort</span><span class="tok-punctuation">(</span><span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">)</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">=</span></span>
 <span class="line">  <span class="tok-keyword">if</span> <span class="tok-punctuation">(</span>port <span class="tok-operator">&lt;</span> <span class="tok-number">1</span><span class="tok-punctuation">)</span> <span class="tok-number">1</span> <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> <span class="tok-punctuation">(</span>port <span class="tok-operator">&gt;</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span> <span class="tok-number">65535</span> <span class="tok-keyword">else</span> port</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-call">clampPort</span><span class="tok-punctuation">(</span><span class="tok-number">9000</span><span class="tok-punctuation">)</span></span></code></pre></div>
 <p>Parameter and return annotations are checked for the implemented primitive,
 union, alias, callable, and numeric constraint subset.</p>
@@ -68,7 +65,6 @@ to a constraint or a small transformation.</p>
 <h2>Callable Values</h2>
 <p>Callable values can be stored and passed around in the implemented runtime.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">function</span> <span class="tok-call">checkPort</span><span class="tok-punctuation">(</span><span class="tok-property">p</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">=</span> p</span>
-<span class="line"></span>
 <span class="line"><span class="tok-property">selected</span> <span class="tok-operator">=</span> checkPort</span>
 <span class="line"><span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-call">selected</span><span class="tok-punctuation">(</span><span class="tok-number">8080</span><span class="tok-punctuation">)</span></span></code></pre></div>
 <p>The evaluator preserves lexical captures for scalar, object, and callable

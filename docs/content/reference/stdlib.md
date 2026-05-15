@@ -26,7 +26,6 @@ Import `pkl:math` when a module needs named numeric helpers or constants.
 
 ```pkl
 import "pkl:math" as math
-
 max = math.maxInt32
 ```
 

@@ -26,7 +26,6 @@ Use type aliases when the same constrained shape appears repeatedly.
 
 ```pkl
 typealias Port = Int(isBetween(1, 65535))
-
 http: Port = 8080
 admin: Port = 9090
 ```
@@ -40,7 +39,6 @@ Predicate factories are useful when the threshold is part of the rule.
 
 ```pkl
 const function above(min) = (x) -> x > min
-
 workers: Int(above(0)) = 4
 ```
 
@@ -56,7 +54,6 @@ contract.
 class Pool {
   size: Int(isBetween(1, 32)) = 4
 }
-
 pool = new Pool {}
 ```
 

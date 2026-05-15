@@ -26,7 +26,6 @@ class Service {
   port: Int(isBetween(1, 65535)) = 8080
   replicas: Int(isPositive) = 1
 }
-
 service: Service = new Service {
   name = "api"
 }
@@ -43,7 +42,6 @@ smaller set of differences.
 ```pkl
 // prod.pkl
 amends "service.pkl"
-
 service {
   replicas = 4
 }
@@ -65,7 +63,6 @@ admin = 9090
 
 ```pkl
 import "ports.pkl" as ports
-
 service {
   port = ports.api
 }
@@ -92,7 +89,6 @@ Then the child module has a stable target:
 
 ```pkl
 amends "service.pkl"
-
 service {
   runtime {
     args = new Listing {

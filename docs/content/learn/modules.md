@@ -13,11 +13,8 @@ module through `amends` or `extends`.
 
 ```pkl
 module app.config
-
 import "base.pkl" as base
-
 local defaultPort = 8080
-
 name = base.name
 port: Int(isBetween(1, 65535)) = defaultPort
 ```
@@ -37,7 +34,6 @@ Imports bind another module's evaluated exports under an alias.
 
 ```pkl
 import "database.pkl" as db
-
 url = db.host + ":" + db.port
 ```
 
@@ -63,7 +59,6 @@ through the same source graph in the CLI and `AnalysisSession`.
 
 ```pkl
 amends "base.pkl"
-
 port = 9000
 ```
 
