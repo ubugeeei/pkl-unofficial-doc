@@ -116,6 +116,22 @@ test "rendered site shell exposes learning api and spec routes" {
   )
   inspect(home.html.contains("assets/pkl-icon.svg"), content="true")
   inspect(
+    home.html.contains("<meta property=\"og:title\" content=\"Pkl\">"),
+    content="true",
+  )
+  inspect(
+    home.html.contains(
+      "<meta property=\"og:image\" content=\"https://pkl-unofficial-doc.void.app/assets/og-image.png\">",
+    ),
+    content="true",
+  )
+  inspect(
+    home.html.contains(
+      "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+    ),
+    content="true",
+  )
+  inspect(
     home.html.contains("pkl-mbt object grammar brand mark"),
     content="false",
   )
@@ -177,6 +193,24 @@ test "rendered site shell exposes learning api and spec routes" {
   inspect(home.html.contains("markdown-body"), content="true")
   let learn = rendered[1]
   inspect(learn.html.contains("class=\"sidebar\""), content="true")
+  inspect(
+    learn.html.contains(
+      "<meta property=\"og:title\" content=\"Learning Path - Pkl\">",
+    ),
+    content="true",
+  )
+  inspect(
+    learn.html.contains(
+      "<meta property=\"og:url\" content=\"https://pkl-unofficial-doc.void.app/learn/\">",
+    ),
+    content="true",
+  )
+  inspect(
+    learn.html.contains(
+      "<meta name=\"twitter:image\" content=\"https://pkl-unofficial-doc.void.app/assets/og-image.png\">",
+    ),
+    content="true",
+  )
   inspect(learn.html.contains("https://github.com/apple/pkl"), content="true")
   inspect(
     learn.html.contains("https://github.com/ubugeeei/pkl-unofficial-doc"),
@@ -279,6 +313,22 @@ test "site theme stays neutral and markdown first" {
   )
   inspect(js.contains("Copied"), content="true")
   inspect(js.contains("Selected"), content="true")
+}
+
+///|
+test "open graph image asset is present" {
+  inspect(@fs.path_exists("docs/assets/og-image.svg"), content="true")
+  inspect(@fs.path_exists("docs/assets/og-image.png"), content="true")
+  let image = @fs.read_file_to_string("docs/assets/og-image.svg") catch {
+    _ => ""
+  }
+  inspect(image.contains("viewBox=\"0 0 1200 630\""), content="true")
+  inspect(image.contains("width=\"1200\""), content="true")
+  inspect(image.contains("height=\"630\""), content="true")
+  inspect(image.contains("pkl-icon.svg"), content="true")
+  inspect(image.contains("Pkl"), content="true")
+  inspect(image.contains("Unofficial language documentation"), content="true")
+  inspect(image.contains("apple/pkl"), content="true")
 }
 
 ///|

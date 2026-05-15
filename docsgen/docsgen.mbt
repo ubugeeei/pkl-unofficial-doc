@@ -799,6 +799,37 @@ fn github_links_html(class_name : String) -> String {
 }
 
 ///|
+fn canonical_url(current : DocPage) -> String {
+  if current.slug == "index" {
+    "https://pkl-unofficial-doc.void.app/"
+  } else {
+    "https://pkl-unofficial-doc.void.app/" + current.href
+  }
+}
+
+///|
+fn social_meta_html(current : DocPage) -> String {
+  let title = html_escape(page_title(current))
+  let description = html_escape(current.description)
+  let url = html_escape(canonical_url(current))
+  let image = "https://pkl-unofficial-doc.void.app/assets/og-image.png"
+  (
+    $|  <meta property="og:type" content="website">
+    $|  <meta property="og:title" content="\{title}">
+    $|  <meta property="og:description" content="\{description}">
+    $|  <meta property="og:url" content="\{url}">
+    $|  <meta property="og:image" content="\{image}">
+    $|  <meta property="og:image:type" content="image/png">
+    $|  <meta property="og:image:width" content="1200">
+    $|  <meta property="og:image:height" content="630">
+    $|  <meta name="twitter:card" content="summary_large_image">
+    $|  <meta name="twitter:title" content="\{title}">
+    $|  <meta name="twitter:description" content="\{description}">
+    $|  <meta name="twitter:image" content="\{image}">
+  )
+}
+
+///|
 fn brand_mark_html() -> String {
   (
     #|<svg class="brand-mark" viewBox="0 0 520 360" role="img" aria-label="Pkl language specimen mark">
@@ -826,6 +857,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
   let tracks = home_tracks_html()
   let mark = brand_mark_html()
   let github = github_links_html("home-source-links")
+  let social = social_meta_html(current)
   (
     $|<!doctype html>
     $|<html lang="en">
@@ -834,6 +866,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <title>\{escaped_title}</title>
     $|  <meta name="description" content="\{escaped_description}">
+    $|\{social}
     $|  <link rel="icon" type="image/svg+xml" href="assets/pkl-icon.svg">
     $|  <link rel="stylesheet" href="assets/site-20260515b.css">
     $|</head>
@@ -884,6 +917,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
   let page_nav = page_nav_html(current, pages)
   let top = top_links(current, pages)
   let github = github_links_html("source-links")
+  let social = social_meta_html(current)
   (
     $|<!doctype html>
     $|<html lang="en">
@@ -892,6 +926,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <title>\{escaped_title}</title>
     $|  <meta name="description" content="\{escaped_description}">
+    $|\{social}
     $|  <link rel="icon" type="image/svg+xml" href="\{depth_prefix(current.path)}assets/pkl-icon.svg">
     $|  <link rel="stylesheet" href="\{depth_prefix(current.path)}assets/site-20260515b.css">
     $|</head>
