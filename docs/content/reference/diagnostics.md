@@ -1,7 +1,7 @@
 ---
 title: Diagnostics Reference
 section: Reference
-description: Diagnostic stages, failure shapes, current messages, and future editor integration.
+description: Diagnostic stages, failure shapes, and editor-facing debugging workflow.
 order: 118
 ---
 
@@ -12,27 +12,16 @@ fail the next.
 
 ## Parse Diagnostics
 
-Parse diagnostics mean the source cannot be reduced into the semantic program
-model.
+Parse diagnostics mean the source cannot be read as Pkl syntax.
 
 Typical causes:
 
 - malformed object bodies
 - missing delimiters
-- unsupported declaration forms that are not yet tolerated
 - invalid string or interpolation shapes
 
 Parser diagnostics are closest to syntax and should not require import or
 stdlib context.
-
-## Unsupported Syntax
-
-The parser can preserve accepted-but-not-semantic syntax as unsupported spans.
-This lets compatibility work move forward without pretending every accepted
-construct evaluates.
-
-User-facing docs should call this out explicitly: parse acceptance is not the
-same thing as language support.
 
 ## Typecheck Diagnostics
 
@@ -46,9 +35,9 @@ name: String = 1
 port: Int(isBetween(1, 65535)) = 70000
 ```
 
-Current diagnostics cover primitive mismatches, missing members, invalid calls,
-class contract failures, union narrowing failures, and selected constrained
-annotation failures.
+Common diagnostics cover primitive mismatches, missing members, invalid calls,
+class contract failures, union narrowing failures, and constrained annotation
+failures.
 
 ## Evaluation Diagnostics
 
@@ -60,16 +49,15 @@ Common cases:
 - cyclic imports
 - invalid member lookup
 - rejected runtime constraints
-- unsupported stdlib calls
+- failed resource reads
 
 ## Renderer Diagnostics
 
-PCF rendering is implemented for the current value graph. JSON, YAML,
-properties, and plist rendering are roadmap work, so format-specific failures
-should be treated as missing feature work rather than Pkl model failures.
+Renderer diagnostics happen after evaluation, when a value cannot be represented
+in the requested format or the output path cannot be written.
 
-## Future Shape
+## Editor Shape
 
-The CST preserves source positions, so diagnostics can grow into editor-grade
-messages with spans, related locations, and code actions. The current docs keep
-the stage model stable so richer diagnostics can slot into the same workflow.
+Good editor diagnostics should point to the failing source span, name the stage,
+include related import locations when useful, and keep the CLI command
+reproducible.

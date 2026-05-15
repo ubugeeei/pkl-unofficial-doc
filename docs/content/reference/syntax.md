@@ -1,15 +1,15 @@
 ---
 title: Syntax Reference
 section: Reference
-description: A compact map of Pkl syntax accepted by the parser and implemented semantically.
+description: A compact map of common Pkl syntax for modules, expressions, objects, and types.
 order: 105
 ---
 
 # Syntax Reference
 
-The parser accepts a broad Pkl syntax slice, including constructs that are ahead
-of evaluator or typechecker support. Treat this page as the compact syntax map;
-use Coverage Status for documentation depth.
+This is a compact syntax map for reading and authoring Pkl. It is not a full
+grammar listing; use the official language reference when exact grammar details
+matter.
 
 ## Module Forms
 
@@ -20,7 +20,7 @@ extends "template.pkl"
 import "db.pkl" as db
 ```
 
-Supported module forms:
+Common module forms:
 
 - module declarations
 - `amends` and `extends`
@@ -40,12 +40,11 @@ enabled = true
 missing = null
 ```
 
-Common string escapes such as `\n`, `\t`, `\r`, `\"`, and `\\` are decoded and
-rendered.
+Common string escapes include `\n`, `\t`, `\r`, `\"`, and `\\`.
 
 ## Expressions
 
-Accepted expression families include:
+Common expression families include:
 
 - identifiers and member access
 - safe member access
@@ -72,9 +71,8 @@ server {
 }
 ```
 
-The object-body shorthand is accepted for module and object members. More
-advanced object-body generators such as `for` and `when` are roadmap work for
-evaluation.
+Object bodies are the center of Pkl authoring. Use **Object Model** for
+amendments, late binding, and receiver keywords.
 
 ## Callable Syntax
 
@@ -83,8 +81,7 @@ function add(x: Int, y: Int): Int = x + y
 inc = (x: Int): Int -> x + 1
 ```
 
-Modifier-qualified function declarations such as `const function` parse as
-function declarations in the implemented subset.
+Move anonymous functions into named declarations once the logic becomes shared.
 
 ## Type Syntax
 
@@ -95,5 +92,5 @@ ports: Listing<Int> = new Listing { 8080 }
 value: String | Int = "api"
 ```
 
-Type text is preserved in annotations and then interpreted by the typechecker
-for the supported subset.
+Type annotations make object contracts visible to readers, editor tools, and
+host-language integrations.

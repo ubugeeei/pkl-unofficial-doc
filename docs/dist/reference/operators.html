@@ -4,25 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Operators Reference - Pkl</title>
-  <meta name="description" content="Expression operators, precedence, narrowing behavior, and implementation notes.">
+  <meta name="description" content="Expression operators, precedence, narrowing behavior, and readable conditions.">
   <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
   <link rel="stylesheet" href="../assets/site-20260515.css">
 </head>
 <body data-section="Reference">
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
-    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
     <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
     <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
   </header>
   <div id="site-shell" class="site-shell">
-    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link is-active" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link is-active" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
     <main class="content">
       <article class="doc">
         <header class="doc-header">
           <p class="section-label">Reference</p>
           <h1>Operators Reference</h1>
-          <p>Expression operators, precedence, narrowing behavior, and implementation notes.</p>
+          <p>Expression operators, precedence, narrowing behavior, and readable conditions.</p>
         </header>
         <div class="markdown-body"><h1>Operators Reference</h1>
 <p>Operators are expression syntax. They should stay readable because Pkl modules
@@ -56,22 +56,22 @@ are configuration first.</p>
 <tr>
 <td>additive</td>
 <td><code>+</code>, <code>-</code></td>
-<td>numeric addition and string-like supported concatenation</td>
+<td>numeric addition and string-like concatenation</td>
 </tr>
 <tr>
 <td>comparison</td>
 <td><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code></td>
-<td>numeric and implemented comparable values</td>
+<td>comparable values</td>
 </tr>
 <tr>
 <td>equality</td>
 <td><code>==</code>, <code>!=</code></td>
-<td>value equality for implemented primitives</td>
+<td>value equality</td>
 </tr>
 <tr>
 <td>type test</td>
 <td><code>is</code>, <code>as</code></td>
-<td>narrowing and casts for supported types</td>
+<td>narrowing and casts</td>
 </tr>
 <tr>
 <td>boolean and</td>
@@ -98,8 +98,8 @@ are configuration first.</p>
 <p>Parentheses are recommended whenever a rule is hard to scan.</p>
 <h2>Arithmetic</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">workers</span> <span class="tok-operator">=</span> <span class="tok-number">2</span> <span class="tok-operator">+</span> <span class="tok-number">2</span></span><span class="line"><span class="tok-property">limit</span> <span class="tok-operator">=</span> workers <span class="tok-operator">*</span> <span class="tok-number">10</span></span></code></pre></div>
-<p>The current evaluator supports the core integer arithmetic path used by the
-spec scenarios. Duration and DataSize arithmetic are roadmap work.</p>
+<p>Keep arithmetic close to the values it derives. Use named intermediate
+properties when units or precedence are not obvious.</p>
 <h2>Equality and Comparison</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">isProd</span> <span class="tok-operator">=</span> <span class="tok-property">environment</span> <span class="tok-operator">=</span><span class="tok-operator">=</span> <span class="tok-string">&quot;prod&quot;</span></span><span class="line"><span class="tok-property">tooHigh</span> <span class="tok-operator">=</span> port <span class="tok-operator">&gt;</span> <span class="tok-number">65535</span></span></code></pre></div>
 <p>Comparison operators are used heavily by user-defined numeric predicates.</p>
@@ -108,7 +108,8 @@ spec scenarios. Duration and DataSize arithmetic are roadmap work.</p>
 <p>Prefer intermediate properties when boolean expressions grow past one line.</p>
 <h2>Type Tests</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">function</span> <span class="tok-call">asPort</span><span class="tok-punctuation">(</span><span class="tok-property">x</span><span class="tok-operator">:</span> <span class="tok-type">String</span> <span class="tok-operator">|</span> <span class="tok-type">Int</span><span class="tok-punctuation">)</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">=</span></span><span class="line">  <span class="tok-keyword">if</span> <span class="tok-punctuation">(</span>x <span class="tok-keyword">is</span> <span class="tok-type">Int</span><span class="tok-punctuation">)</span> x <span class="tok-keyword">else</span> <span class="tok-number">0</span></span></code></pre></div>
-<p><code>is</code> guards participate in union narrowing for the implemented subset.</p>
+<p><code>is</code> guards participate in union narrowing and make later expressions easier to
+type.</p>
 <h2>Null Coalescing</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">name</span> <span class="tok-operator">=</span> suppliedName <span class="tok-operator">?</span><span class="tok-operator">?</span> <span class="tok-string">&quot;default&quot;</span></span></code></pre></div>
 <p>Use this for simple fallback values. Use <code>if</code> when the fallback needs more
@@ -116,8 +117,8 @@ context.</p>
 <h2>Access Operators</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">host</span> <span class="tok-operator">=</span> server<span class="tok-punctuation">.</span>host</span><span class="line"><span class="tok-property">first</span> <span class="tok-operator">=</span> ports<span class="tok-punctuation">[</span><span class="tok-number">0</span><span class="tok-punctuation">]</span></span></code></pre></div>
 <p>Member and subscript access should fail loudly when the expected member or
-element is absent. Safe access support is parser-visible, with semantic depth
-growing alongside nullable work.</p>
+element is absent. Use safe access when absence is part of the model rather than
+an error.</p>
 </div>
         <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/syntax.html"><span>Previous</span><strong>Syntax Reference</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/collections.html"><span>Next</span><strong>Collections Reference</strong></a></nav>
       </article>

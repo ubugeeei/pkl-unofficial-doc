@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Annotations and Modifiers - Pkl</title>
+  <meta name="description" content="Doc comments, annotations, and modifiers that shape visibility, inheritance, and tooling.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site-20260515.css">
+</head>
+<body data-section="Reference">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link is-active" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Reference</p>
+          <h1>Annotations and Modifiers</h1>
+          <p>Doc comments, annotations, and modifiers that shape visibility, inheritance, and tooling.</p>
+        </header>
+        <div class="markdown-body"><h1>Annotations and Modifiers</h1>
+<p>Annotations and modifiers are how Pkl communicates intent to readers, tools,
+package documentation, and future amendments. Use them sparingly, but treat them
+as part of the public contract when they appear on exported declarations.</p>
+<h2>Doc Comments</h2>
+<p>Doc Comments use <code>///</code> and should describe the contract rather than repeat the
+member name.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-comment">/// Public HTTP port for the service.</span></span><span class="line"><span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span></code></pre></div>
+<p>Good doc comments explain constraints, units, defaults, and operational meaning.
+They are the foundation for package documentation generated by Pkldoc.</p>
+<h2>Annotations</h2>
+<p>Annotations attach structured metadata to declarations and members. Pkl tools
+can use that metadata for documentation, deprecation warnings, code generation,
+or editor affordances.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line">@Deprecated <span class="tok-punctuation">{</span> <span class="tok-property">message</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;Use endpoint.port.&quot;</span> <span class="tok-punctuation">}</span></span><span class="line"><span class="tok-property">oldPort</span><span class="tok-operator">:</span> <span class="tok-type">Int</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span></code></pre></div>
+<p>Use <code>@Deprecated</code> when a public member remains available but should stop being
+used in new modules. Keep the message actionable and point to the replacement.</p>
+<h2>Visibility Modifiers</h2>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>local</code></td>
+<td>internal helper value for the current module or object</td>
+</tr>
+<tr>
+<td><code>hidden</code></td>
+<td>value that participates in evaluation but should not appear in rendered output</td>
+</tr>
+<tr>
+<td><code>fixed</code></td>
+<td>member that amendments should not replace</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">local</span> <span class="tok-property">defaultHost</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;localhost&quot;</span></span><span class="line"><span class="tok-keyword">hidden</span> <span class="tok-property">generatedLabel</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;service-\(defaultHost)&quot;</span></span><span class="line"><span class="tok-keyword">fixed</span> <span class="tok-property">protocol</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;https&quot;</span></span></code></pre></div>
+<p>Use <code>local</code> for helper logic, <code>hidden</code> for implementation details that still
+need evaluation, and <code>fixed</code> when downstream amendments must not weaken a
+contract.</p>
+<h2>Const</h2>
+<p><code>const</code> marks values intended to be constant. It is most useful for public
+defaults that should be safe to inline mentally.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">const</span> <span class="tok-property">defaultPort</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span></code></pre></div>
+<p>Do not use <code>const</code> to decorate every value. If a member is already obviously
+local and literal, extra modifiers can make the module harder to scan.</p>
+<h2>Class Modifiers</h2>
+<p><code>abstract</code> and <code>open</code> shape inheritance. Use them at package boundaries where
+the extension story is intentional.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">abstract</span> <span class="tok-keyword">class</span> Storage <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">name</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span><span class="line"><span class="tok-punctuation">}</span></span><span class="line"><span class="tok-keyword">open</span> <span class="tok-keyword">class</span> HttpStorage <span class="tok-keyword">extends</span> Storage <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">endpoint</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>Prefer closed contracts by default. Add extension points only when downstream
+packages are meant to build on them.</p>
+<h2>Public Contract Checklist</h2>
+<ul>
+<li>Exported classes and type aliases have doc comments.</li>
+<li>Deprecated members name their replacement.</li>
+<li>Helpers are <code>local</code> before they become visible API by accident.</li>
+<li>Render-only internals are <code>hidden</code>.</li>
+<li>Non-overridable defaults are <code>fixed</code>.</li>
+<li>Extension modifiers are reserved for real package API design.</li>
+</ul>
+</div>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/collections.html"><span>Previous</span><strong>Collections Reference</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/language.html"><span>Next</span><strong>Language Spec</strong></a></nav>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site-20260515.js"></script>
+</body>
+</html>

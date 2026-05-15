@@ -1,43 +1,57 @@
 ---
 title: Source Alignment
-section: Contributing
-description: How official Pkl docs, examples, fixtures, and release notes guide this site.
+section: Ecosystem
+description: How this site uses official docs, examples, package docs, release notes, and fixtures.
 order: 205
 ---
 
 # Source Alignment
 
-This repository does not need to mirror Apple Pkl's documentation tree. It uses
-official material as source evidence, then rewrites the learning path around
-reader jobs.
+This site should be opinionated about structure while staying humble about
+truth. Apple Pkl, the official CLI, official package docs, and release notes are
+the upstream sources. This site reorganizes and explains them.
 
 ## Source Types
 
 | Source | Use |
 | --- | --- |
-| Official docs | Definitions, CLI options, language rules |
-| Release notes | Version-specific behavior and migration notes |
-| Examples | Reader-facing snippets and workflow shape |
-| Fixtures | Exact syntax and rendering edge cases |
-| CLI behavior | Final sanity check for runnable examples |
+| Official language reference | exact language behavior and terminology |
+| Official CLI docs | command names, flags, output behavior, and install paths |
+| Official tools docs | editor, Language Server, Pkldoc, and build integrations |
+| Package docs | exhaustive signatures for stdlib and bindings |
+| Release notes | behavior changes across versions |
+| Examples and fixtures | runnable confirmation that prose matches behavior |
 
-## Alignment Rules
+## How to Write From Sources
 
-- Do not copy the official information architecture.
-- Do not present speculation as language behavior.
-- Prefer small runnable examples over large excerpts.
-- Link to official docs when exhaustive detail matters.
-- Keep editorial commentary clearly separated from source behavior.
+Do not copy upstream page structure. Use sources to decide what must be true,
+then write around this site's reader jobs:
 
-## Writing from Sources
+- Learn: how to use the feature
+- Reference: exact syntax, command, or semantic rule
+- Ecosystem: how the feature fits tooling, docs, editors, or integrations
+- Coverage Status: what this site still has not explained well
 
-Use official material to decide what must be explained, then write local docs
-around this site's reader jobs:
+## Examples and Fixtures
 
-- Learn: how to use the feature in context
-- Reference: exact syntax or semantic rule
-- Coverage Status: what this site still needs to explain
-- Compatibility: how local wording maps to official Pkl
+Examples should either run with the current CLI or clearly say that they are
+conceptual. Prefer short examples that isolate one idea.
 
-This keeps the site from inheriting the upstream information architecture while
-still respecting upstream behavior.
+```bash
+pkl eval config.pkl
+pkl test tests/*.pkl
+```
+
+When behavior is subtle, keep a fixture or test near the docs source so future
+edits do not silently change the lesson.
+
+## Linking Policy
+
+Link to official sources when:
+
+- command flags or installation details can change
+- package signatures are exhaustive
+- language behavior depends on a precise version
+- an editor or binding has its own release cadence
+
+Keep the local prose focused on orientation, tradeoffs, and learning order.

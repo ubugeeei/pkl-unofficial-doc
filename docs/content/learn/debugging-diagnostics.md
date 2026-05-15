@@ -36,8 +36,8 @@ service: Service = new Service {
 }
 ```
 
-A small repro helps decide whether the failure belongs in parser, typechecker,
-evaluator, renderer, or docs.
+A small repro helps decide whether the failure is syntax, typechecking,
+evaluation, rendering, or documentation.
 
 ## Check Import Graphs
 
@@ -65,21 +65,20 @@ instead of silent fallback values.
 ## Watch the Compatibility Boundary
 
 Some syntax parses before the semantic layer supports it. If a feature appears
-in Apple Pkl docs but behaves differently in your local toolchain, check
-**Compatibility**, release notes, and the official CLI before assuming the
-example is wrong.
+in Apple Pkl docs but fails in your current toolchain, check **Coverage Status**
+and the relevant official source before assuming the example is wrong.
 
-## Compare Upstream Fixtures
+## Compare Official Behavior
 
-Use the upstream scripts when a behavior is expected to match Apple Pkl.
+Use the official CLI when a behavior should match Apple Pkl exactly.
 
 ```bash
-./scripts/upstream-parse-suite.sh
-./scripts/upstream-smoke.sh
+pkl eval config.pkl
+pkl test tests/*.pkl
 ```
 
-Parse-only success means the parser accepted the fixture. It does not guarantee
-that typechecking, evaluation, stdlib calls, or output rendering match upstream.
+If the official CLI and another tool disagree, keep the reduced source, command,
+tool versions, and expected output together.
 
 ## Read Plain Diagnostics
 
@@ -88,8 +87,8 @@ Diagnostics are plain text today. A good debugging note should include:
 - the command that failed
 - the smallest source that fails
 - whether imports are involved
-- whether the expected behavior comes from official docs, release notes, or an upstream fixture
+- whether the expected behavior comes from an official source or a local example
 - whether the failure is parse, check, eval, or render
 
-The CST keeps source spans internally, so richer editor diagnostics can be added
-without changing this high-level workflow.
+Editor integrations should expose the same stage model with source spans,
+related import locations, and a reproducible CLI command.

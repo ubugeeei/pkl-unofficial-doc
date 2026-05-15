@@ -1,50 +1,56 @@
 ---
 title: Contributor Workflow
-section: Contributing
-description: How to update Markdown, generated output, and source-alignment notes together.
+section: Ecosystem
+description: How to update Markdown, generated HTML, source links, and coverage notes together.
 order: 220
 ---
 
 # Contributor Workflow
 
-This project is easiest to keep correct when each change updates source notes,
-reader-facing copy, and generated output together.
+This site is easiest to keep good when each change updates prose, source links,
+generated HTML, and coverage notes together.
 
 ## Change Shape
 
-For a language topic, update in this order:
+For a documentation change, update in this order:
 
-1. Identify the official source: docs, examples, release notes, or CLI behavior.
-2. Update the Learn page if the topic changes a reader workflow.
-3. Update the Reference page if exact syntax or semantics changed.
-4. Update Compatibility or Coverage Status if the source boundary changed.
-5. Regenerate generated outputs.
+1. Decide the reader job: learn, reference, language rule, or ecosystem surface.
+2. Check the official source when behavior or tool details can change.
+3. Add or update the Markdown page.
+4. Update Coverage Status if the change closes or reveals a gap.
+5. Regenerate `docs/dist`.
+6. Verify the local site in a browser.
 
-This keeps docs from becoming a wishlist detached from Pkl behavior.
+This keeps docs from becoming a wishlist detached from actual reader needs.
 
 ## Commands
 
-These commands are for maintaining this documentation repo. They are not the Pkl
-language installation path.
+The static site generator is written in MoonBit. These commands are for site
+contributors, not for installing or using Pkl.
 
 ```bash
 moon fmt
 moon check --deny-warn --target js
 moon test --target js
-moon check --deny-warn --target native
-moon test --target native
 moon info
+moon run docsgen/main --target js -- docs/content docs/dist
+```
+
+In the standalone repository, use the wrapped commands:
+
+```bash
+pnpm check
+pnpm build
 ```
 
 ## Documentation Updates
 
-When behavior or wording changes, update at least one page in each affected
-area:
+When behavior changes, update at least one page in each affected area:
 
 - Learn page for the reader workflow
-- Reference page for exact syntax or semantics
-- Coverage Status for documentation gaps
-- Compatibility or Source Alignment when the source boundary changes
+- Reference page for exact syntax, CLI usage, API surface, or semantics
+- Ecosystem page for editor support, Pkldoc, package docs, or source alignment
+- Coverage Status for known gaps and follow-up work
 
 ## Generated Docs
 
@@ -66,5 +72,5 @@ Keep commits reviewable:
 - no unrelated formatting churn
 - generated files committed with the source change that produced them
 
-The branch should tell a reviewer which contract changed and how the docs follow
-that change.
+The branch should tell a reviewer which reader job changed and how the generated
+site follows that change.

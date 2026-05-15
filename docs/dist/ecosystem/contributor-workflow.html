@@ -4,68 +4,72 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contributor Workflow - Pkl</title>
-  <meta name="description" content="How to update Markdown, generated output, and source-alignment notes together.">
+  <meta name="description" content="How to update Markdown, generated HTML, source links, and coverage notes together.">
   <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
   <link rel="stylesheet" href="../assets/site-20260515.css">
 </head>
-<body data-section="Contributing">
+<body data-section="Ecosystem">
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
-    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
     <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
     <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
   </header>
   <div id="site-shell" class="site-shell">
-    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link is-active" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link is-active" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
     <main class="content">
       <article class="doc">
         <header class="doc-header">
-          <p class="section-label">Contributing</p>
+          <p class="section-label">Ecosystem</p>
           <h1>Contributor Workflow</h1>
-          <p>How to update Markdown, generated output, and source-alignment notes together.</p>
+          <p>How to update Markdown, generated HTML, source links, and coverage notes together.</p>
         </header>
         <div class="markdown-body"><h1>Contributor Workflow</h1>
-<p>This project is easiest to keep correct when each change updates source notes,
-reader-facing copy, and generated output together.</p>
+<p>This site is easiest to keep good when each change updates prose, source links,
+generated HTML, and coverage notes together.</p>
 <h2>Change Shape</h2>
-<p>For a language topic, update in this order:</p>
+<p>For a documentation change, update in this order:</p>
 <ol>
 <li>
-<p>Identify the official source: docs, examples, release notes, or CLI behavior.</p>
+<p>Decide the reader job: learn, reference, language rule, or ecosystem surface.</p>
 </li>
 <li>
-<p>Update the Learn page if the topic changes a reader workflow.</p>
+<p>Check the official source when behavior or tool details can change.</p>
 </li>
 <li>
-<p>Update the Reference page if exact syntax or semantics changed.</p>
+<p>Add or update the Markdown page.</p>
 </li>
 <li>
-<p>Update Compatibility or Coverage Status if the source boundary changed.</p>
+<p>Update Coverage Status if the change closes or reveals a gap.</p>
 </li>
 <li>
-<p>Regenerate generated outputs.</p>
+<p>Regenerate <code>docs/dist</code>.</p>
+</li>
+<li>
+<p>Verify the local site in a browser.</p>
 </li>
 </ol>
-<p>This keeps docs from becoming a wishlist detached from Pkl behavior.</p>
+<p>This keeps docs from becoming a wishlist detached from actual reader needs.</p>
 <h2>Commands</h2>
-<p>These commands are for maintaining this documentation repo. They are not the Pkl
-language installation path.</p>
-<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">fmt</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">check</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--deny-warn</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">check</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--deny-warn</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">native</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">native</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">info</span></span></code></pre></div>
+<p>The static site generator is written in MoonBit. These commands are for site
+contributors, not for installing or using Pkl.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">fmt</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">check</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--deny-warn</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">info</span></span><span class="line"><span style="color: #d2a8ff">moon</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">run</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docsgen/main</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--target</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">js</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/content</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">docs/dist</span></span></code></pre></div>
+<p>In the standalone repository, use the wrapped commands:</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pnpm</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">check</span></span><span class="line"><span style="color: #d2a8ff">pnpm</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">build</span></span></code></pre></div>
 <h2>Documentation Updates</h2>
-<p>When behavior or wording changes, update at least one page in each affected
-area:</p>
+<p>When behavior changes, update at least one page in each affected area:</p>
 <ul>
 <li>
 <p>Learn page for the reader workflow</p>
 </li>
 <li>
-<p>Reference page for exact syntax or semantics</p>
+<p>Reference page for exact syntax, CLI usage, API surface, or semantics</p>
 </li>
 <li>
-<p>Coverage Status for documentation gaps</p>
+<p>Ecosystem page for editor support, Pkldoc, package docs, or source alignment</p>
 </li>
 <li>
-<p>Compatibility or Source Alignment when the source boundary changes</p>
+<p>Coverage Status for known gaps and follow-up work</p>
 </li>
 </ul>
 <h2>Generated Docs</h2>
@@ -88,10 +92,10 @@ area:</p>
 <p>generated files committed with the source change that produced them</p>
 </li>
 </ul>
-<p>The branch should tell a reviewer which contract changed and how the docs follow
-that change.</p>
+<p>The branch should tell a reviewer which reader job changed and how the generated
+site follows that change.</p>
 </div>
-        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../ecosystem/compatibility.html"><span>Previous</span><strong>Compatibility</strong></a></nav>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../ecosystem/documentation-tools.html"><span>Previous</span><strong>Documentation Tools</strong></a></nav>
       </article>
     </main>
   </div>

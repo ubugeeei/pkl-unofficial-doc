@@ -1,36 +1,45 @@
 ---
 title: Tooling
-section: Contributing
-description: Build, test, generate, and serve this documentation site.
+section: Ecosystem
+description: Official Pkl tools and the local static-site build workflow.
 order: 200
 ---
 
 # Tooling
 
-This page is repository maintenance material. The Learn path uses the official
-`pkl` CLI; the commands here are only for building this static documentation
-site.
+This page separates Pkl tools from this site's authoring tools. Readers only
+need the official `pkl` CLI and editor support. Contributors to this site also
+need the static-site build commands.
 
-## Generate
+## Pkl Tools
+
+| Tool | Use |
+| --- | --- |
+| `pkl` CLI | evaluate, test, package, inspect, and run server mode |
+| Pkldoc | generate package documentation from public contracts |
+| VS Code extension | editor support for Visual Studio Code |
+| IntelliJ plugin | editor support for IntelliJ Platform IDEs |
+| Language Server | protocol layer for other editors |
+
+Use **CLI Reference**, **Editor Support**, and **Documentation Tools** for the
+reader-facing workflows.
+
+## Site Source
+
+The documentation source lives in Markdown under `docs/content`. The site is
+pre-rendered into static HTML under `docs/dist`.
 
 ```bash
 moon run docsgen/main --target js -- docs/content docs/dist
-```
-
-The docs source lives in Markdown under `docs/content`. The static site is
-pre-rendered into `docs/dist` by `docsgen`, which uses `mizchi/markdown` for the
-Markdown-to-HTML step.
-
-## Serve
-
-```bash
 moon run docsserve/main --target native -- docs/dist 4173
 ```
 
-`docsserve` is a small native MoonBit file server built on `moonbitlang/async`.
-Change the final argument when port `4173` is already in use.
+The local server is only for previewing generated HTML. It is not a Pkl
+installation path.
 
-## Check
+## Contributor Checks
+
+Run the generator tests before changing site structure or Markdown components.
 
 ```bash
 moon fmt
@@ -39,34 +48,24 @@ moon test --target js
 moon info
 ```
 
-## Deploy
+In the standalone documentation repository, the package scripts wrap the same
+steps:
 
 ```bash
-pnpm install
-vpx void project link pkl-unofficial-doc
-vpx void deploy
+pnpm check
+pnpm build
 ```
-
-`void.json` declares this as a static Void app, uses the MoonBit docs generator
-as the build command, and publishes `docs/dist`. The project link command is a
-one-time local setup step. When `docs/dist` is already generated, use
-`vpx void deploy --dir docs/dist` to upload the pre-built static directory.
-
-## Site Shape
-
-- `docs/content` is the editable Markdown source.
-- `docs/assets` contains copied static assets.
-- `docsgen` renders Markdown, navigation, CSS, and browser behavior.
-- `docsserve` serves the generated `docs/dist` tree locally.
 
 ## Coverage Discipline
 
-When the docs add or revise language behavior:
+When a page changes user-facing behavior, update the affected area:
 
 - Learn pages for workflow-level behavior
-- Reference pages for syntax, semantics, API, and stdlib shape
-- Coverage Status for remaining documentation gaps
-- Compatibility for source links and official behavior boundaries
+- Reference pages for CLI, integration, syntax, object model, semantics, API,
+  and stdlib shape
+- Ecosystem pages for editor support, Pkldoc, package documentation, and source
+  alignment
+- Coverage Status for known documentation gaps
 
-This keeps documentation tied to official Pkl behavior instead of drifting into
-a parallel language.
+This keeps documentation tied to actual reader jobs instead of growing into a
+flat pile of notes.

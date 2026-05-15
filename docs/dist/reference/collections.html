@@ -4,33 +4,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Collections Reference - Pkl</title>
-  <meta name="description" content="Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.">
+  <meta name="description" content="Listing and Mapping syntax, typing, subscript access, and rendering shape.">
   <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
   <link rel="stylesheet" href="../assets/site-20260515.css">
 </head>
 <body data-section="Reference">
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
-    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
     <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
     <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
   </header>
   <div id="site-shell" class="site-shell">
-    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link is-active" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link is-active" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
     <main class="content">
       <article class="doc">
         <header class="doc-header">
           <p class="section-label">Reference</p>
           <h1>Collections Reference</h1>
-          <p>Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.</p>
+          <p>Listing and Mapping syntax, typing, subscript access, and rendering shape.</p>
         </header>
         <div class="markdown-body"><h1>Collections Reference</h1>
 <p>Pkl has ordered collections, keyed collections, and object-like member
-collections. This page focuses on the collection values currently documented by
-the port.</p>
+collections. Keep those shapes separate when designing output.</p>
 <h2>Listing</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">ports</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Listing</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-number">8080</span></span><span class="line">  <span class="tok-number">9090</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
-<p>Implemented behavior:</p>
+<p>Useful behavior:</p>
 <ul>
 <li>
 <p>explicit <code>new Listing { ... }</code></p>
@@ -42,20 +41,20 @@ the port.</p>
 <p>element type checking for <code>Listing&lt;T&gt;</code></p>
 </li>
 <li>
-<p>numeric subscript access for the supported path</p>
+<p>numeric subscript access</p>
 </li>
 <li>
-<p>PCF rendering for top-level and nested listings</p>
+<p>rendering as ordered output</p>
 </li>
 </ul>
-<p>Roadmap:</p>
+<p>Common operations to look up in package docs:</p>
 <ul>
 <li>listing methods such as <code>length</code>, <code>map</code>, <code>filter</code>, <code>fold</code>, <code>join</code>, and</li>
 </ul>
 <p><code>reverse</code></p>
 <ul>
 <li>
-<p>constrained element propagation such as <code>Listing&lt;Int(isPositive)&gt;</code></p>
+<p>constrained element annotations such as <code>Listing&lt;Int(isPositive)&gt;</code></p>
 </li>
 <li>
 <p>object-body generators that produce listing elements</p>
@@ -63,33 +62,30 @@ the port.</p>
 </ul>
 <h2>Mapping</h2>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">labels</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Mapping</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-punctuation">[</span><span class="tok-string">&quot;api&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;public&quot;</span></span><span class="line">  <span class="tok-punctuation">[</span><span class="tok-string">&quot;admin&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;private&quot;</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
-<p>Implemented behavior:</p>
+<p>Useful behavior:</p>
 <ul>
 <li>
 <p>explicit <code>new Mapping { ... }</code></p>
 </li>
 <li>
-<p>string and implemented scalar keys</p>
+<p>string and scalar keys</p>
 </li>
 <li>
 <p>key/value type checking for <code>Mapping&lt;K, V&gt;</code></p>
 </li>
 <li>
-<p>subscript access for supported key paths</p>
+<p>subscript access</p>
 </li>
 <li>
-<p>PCF rendering for nested mapping values</p>
+<p>rendering as keyed output</p>
 </li>
 </ul>
-<p>Roadmap:</p>
+<p>Common operations to look up in package docs:</p>
 <ul>
 <li>mapping methods such as <code>keys</code>, <code>values</code>, <code>containsKey</code>, <code>getOrNull</code>, and</li>
 </ul>
 <p><code>fold</code></p>
 <ul>
-<li>
-<p>broader key coercion rules</p>
-</li>
 <li>
 <p>constrained value propagation</p>
 </li>
@@ -100,16 +96,15 @@ the port.</p>
 <p>Listings have ordered elements, and mappings have keyed entries. Keeping these
 separate makes renderer behavior easier to reason about.</p>
 <h2>Rendering Shape</h2>
-<p>PCF output follows Apple Pkl's brace conventions for the implemented value
-graph. At the module boundary, object members render without an enclosing
+<p>PCF output follows Pkl's brace conventions. At the module boundary, object
+members render without an enclosing
 <code>new { ... }</code>. Nested objects render as blocks, and listing/mapping elements use
 Pkl-style indentation.</p>
 <h2>Type Boundaries</h2>
-<p>The parser can accept more collection-shaped syntax than the evaluator supports.
-Use this page together with <strong>Coverage Status</strong> when a collection example
-comes from upstream Apple Pkl docs.</p>
+<p>Use <strong>Object Model</strong> when the question is about properties, elements, entries,
+or amendments. Use package docs when the question is about method signatures.</p>
 </div>
-        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/operators.html"><span>Previous</span><strong>Operators Reference</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/language.html"><span>Next</span><strong>Language Spec</strong></a></nav>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/operators.html"><span>Previous</span><strong>Operators Reference</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/annotations-and-modifiers.html"><span>Next</span><strong>Annotations and Modifiers</strong></a></nav>
       </article>
     </main>
   </div>

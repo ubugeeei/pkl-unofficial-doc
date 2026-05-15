@@ -784,8 +784,9 @@ fn home_tracks_html() -> String {
   (
     #|<section class="track-grid" aria-label="Documentation paths">
     #|  <a class="track" href="learn/index.html"><span>Learn</span><strong>Build the first mental model.</strong><small>Values, objects, modules, imports, constraints, and rendering.</small></a>
-    #|  <a class="track" href="reference/api.html"><span>API</span><strong>Map the implementation surface.</strong><small>Parser, evaluator, typechecker, analysis session, and renderer entry points.</small></a>
-    #|  <a class="track" href="reference/language.html"><span>Spec</span><strong>Separate language rules from source notes.</strong><small>Syntax, semantics, compatibility notes, and official source links.</small></a>
+    #|  <a class="track" href="reference/cli.html"><span>CLI</span><strong>Run Pkl in real workflows.</strong><small>Evaluate modules, test packages, render files, and inspect projects.</small></a>
+    #|  <a class="track" href="reference/api.html"><span>API</span><strong>Connect Pkl to systems.</strong><small>Bindings, server mode, codegen, external readers, and package docs.</small></a>
+    #|  <a class="track" href="reference/language.html"><span>Spec</span><strong>Keep the language contract visible.</strong><small>Syntax, object semantics, modules, resources, output, and coverage notes.</small></a>
     #|</section>
   )
 }
@@ -835,16 +836,16 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|        <a class="home-brand" href="index.html" aria-label="Pkl home"><img src="assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
     $|        <p class="home-kicker">Unofficial language documentation</p>
     $|        <h1 id="home-title">Pkl</h1>
-    $|        <p class="home-lede">Learn Pkl's configuration model, read the language rules, and follow a clearer path through the ecosystem without confusing this site with Apple's official docs.</p>
+    $|        <p class="home-lede">Learn Pkl's configuration model, read the language rules, and keep the ecosystem surfaces close without confusing this site with Apple's official docs.</p>
     $|      </div>
     $|      \{mark}
     $|    </section>
     $|    <nav class="home-index" aria-label="Primary">\{top}</nav>
     $|    \{tracks}
-    $|    <div class="home-meta" aria-label="Implementation stack">
-    $|      <span>parser: mizchi/cst</span>
-    $|      <span>analysis cache: mizchi/ripple</span>
+    $|    <div class="home-meta" aria-label="Site stack">
     $|      <span>source: Markdown</span>
+    $|      <span>build: static HTML</span>
+    $|      <span>status: unofficial</span>
     $|    </div>
     $|    <article class="home-notes markdown-body">\{current.html}</article>
     $|  </main>

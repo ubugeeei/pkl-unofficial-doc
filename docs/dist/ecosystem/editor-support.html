@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editor Support - Pkl</title>
+  <meta name="description" content="VS Code, IntelliJ, Language Server, and CLI-backed editor workflows.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site-20260515.css">
+</head>
+<body data-section="Ecosystem">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link is-active" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Ecosystem</p>
+          <h1>Editor Support</h1>
+          <p>VS Code, IntelliJ, Language Server, and CLI-backed editor workflows.</p>
+        </header>
+        <div class="markdown-body"><h1>Editor Support</h1>
+<p>Editor support should make Pkl feel like a language, not a text format. Install
+it early so syntax errors, imports, doc comments, and package boundaries are
+visible while the module is still small.</p>
+<h2>Tool Map</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VS Code extension</td>
+<td>quick editing, syntax support, diagnostics, and common workflows</td>
+</tr>
+<tr>
+<td>IntelliJ plugin</td>
+<td>larger projects in IntelliJ IDEA, GoLand, PyCharm, and related IDEs</td>
+</tr>
+<tr>
+<td>Language Server</td>
+<td>editor integrations that speak LSP</td>
+</tr>
+<tr>
+<td>Pkldoc</td>
+<td>browsing package documentation generated from public contracts</td>
+</tr>
+<tr>
+<td>CLI</td>
+<td>reproducible checks that match CI</td>
+</tr>
+</tbody>
+</table>
+<h2>Recommended Setup</h2>
+<ol>
+<li>
+<p>Install the Pkl CLI.</p>
+</li>
+<li>
+<p>Install the editor extension or plugin for the editor you actually use.</p>
+</li>
+<li>
+<p>Keep a <code>PklProject</code> at the package boundary when dependencies matter.</p>
+</li>
+<li>
+<p>Run the CLI commands from the terminal so editor diagnostics and CI agree.</p>
+</li>
+</ol>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">tests/</span><span style="color: #ff7b72">*</span><span style="color: #c9d1d9">.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">analyze</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">imports</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span></code></pre></div>
+<h2>What the Editor Should Help With</h2>
+<ul>
+<li>
+<p>syntax highlighting and structural navigation</p>
+</li>
+<li>
+<p>diagnostics from parsing, imports, types, and evaluation</p>
+</li>
+<li>
+<p>import resolution across project roots and package dependencies</p>
+</li>
+<li>
+<p>doc comments for public classes, properties, and type aliases</p>
+</li>
+<li>
+<p>navigation from usage sites to package documentation</p>
+</li>
+</ul>
+<p>When an editor disagrees with the CLI, trust the CLI first and reduce the module
+until the difference is small enough to report.</p>
+<h2>LSP Integrations</h2>
+<p>The Language Server is the right layer for new editor integrations. Treat it as
+the protocol boundary: the editor owns UI, while the server owns language
+diagnostics, symbol information, and project-level context.</p>
+<h2>Documentation Loop</h2>
+<p>Editor support and documentation should reinforce each other:</p>
+<ul>
+<li>doc comments explain public fields before readers jump to prose docs</li>
+<li>Pkldoc exposes package contracts generated from source</li>
+<li>examples stay runnable with <code>pkl eval</code></li>
+<li>tests protect the examples that documentation relies on</li>
+</ul>
+</div>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../ecosystem/compatibility.html"><span>Previous</span><strong>Compatibility</strong></a><a class="page-nav-link is-next" rel="next" href="../ecosystem/documentation-tools.html"><span>Next</span><strong>Documentation Tools</strong></a></nav>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site-20260515.js"></script>
+</body>
+</html>

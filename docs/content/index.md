@@ -15,13 +15,16 @@ The site is organized around three reader jobs:
 - **Learn Pkl**: move from module shape to objects, collections, types,
   values, templates, functions, classes, constraints, imports, resources,
   projects, advanced syntax, debugging, evaluation, and output.
-- **Reference**: keep CLI usage, values, syntax, operators, resources,
-  projects, modules, semantics, standard library expectations, diagnostics, and
-  output formats easy to scan.
-- **Language Spec**: separate syntax, operators, module rules, semantics,
-  diagnostics, standard library expectations, output formats, and
-  coverage notes so readers can tell what is language behavior and what is this
-  site's editorial boundary.
+- **Reference**: keep CLI usage, integration surfaces, values, syntax, object
+  semantics, annotations, operators, resources, projects, modules, standard
+  library expectations, diagnostics, and output formats easy to scan.
+- **Language Spec**: separate syntax, object rules, module rules, semantics,
+  diagnostics, standard library expectations, output formats, and coverage notes
+  so readers can tell what is language behavior and what is this site's
+  editorial boundary.
+- **Ecosystem**: keep editor support, Pkldoc, package documentation, tooling,
+  compatibility, upstream fixtures, and contributor workflow close to the
+  language pages.
 
 ## Why This Structure
 
@@ -66,6 +69,14 @@ project.
   typing, constraints, evaluation, and rendering.
 - **Language Spec**: syntax map, operator rules, module system, semantic model,
   compatibility boundary, and official source links.
+- **CLI Reference**: `pkl eval`, `pkl test`, `pkl repl`, `pkl server`, project
+  commands, package commands, and output options.
+- **Integration API**: CLI, server mode, Java, Kotlin, Swift, Go, Codegen, and
+  external resource reader boundaries.
+- **Object Model**: properties, elements, entries, type context, amendments,
+  late binding, and receiver keywords.
+- **Annotations and Modifiers**: Doc Comments, `@Deprecated`, visibility,
+  constants, and extension modifiers.
 - **Values Reference**: scalar syntax, null handling, `Duration`, and
   `DataSize` in compact form.
 - **Resources Reference**: read forms, URI schemes, allowlists, caching, and
@@ -76,5 +87,9 @@ project.
   spreads, predicates, receivers, and glob patterns.
 - **Standard Library**: `pkl:` modules, core built-ins, and how to approach the
   official standard library reference.
+- **Editor Support**: VS Code, IntelliJ, Language Server, Pkldoc, and
+  CLI-backed editor workflows.
+- **Documentation Tools**: Pkldoc, package documentation, doc comments,
+  examples, and release artifacts.
 - **Source Alignment**: how this site uses official docs, examples, release
   notes, and fixtures without inheriting the upstream information architecture.

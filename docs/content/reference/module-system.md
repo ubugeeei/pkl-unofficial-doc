@@ -1,7 +1,7 @@
 ---
 title: Module System Reference
 section: Reference
-description: Module declarations, imports, amends, extends, source graphs, and cache boundaries.
+description: Module declarations, imports, amends, extends, source graphs, and package boundaries.
 order: 112
 ---
 
@@ -16,9 +16,8 @@ configuration graph.
 module app.config
 ```
 
-A declaration names the module. Pkl preserves module
-names for parsing and diagnostics while evaluating the module to its top-level
-object value.
+A declaration names the module. Tools can use the module name for diagnostics,
+package documentation, and generated artifacts.
 
 ## Import Declarations
 
@@ -27,8 +26,8 @@ import "database.pkl" as db
 databaseHost = db.host
 ```
 
-Relative imports resolve from the importing source path. `pkl:` imports are
-handled by the built-in resolver for the implemented stdlib surface.
+Relative imports resolve from the importing source path. `pkl:` imports refer to
+standard modules.
 
 ## Import Expressions
 
@@ -57,27 +56,26 @@ members. It is the primary template specialization mechanism.
 extends "template.pkl"
 ```
 
-`extends` is parsed and evaluated for the implemented subset. Use it when the
-relationship is closer to inheritance than environment specialization.
+Use `extends` when the relationship is closer to inheritance than environment
+specialization.
 
 ## Source Graph
 
-Host tools provide source text through `AnalysisSession`.
+The source graph is the set of modules needed to evaluate, test, document, or
+package a module.
 
-```moonbit
-let session = @pkl.AnalysisSession::new()
-session.set_source("main.pkl", "import \"base.pkl\" as base\nbase.name")
-let checked = session.typecheck_path("main.pkl")
+```pkl
+import "base.pkl" as base
+name = base.name
 ```
 
-The session is the cache boundary for parse, typecheck, and evaluation queries.
-When a source changes, only dependent paths should recompute.
+Tools should track this graph so diagnostics point to the importing module, the
+imported module, and the package boundary involved in the failure.
 
 ## Built-in Modules
 
-The resolver can synthesize selected `pkl:` modules as MoonBit-owned Pkl source.
-This keeps imports uniform: stdlib support grows as source and evaluator support
-grow, not as a separate foreign runtime.
+Built-in modules use the `pkl:` URI scheme. They should be treated like public
+package APIs: import only the module you need and keep examples explicit.
 
 ## Failure Modes
 

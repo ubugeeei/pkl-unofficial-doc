@@ -33,9 +33,9 @@ bird.name
 
 ## Constraints
 
-Pkl supports constraints as part of typed module design,
-including `isBetween`, `isPositive`, `isGreaterThan`, `isLessThan`, negation, and
-plain-function predicate factories.
+Pkl supports constraints as part of typed module design, including `isBetween`,
+`isPositive`, `isGreaterThan`, `isLessThan`, negation, and plain-function
+predicate factories.
 
 ```pkl
 const function above(n) = (x) -> x > n

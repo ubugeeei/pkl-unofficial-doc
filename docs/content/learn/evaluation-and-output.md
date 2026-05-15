@@ -80,5 +80,5 @@ contracts.
 
 Diagnostics surface from the stage that failed: syntax, import resolution,
 typing, constraints, evaluation, or rendering. Keep the smallest failing module
-nearby, then compare the behavior with **Compatibility** and official CLI
-behavior when something differs from this site's explanation.
+nearby, then compare the behavior with **Coverage Status** when the local
+toolchain differs from the official CLI.

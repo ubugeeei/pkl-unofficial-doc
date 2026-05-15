@@ -24,8 +24,12 @@ Use **Syntax Reference** for the compact grammar map. The high-level shape is:
   object construction
 - object bodies: properties, shorthand object members, listings, mappings, and
   amendments
+- object model: type context, late binding, receiver keywords, and amendment
+  rules
 - types: primitives, nullable types, collections, unions, aliases, classes, and
   constrained annotations
+- annotations and modifiers: doc comments, metadata, visibility, constants, and
+  extension points
 - resources: resource reads, globbed reads, resource policies, and external
   readers
 - projects: `PklProject`, dependency resolution, package metadata, and package
@@ -35,10 +39,10 @@ Use **Syntax Reference** for the compact grammar map. The high-level shape is:
 
 ## Expressions
 
-The parser accepts integer arithmetic, booleans, strings, `null`, identifiers,
-parentheses, object literals, collection literals, member access, calls,
-lambdas, conditionals, imports, and a broad slice of upstream parser fixtures.
-Use **Operators Reference** for precedence and narrowing behavior.
+Pkl expressions include integer arithmetic, booleans, strings, `null`,
+identifiers, parentheses, object literals, collection literals, member access,
+calls, lambdas, conditionals, imports, and operators. Use **Operators
+Reference** for precedence and narrowing behavior.
 
 ## Modules
 
@@ -49,7 +53,7 @@ Supported module-level forms include:
 - imports with aliases
 - top-level properties
 - `local` module bindings
-- class, function, and typealias declarations for the implemented subset
+- class, function, and typealias declarations
 
 Use **Module System Reference** for import resolution, source graph semantics,
 `amends`, and `extends`.
@@ -82,6 +86,16 @@ Use **Advanced Reference** for `new`, `let`, type tests, casts, annotations,
 anonymous functions, generators, spreads, member predicates, receiver keywords,
 glob patterns, name resolution, and reserved names.
 
+## Object Model
+
+Use **Object Model** for properties, elements, entries, amendments, late
+binding, type context, `this`, `outer`, `super`, and `module` lookup.
+
+## Annotations and Modifiers
+
+Use **Annotations and Modifiers** for Doc Comments, `@Deprecated`, `local`,
+`hidden`, `fixed`, `const`, `abstract`, and `open`.
+
 ## Semantic Model
 
 Pkl evaluation produces a structured module value made from primitives, objects,
@@ -104,10 +118,26 @@ official reference when behavior is too broad for this compact guide.
 Use **Output Formats** for PCF, JSON, YAML, plist, properties, and the way CLI
 renderers connect evaluated values to downstream files.
 
+## CLI Reference
+
+Use **CLI Reference** for `pkl eval`, `pkl test`, `pkl repl`, `pkl server`,
+project commands, package commands, output options, and resource policies.
+
+## Integration API
+
+Use **Integration API** and **Integration Patterns** for Java, Kotlin, Swift,
+Go, Codegen, server mode, external readers, and build-time rendering choices.
+
+## Editor and Documentation Tools
+
+Use **Editor Support** for VS Code, IntelliJ, Language Server, and CLI-backed
+editor workflows. Use **Documentation Tools** for Pkldoc, package
+documentation, doc comments, examples, and release artifacts.
+
 ## Diagnostics
 
-Diagnostics are grouped by stage: parse, unsupported syntax, typecheck,
-evaluation, and renderer. Use **Diagnostics Reference** for the failure model and
+Diagnostics are grouped by stage: parse, typecheck, evaluation, rendering, and
+tool integration. Use **Diagnostics Reference** for the failure model and
 editor-integration direction.
 
 ## Compatibility Boundary

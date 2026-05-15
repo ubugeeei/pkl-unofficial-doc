@@ -3,122 +3,201 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>API Reference - Pkl</title>
-  <meta name="description" content="CLI, package, and integration surfaces readers commonly need.">
+  <title>Integration API - Pkl</title>
+  <meta name="description" content="Choose between the CLI, server mode, language bindings, code generation, and resource readers.">
   <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
   <link rel="stylesheet" href="../assets/site-20260515.css">
 </head>
 <body data-section="Reference">
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
-    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
     <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
     <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
   </header>
   <div id="site-shell" class="site-shell">
-    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link is-active" href="../reference/api.html"><span>API Reference</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link is-active" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
     <main class="content">
       <article class="doc">
         <header class="doc-header">
           <p class="section-label">Reference</p>
-          <h1>API Reference</h1>
-          <p>CLI, package, and integration surfaces readers commonly need.</p>
+          <h1>Integration API</h1>
+          <p>Choose between the CLI, server mode, language bindings, code generation, and resource readers.</p>
         </header>
-        <div class="markdown-body"><h1>API Reference</h1>
-<p>Pkl's most visible API is the <code>pkl</code> command-line interface. This page keeps the
-reader-facing surfaces in one place: CLI evaluation, expression evaluation,
-output rendering, project/package files, and embedding points.</p>
-<h2>CLI Shape</h2>
-<div class="code-block" data-language="text"><div class="code-block-toolbar"><span class="code-language">text</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight plain-highlight"><code><span class="line">pkl &lt;subcommand&gt; [options] [modules]</span></code></pre></div>
-<p>Common commands:</p>
+        <div class="markdown-body"><h1>Integration API</h1>
+<p>Pkl usually enters a system through one of five surfaces: the CLI, <code>pkl server</code>,
+host-language bindings, generated types, or external resource readers. This
+page is a routing guide for choosing the surface before reading the exhaustive
+official package or binding documentation.</p>
+<h2>Surface Matrix</h2>
 <table>
 <thead>
 <tr>
-<th>Command</th>
-<th>Use</th>
+<th>Surface</th>
+<th>Best For</th>
+<th>Avoid When</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>pkl eval</code></td>
-<td>Evaluate one or more modules and render output.</td>
-</tr>
-<tr>
-<td><code>pkl repl</code></td>
-<td>Start an interactive session.</td>
-</tr>
-<tr>
-<td><code>pkl test</code></td>
-<td>Run modules that extend <code>pkl:test</code>.</td>
-</tr>
-<tr>
-<td><code>pkl project</code></td>
-<td>Work with project/package metadata.</td>
+<td>CLI</td>
+<td>build scripts, CI checks, one-shot rendering, package publishing</td>
+<td>the host process needs many repeated evaluations</td>
 </tr>
 <tr>
 <td><code>pkl server</code></td>
-<td>Run the message-passing server for embeddings.</td>
+<td>editors, long-running tools, repeated evals with lower startup overhead</td>
+<td>a shell command is simpler and startup cost is irrelevant</td>
+</tr>
+<tr>
+<td>Java / Kotlin</td>
+<td>JVM services, Gradle builds, typed configuration loading</td>
+<td>the runtime cannot carry a JVM dependency</td>
+</tr>
+<tr>
+<td>Swift</td>
+<td>Apple-platform apps, Swift Package Manager projects</td>
+<td>the configuration is only used at build time</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>services and command-line tools that want native Go values</td>
+<td>dynamic output is enough and codegen adds maintenance cost</td>
+</tr>
+<tr>
+<td>Codegen</td>
+<td>stable host-language contracts from Pkl classes</td>
+<td>schemas are still changing every commit</td>
+</tr>
+<tr>
+<td>External readers</td>
+<td>custom URI schemes, secrets, service discovery, generated data</td>
+<td>ordinary file, env, or property reads are enough</td>
 </tr>
 </tbody>
 </table>
-<h2>Evaluation</h2>
-<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">-x</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">service.port</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">-f</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">json</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">-o</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.json</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span></code></pre></div>
-<p>Use <code>-x</code> for a single expression, <code>-f</code> for a renderer, and <code>-o</code> when output
-should be written to a file.</p>
-<h2>Output Formats</h2>
+<h2>CLI as the Boundary</h2>
+<p>Use the CLI when a process can treat Pkl as an external compiler for
+configuration.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--format</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">json</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--output-path</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">build/service.json</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">tests/</span><span style="color: #ff7b72">*</span><span style="color: #c9d1d9">.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">project</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">package</span></span></code></pre></div>
+<p>The CLI boundary is easy to cache, easy to run in CI, and easy to debug because
+it uses the same commands a reader can reproduce locally.</p>
+<h2>Server Mode</h2>
+<p><code>pkl server</code> keeps an evaluator process available for client tooling. It is the
+right abstraction when a program needs repeated evaluations, dependency graph
+reuse, or editor-style responsiveness.</p>
+<p>Good candidates:</p>
+<ul>
+<li>editor integrations that evaluate snippets or resolve imports repeatedly</li>
+<li>build tools that evaluate many related modules</li>
+<li>language services that need diagnostics without starting a new process each</li>
+</ul>
+<p>time</p>
+<h2>Language Bindings</h2>
+<p>Use a binding when the host program owns evaluation and wants Pkl values inside
+the process.</p>
 <table>
 <thead>
 <tr>
-<th>Format</th>
-<th>Example</th>
+<th>Binding</th>
+<th>Typical Shape</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>PCF</td>
-<td><code>pkl eval config.pkl</code></td>
+<td>Java</td>
+<td>evaluator manager, module sources, generated or dynamic values</td>
 </tr>
 <tr>
-<td>JSON</td>
-<td><code>pkl eval -f json config.pkl</code></td>
+<td>Kotlin</td>
+<td>Kotlin-friendly APIs over the JVM evaluator</td>
 </tr>
 <tr>
-<td>YAML</td>
-<td><code>pkl eval -f yaml config.pkl</code></td>
+<td>Swift</td>
+<td>Swift Package Manager integration and generated Swift models</td>
 </tr>
 <tr>
-<td>Properties</td>
-<td><code>pkl eval -f properties config.pkl</code></td>
-</tr>
-<tr>
-<td>Plist</td>
-<td><code>pkl eval -f plist config.pkl</code></td>
+<td>Go</td>
+<td>generated Go types and runtime evaluation helpers</td>
 </tr>
 </tbody>
 </table>
-<h2>Project and Packages</h2>
-<p>Pkl projects use <code>PklProject</code> metadata to describe package name, version,
-dependencies, package URI, and evaluator settings. Package imports use
-<code>package://</code> URIs and resolve through package metadata.</p>
-<p>Keep project-level setup separate from module syntax:</p>
+<p>Bindings should still preserve the same discipline as CLI usage: keep module
+paths explicit, decide resource access up front, and treat evaluation failures
+as configuration errors rather than ordinary missing defaults.</p>
+<h2>Codegen</h2>
+<p>Codegen turns Pkl classes into host-language types. Prefer it when:</p>
 <ul>
 <li>
-<p>module files teach values, objects, types, imports, and output</p>
+<p>the Pkl module is a stable contract consumed by application code</p>
 </li>
 <li>
-<p>project files teach dependency and package boundaries</p>
+<p>refactors should fail at compile time in the host language</p>
 </li>
 <li>
-<p>CLI flags decide how evaluated modules are rendered</p>
+<p>generated documentation and host types need to stay aligned</p>
 </li>
 </ul>
-<h2>Embedding Surface</h2>
-<p>The <code>pkl server</code> command exposes Pkl through a message-passing protocol used by
-language bindings and tools. Treat the server as an integration boundary: the
-language contract still lives in modules, types, evaluation, imports, and output
-rendering.</p>
+<p>Avoid codegen while the shape is exploratory. In that phase, render JSON or YAML
+from the CLI and stabilize the Pkl classes first.</p>
+<h2>External Resource Readers</h2>
+<p>External readers let tools provide custom resource schemes to <code>read</code>, <code>read?</code>,
+and <code>read*</code>.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">secrets</span> <span class="tok-operator">=</span> <span class="tok-keyword">read</span><span class="tok-punctuation">(</span><span class="tok-string">&quot;vault:/services/api&quot;</span><span class="tok-punctuation">)</span></span></code></pre></div>
+<p>Use them for organization-specific sources such as secret stores, inventory
+systems, or generated catalogs. Keep the URI scheme narrow and document the
+allowlist required to use it.</p>
+<h2>Choosing a Surface</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Start With</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;Render config during a deploy&quot;</td>
+<td>CLI</td>
+</tr>
+<tr>
+<td>&quot;Validate package tests in CI&quot;</td>
+<td>CLI</td>
+</tr>
+<tr>
+<td>&quot;Evaluate many modules from one tool&quot;</td>
+<td><code>pkl server</code></td>
+</tr>
+<tr>
+<td>&quot;Load config inside a JVM service&quot;</td>
+<td>Java or Kotlin binding</td>
+</tr>
+<tr>
+<td>&quot;Use typed config in an iOS app&quot;</td>
+<td>Swift binding</td>
+</tr>
+<tr>
+<td>&quot;Use typed config in a Go service&quot;</td>
+<td>Go binding and Codegen</td>
+</tr>
+<tr>
+<td>&quot;Read from a custom source&quot;</td>
+<td>External resource reader</td>
+</tr>
+</tbody>
+</table>
+<h2>Related Pages</h2>
+<ul>
+<li><strong>CLI Reference</strong> covers concrete commands and options.</li>
+<li><strong>Projects Reference</strong> covers packages, dependencies, and publishing shape.</li>
+<li><strong>Resources Reference</strong> covers <code>read</code>, <code>read?</code>, <code>read*</code>, URI schemes, and</li>
+</ul>
+<p>allowlists.</p>
+<ul>
+<li><strong>Documentation Tools</strong> covers Pkldoc and package documentation.</li>
+</ul>
 </div>
-        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../learn/debugging-diagnostics.html"><span>Previous</span><strong>Debugging and Diagnostics</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/values.html"><span>Next</span><strong>Values Reference</strong></a></nav>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/cli.html"><span>Previous</span><strong>CLI Reference</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/integration.html"><span>Next</span><strong>Integration Patterns</strong></a></nav>
       </article>
     </main>
   </div>

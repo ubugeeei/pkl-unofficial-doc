@@ -13,16 +13,16 @@ official Pkl project and CLI remain the source of truth for language behavior.
 | Area | Current Shape |
 | --- | --- |
 | Learn | Linear path from installation to values, modules, objects, functions, types, classes, constraints, resources, projects, advanced syntax, evaluation, and debugging. |
-| Reference | Values, syntax, operators, collections, resources, projects, module system, semantics, diagnostics, stdlib, and output formats. |
-| CLI/API | Reader-facing command and integration surfaces. |
-| Compatibility | Notes on how this site relates to official docs, release notes, and examples. |
+| Reference | CLI, integration, values, syntax, object model, annotations, operators, collections, resources, projects, module system, semantics, diagnostics, stdlib, and output formats. |
+| Ecosystem | Editor support, documentation tools, site tooling, compatibility notes, source alignment, and contributor workflow. |
+| Compatibility | Notes on how this site relates to official docs, package docs, release notes, and examples. |
 
 ## Coverage Gaps
 
 - more runnable examples for package projects
 - deeper standard-library examples
+- concrete examples for more standard-library modules
 - richer comparison with official package documentation
-- editor and language-server workflows
 - versioned notes for Pkl releases
 
 ## Source Discipline
@@ -38,5 +38,4 @@ Every page should distinguish:
 - add compact examples to every reference page
 - add version labels where behavior changes across Pkl releases
 - add package authoring walkthroughs
-- add editor support pages
 - add a release-note digest for language changes

@@ -1,15 +1,14 @@
 ---
 title: Collections Reference
 section: Reference
-description: Listing and Mapping syntax, typing, subscript access, rendering shape, and current gaps.
+description: Listing and Mapping syntax, typing, subscript access, and rendering shape.
 order: 108
 ---
 
 # Collections Reference
 
 Pkl has ordered collections, keyed collections, and object-like member
-collections. This page focuses on the collection values currently documented by
-the port.
+collections. Keep those shapes separate when designing output.
 
 ## Listing
 
@@ -20,19 +19,19 @@ ports = new Listing {
 }
 ```
 
-Implemented behavior:
+Useful behavior:
 
 - explicit `new Listing { ... }`
 - ordered element storage
 - element type checking for `Listing<T>`
-- numeric subscript access for the supported path
-- PCF rendering for top-level and nested listings
+- numeric subscript access
+- rendering as ordered output
 
-Roadmap:
+Common operations to look up in package docs:
 
 - listing methods such as `length`, `map`, `filter`, `fold`, `join`, and
   `reverse`
-- constrained element propagation such as `Listing<Int(isPositive)>`
+- constrained element annotations such as `Listing<Int(isPositive)>`
 - object-body generators that produce listing elements
 
 ## Mapping
@@ -44,19 +43,18 @@ labels = new Mapping {
 }
 ```
 
-Implemented behavior:
+Useful behavior:
 
 - explicit `new Mapping { ... }`
-- string and implemented scalar keys
+- string and scalar keys
 - key/value type checking for `Mapping<K, V>`
-- subscript access for supported key paths
-- PCF rendering for nested mapping values
+- subscript access
+- rendering as keyed output
 
-Roadmap:
+Common operations to look up in package docs:
 
 - mapping methods such as `keys`, `values`, `containsKey`, `getOrNull`, and
   `fold`
-- broader key coercion rules
 - constrained value propagation
 
 ## Object Members vs Collection Elements
@@ -74,13 +72,12 @@ separate makes renderer behavior easier to reason about.
 
 ## Rendering Shape
 
-PCF output follows Apple Pkl's brace conventions for the implemented value
-graph. At the module boundary, object members render without an enclosing
+PCF output follows Pkl's brace conventions. At the module boundary, object
+members render without an enclosing
 `new { ... }`. Nested objects render as blocks, and listing/mapping elements use
 Pkl-style indentation.
 
 ## Type Boundaries
 
-The parser can accept more collection-shaped syntax than the evaluator supports.
-Use this page together with **Coverage Status** when a collection example
-comes from upstream Apple Pkl docs.
+Use **Object Model** when the question is about properties, elements, entries,
+or amendments. Use package docs when the question is about method signatures.

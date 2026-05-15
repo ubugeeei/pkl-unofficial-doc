@@ -4,33 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Output Formats - Pkl</title>
-  <meta name="description" content="PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.">
+  <meta name="description" content="PCF, JSON, YAML, properties, plist, and multiple-file output behavior.">
   <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
   <link rel="stylesheet" href="../assets/site-20260515.css">
 </head>
 <body data-section="Reference">
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
-    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
     <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
     <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
   </header>
   <div id="site-shell" class="site-shell">
-    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link is-active" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link is-active" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
     <main class="content">
       <article class="doc">
         <header class="doc-header">
           <p class="section-label">Reference</p>
           <h1>Output Formats</h1>
-          <p>PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.</p>
+          <p>PCF, JSON, YAML, properties, plist, and multiple-file output behavior.</p>
         </header>
         <div class="markdown-body"><h1>Output Formats</h1>
 <p>Evaluation produces a runtime value graph. A renderer turns that graph into a
 document format.</p>
 <h2>PCF</h2>
-<p>PCF is the implemented format today.</p>
+<p>PCF keeps Pkl's own object, listing, and mapping shape visible. It is the most
+useful format while learning the language model.</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span><span class="line"><span class="tok-property">ports</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Listing</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-number">8080</span></span><span class="line">  <span class="tok-number">9090</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
-<p>The renderer emits Pkl Configuration Format for:</p>
+<p>PCF is useful for:</p>
 <ul>
 <li>
 <p>primitive values</p>
@@ -48,14 +49,12 @@ document format.</p>
 <p>mappings</p>
 </li>
 <li>
-<p>typed object values after implemented class default materialization</p>
+<p>typed object values after class defaults are materialized</p>
 </li>
 </ul>
 <h2>JSON</h2>
-<p>JSON is roadmap work. The planned behavior is to emit a JSON document
-equivalent to Apple Pkl's <code>pkl eval -f json</code> output for the implemented value
-graph.</p>
-<p>Important rules to preserve:</p>
+<p>Use JSON when another program consumes generated configuration.</p>
+<p>Important rules:</p>
 <ul>
 <li>
 <p>Listing becomes array</p>
@@ -67,18 +66,22 @@ graph.</p>
 <p>Null maps to JSON null</p>
 </li>
 <li>
-<p>hidden/local members should be omitted once implemented</p>
+<p>hidden/local members should not become public output</p>
 </li>
 </ul>
 <h2>YAML</h2>
-<p>YAML is roadmap work. It should use the same value graph as JSON while obeying
-YAML document conventions and scalar escaping rules.</p>
+<p>Use YAML when the downstream system expects human-edited configuration. YAML
+shares the same value model as JSON while adding its own scalar and document
+conventions.</p>
 <h2>Java Properties</h2>
-<p>Properties output is roadmap work. It matters for JVM and Spring-style
-configuration consumers, where nested data is flattened into dotted keys.</p>
+<p>Properties output matters for JVM and Spring-style consumers, where nested data
+is flattened into dotted keys.</p>
 <h2>plist</h2>
-<p>plist is not implemented. Treat it as a compatibility target after the JSON and
-YAML renderer rules are settled.</p>
+<p>plist is useful for Apple-platform tooling and configuration handoff.</p>
+<h2>Multiple Files</h2>
+<p>Use multiple-file output when one Pkl module describes several generated files.
+Keep generated files under a dedicated output directory.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--multiple-file-output-path</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">build/generated</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">files.pkl</span></span></code></pre></div>
 <h2>Renderer Discipline</h2>
 <p>Renderer work should not change evaluation semantics. If a value renders
 incorrectly, keep the debugging question precise:</p>
@@ -90,13 +93,14 @@ incorrectly, keep the debugging question precise:</p>
 <p>is only PCF output wrong?</p>
 </li>
 <li>
-<p>is the planned format unsupported?</p>
+<p>is the chosen format unable to represent the value?</p>
 </li>
 <li>
 <p>does Apple Pkl have a special-case conversion rule?</p>
 </li>
 </ul>
-<p>Use upstream gold files where possible for byte-for-byte compatibility.</p>
+<p>Use official CLI output as the compatibility baseline when exact formatting
+matters.</p>
 </div>
         <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/stdlib.html"><span>Previous</span><strong>Standard Library</strong></a><a class="page-nav-link is-next" rel="next" href="../ecosystem/tooling.html"><span>Next</span><strong>Tooling</strong></a></nav>
       </article>

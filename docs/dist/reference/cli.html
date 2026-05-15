@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CLI Reference - Pkl</title>
+  <meta name="description" content="Pkl command-line workflow for evaluation, testing, projects, packages, and server mode.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site-20260515.css">
+</head>
+<body data-section="Reference">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link is-active" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Reference</p>
+          <h1>CLI Reference</h1>
+          <p>Pkl command-line workflow for evaluation, testing, projects, packages, and server mode.</p>
+        </header>
+        <div class="markdown-body"><h1>CLI Reference</h1>
+<p>The <code>pkl</code> command is the baseline interface for learning, CI, and deployment.
+Even if a project eventually uses a language binding, the CLI is still the best
+place to confirm behavior because examples can be reproduced without host
+application code.</p>
+<h2>Command Map</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pkl eval</code></td>
+<td>Evaluate modules and render output.</td>
+</tr>
+<tr>
+<td><code>pkl test</code></td>
+<td>Run Pkl test modules.</td>
+</tr>
+<tr>
+<td><code>pkl repl</code></td>
+<td>Explore expressions interactively.</td>
+</tr>
+<tr>
+<td><code>pkl server</code></td>
+<td>Start evaluator server mode for tools and integrations.</td>
+</tr>
+<tr>
+<td><code>pkl project resolve</code></td>
+<td>Resolve project dependencies.</td>
+</tr>
+<tr>
+<td><code>pkl project package</code></td>
+<td>Build a package from <code>PklProject</code>.</td>
+</tr>
+<tr>
+<td><code>pkl download-package</code></td>
+<td>Download a package and its metadata.</td>
+</tr>
+<tr>
+<td><code>pkl analyze imports</code></td>
+<td>Inspect import relationships.</td>
+</tr>
+</tbody>
+</table>
+<h2>Evaluation</h2>
+<p><code>pkl eval</code> turns a module into rendered data. The default output is useful for
+humans; use <code>--format</code> or <code>-f</code> when another tool consumes the result.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--format</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">json</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">-f</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">yaml</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--output-path</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">build/config.yaml</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span></code></pre></div>
+<p>Use explicit output paths in build scripts so generated files are easy to diff
+and clean.</p>
+<h2>Multiple Outputs</h2>
+<p>Modules can describe multiple files. Keep the output root separate from source
+files.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--multiple-file-output-path</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">build/generated</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">files.pkl</span></span></code></pre></div>
+<h2>Tests</h2>
+<p>Use <code>pkl test</code> for executable examples, package contracts, and regression
+coverage.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">tests/</span><span style="color: #ff7b72">*</span><span style="color: #c9d1d9">.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">test</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--junit-reports</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">build/test-results</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">tests/</span><span style="color: #ff7b72">*</span><span style="color: #c9d1d9">.pkl</span></span></code></pre></div>
+<p>Tests should live close to reusable templates and packages because they explain
+the contract better than prose alone.</p>
+<h2>Projects and Packages</h2>
+<p>Project commands make dependencies and package metadata explicit.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">project</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">resolve</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">project</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">package</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">download-package</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">package://example.com/config/service@1.0.0</span></span></code></pre></div>
+<p>Use <code>PklProject</code> once imports start crossing package boundaries or when a
+module needs a stable package URI.</p>
+<h2>Resources and Security</h2>
+<p>Resource reads should be intentional. In automation, prefer explicit allowlists
+over broad filesystem access.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--allowed-resources</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">file:/workspace/config/</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #ff7b72">eval</span><span style="color: #c9d1d9"> </span><span style="color: #7ee787">--properties-file</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">local.properties</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">config.pkl</span></span></code></pre></div>
+<p>When a module uses organization-specific URI schemes, pair the command with an
+external reader and document the scheme in the project.</p>
+<h2>Server Mode</h2>
+<p><code>pkl server</code> is for long-running tools that need repeated evaluation. Editors,
+build tools, and host-language clients can use it to avoid process startup cost
+for every request.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">server</span></span></code></pre></div>
+<p>Reach for server mode after the CLI workflow is already clear; it should not be
+the first abstraction a reader has to learn.</p>
+<h2>REPL</h2>
+<p>The REPL is useful for checking expressions, constraints, and object amendments
+without creating a file for every experiment.</p>
+<div class="code-block" data-language="bash"><div class="code-block-toolbar"><span class="code-language">bash</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight github-dark" style="background-color: #0d1117; color: #c9d1d9"><code><span class="line"><span style="color: #d2a8ff">pkl</span><span style="color: #c9d1d9"> </span><span style="color: #c9d1d9">repl</span></span></code></pre></div>
+<p>Use it for quick exploration, then move the result back into a module or a test.</p>
+</div>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../learn/debugging-diagnostics.html"><span>Previous</span><strong>Debugging and Diagnostics</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/api.html"><span>Next</span><strong>Integration API</strong></a></nav>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site-20260515.js"></script>
+</body>
+</html>

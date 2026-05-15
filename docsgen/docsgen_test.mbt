@@ -115,14 +115,24 @@ test "rendered site shell exposes learning api and spec routes" {
     content="true",
   )
   inspect(home.html.contains("assets/pkl-icon.svg"), content="true")
-  inspect(home.html.contains("object grammar brand mark"), content="false")
-  inspect(home.html.contains("documentation sourcebook"), content="false")
-  inspect(home.html.contains("read the package API"), content="false")
+  inspect(
+    home.html.contains("pkl-mbt object grammar brand mark"),
+    content="false",
+  )
+  inspect(home.html.contains("<span>pkl-mbt</span>"), content="false")
+  inspect(
+    home.html.contains("MoonBit port / documentation sourcebook"),
+    content="false",
+  )
+  inspect(home.html.contains("read the MoonBit package API"), content="false")
   inspect(home.html.contains("A calm, modern"), content="false")
   inspect(home.html.contains("hero-card"), content="false")
   inspect(home.html.contains("class=\"hero\""), content="false")
   inspect(home.html.contains("hero-lede"), content="false")
-  inspect(home.html.contains("implementation sourcebook"), content="false")
+  inspect(
+    home.html.contains("Documentation for the MoonBit implementation"),
+    content="false",
+  )
   inspect(home.html.contains("class=\"home-page\""), content="true")
   inspect(home.html.contains("<header"), content="false")
   inspect(home.html.contains("home-nav"), content="false")
@@ -283,6 +293,9 @@ test "documentation code samples do not render empty spacer lines" {
     "docs/content/reference/advanced.md", "docs/content/reference/module-system.md",
     "docs/content/reference/projects.md", "docs/content/reference/resources.md",
     "docs/content/reference/stdlib.md", "docs/content/reference/syntax.md", "docs/content/reference/values.md",
+    "docs/content/reference/annotations-and-modifiers.md", "docs/content/reference/cli.md",
+    "docs/content/reference/integration.md", "docs/content/reference/object-model.md",
+    "docs/content/ecosystem/documentation-tools.md", "docs/content/ecosystem/editor-support.md",
   ]
   for path in pages {
     let source = @fs.read_file_to_string(path) catch { _ => "" }
@@ -310,8 +323,11 @@ test "documentation covers learning api language and ecosystem paths" {
     "docs/content/reference/operators.md", "docs/content/reference/output-formats.md",
     "docs/content/reference/semantics.md", "docs/content/reference/stdlib.md", "docs/content/reference/api.md",
     "docs/content/reference/values.md", "docs/content/reference/resources.md", "docs/content/reference/projects.md",
-    "docs/content/reference/advanced.md", "docs/content/ecosystem/compatibility.md",
-    "docs/content/ecosystem/contributor-workflow.md", "docs/content/ecosystem/upstream-fixtures.md",
+    "docs/content/reference/advanced.md", "docs/content/reference/annotations-and-modifiers.md",
+    "docs/content/reference/cli.md", "docs/content/reference/integration.md", "docs/content/reference/object-model.md",
+    "docs/content/ecosystem/compatibility.md", "docs/content/ecosystem/contributor-workflow.md",
+    "docs/content/ecosystem/upstream-fixtures.md", "docs/content/ecosystem/documentation-tools.md",
+    "docs/content/ecosystem/editor-support.md",
   ]
   for path in expected {
     inspect(@fs.path_exists(path), content="true")
@@ -321,6 +337,10 @@ test "documentation covers learning api language and ecosystem paths" {
   }
   inspect(language.contains("Syntax Map"), content="true")
   inspect(language.contains("Semantic Model"), content="true")
+  inspect(language.contains("CLI Reference"), content="true")
+  inspect(language.contains("Object Model"), content="true")
+  inspect(language.contains("Annotations and Modifiers"), content="true")
+  inspect(language.contains("Integration API"), content="true")
   inspect(language.contains("Compatibility Boundary"), content="true")
   let operators = @fs.read_file_to_string("docs/content/reference/operators.md") catch {
     _ => ""
@@ -365,6 +385,71 @@ test "documentation covers learning api language and ecosystem paths" {
   inspect(advanced.contains("When Generators"), content="true")
   inspect(advanced.contains("Spread Syntax"), content="true")
   inspect(advanced.contains("Member Predicates"), content="true")
+  let cli = @fs.read_file_to_string("docs/content/reference/cli.md") catch {
+    _ => ""
+  }
+  inspect(cli.contains("pkl eval"), content="true")
+  inspect(cli.contains("pkl test"), content="true")
+  inspect(cli.contains("pkl repl"), content="true")
+  inspect(cli.contains("pkl server"), content="true")
+  inspect(cli.contains("pkl project package"), content="true")
+  inspect(cli.contains("pkl download-package"), content="true")
+  inspect(cli.contains("--format"), content="true")
+  let integration = @fs.read_file_to_string(
+    "docs/content/reference/integration.md",
+  ) catch {
+    _ => ""
+  }
+  inspect(integration.contains("Java"), content="true")
+  inspect(integration.contains("Kotlin"), content="true")
+  inspect(integration.contains("Swift"), content="true")
+  inspect(integration.contains("Go"), content="true")
+  inspect(integration.contains("pkl server"), content="true")
+  inspect(integration.contains("Codegen"), content="true")
+  let object_model = @fs.read_file_to_string(
+    "docs/content/reference/object-model.md",
+  ) catch {
+    _ => ""
+  }
+  inspect(object_model.contains("Late Binding"), content="true")
+  inspect(object_model.contains("Amendments"), content="true")
+  inspect(object_model.contains("this"), content="true")
+  inspect(object_model.contains("outer"), content="true")
+  inspect(object_model.contains("super"), content="true")
+  let annotations = @fs.read_file_to_string(
+    "docs/content/reference/annotations-and-modifiers.md",
+  ) catch {
+    _ => ""
+  }
+  inspect(annotations.contains("Doc Comments"), content="true")
+  inspect(annotations.contains("@Deprecated"), content="true")
+  inspect(annotations.contains("local"), content="true")
+  inspect(annotations.contains("hidden"), content="true")
+  inspect(annotations.contains("fixed"), content="true")
+  inspect(annotations.contains("const"), content="true")
+  let api = @fs.read_file_to_string("docs/content/reference/api.md") catch {
+    _ => ""
+  }
+  inspect(api.contains("Integration API"), content="true")
+  inspect(api.contains("AnalysisSession"), content="false")
+  inspect(api.contains("mizchi/cst"), content="false")
+  let editor_support = @fs.read_file_to_string(
+    "docs/content/ecosystem/editor-support.md",
+  ) catch {
+    _ => ""
+  }
+  inspect(editor_support.contains("VS Code"), content="true")
+  inspect(editor_support.contains("IntelliJ"), content="true")
+  inspect(editor_support.contains("Language Server"), content="true")
+  inspect(editor_support.contains("Pkldoc"), content="true")
+  let doc_tools = @fs.read_file_to_string(
+    "docs/content/ecosystem/documentation-tools.md",
+  ) catch {
+    _ => ""
+  }
+  inspect(doc_tools.contains("Pkldoc"), content="true")
+  inspect(doc_tools.contains("package documentation"), content="true")
+  inspect(doc_tools.contains("doc comments"), content="true")
 }
 
 ///|

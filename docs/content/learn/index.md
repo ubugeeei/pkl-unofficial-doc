@@ -100,7 +100,11 @@ tags = new Listing {
 12. Read **Advanced Language Features** when generators, spreads, predicates, receiver keywords, or glob patterns appear.
 13. Read **Evaluation and Output** to understand `pkl eval`, output formats, and renderer behavior.
 14. Read **Debugging and Diagnostics** when a module parses but does not check, evaluate, or render as expected.
-15. Use **Language Spec** and **Coverage Status** when this site needs to distinguish language behavior from editorial coverage.
+15. Use **CLI Reference** when a workflow needs tests, packages, server mode, or resource policies.
+16. Use **Integration API** when a host application needs Java, Kotlin, Swift, Go, Codegen, or external readers.
+17. Use **Object Model** and **Annotations and Modifiers** when reusable packages need precise contracts.
+18. Use **Editor Support** and **Documentation Tools** when package users need navigation, generated docs, and runnable examples.
+19. Use **Language Spec** and **Coverage Status** when this site needs to distinguish language behavior from editorial coverage.
 
 ## Run the Pkl CLI
 
@@ -128,5 +132,10 @@ or another supported renderer when you want output for a specific consumer.
 | "How do I structure reusable modules?" | Projects and Packages |
 | "Where are generators, spreads, and predicates?" | Advanced Language Features |
 | "Which command should I run?" | Evaluation and Output |
+| "How do I test, package, or run server mode?" | CLI Reference |
+| "How do I call Pkl from Java, Kotlin, Swift, or Go?" | Integration API |
+| "How do amendments and receiver lookup really work?" | Object Model |
+| "How do doc comments and modifiers shape a public package?" | Annotations and Modifiers |
+| "How should editor support and generated docs fit together?" | Editor Support and Documentation Tools |
 | "How do I debug a failing module?" | Debugging and Diagnostics |
 | "Is this Apple Pkl compatible yet?" | Compatibility |

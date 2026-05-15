@@ -4,32 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Diagnostics Reference - Pkl</title>
-  <meta name="description" content="Diagnostic stages, failure shapes, current messages, and future editor integration.">
+  <meta name="description" content="Diagnostic stages, failure shapes, and editor-facing debugging workflow.">
   <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
   <link rel="stylesheet" href="../assets/site-20260515.css">
 </head>
 <body data-section="Reference">
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
-    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
     <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
     <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
   </header>
   <div id="site-shell" class="site-shell">
-    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link is-active" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link is-active" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
     <main class="content">
       <article class="doc">
         <header class="doc-header">
           <p class="section-label">Reference</p>
           <h1>Diagnostics Reference</h1>
-          <p>Diagnostic stages, failure shapes, current messages, and future editor integration.</p>
+          <p>Diagnostic stages, failure shapes, and editor-facing debugging workflow.</p>
         </header>
         <div class="markdown-body"><h1>Diagnostics Reference</h1>
 <p>Diagnostics are grouped by stage. The same source file can pass one stage and
 fail the next.</p>
 <h2>Parse Diagnostics</h2>
-<p>Parse diagnostics mean the source cannot be reduced into the semantic program
-model.</p>
+<p>Parse diagnostics mean the source cannot be read as Pkl syntax.</p>
 <p>Typical causes:</p>
 <ul>
 <li>
@@ -39,28 +38,19 @@ model.</p>
 <p>missing delimiters</p>
 </li>
 <li>
-<p>unsupported declaration forms that are not yet tolerated</p>
-</li>
-<li>
 <p>invalid string or interpolation shapes</p>
 </li>
 </ul>
 <p>Parser diagnostics are closest to syntax and should not require import or
 stdlib context.</p>
-<h2>Unsupported Syntax</h2>
-<p>The parser can preserve accepted-but-not-semantic syntax as unsupported spans.
-This lets compatibility work move forward without pretending every accepted
-construct evaluates.</p>
-<p>User-facing docs should call this out explicitly: parse acceptance is not the
-same thing as language support.</p>
 <h2>Typecheck Diagnostics</h2>
 <p>Typecheck diagnostics mean the source is syntactically valid but violates a
 contract.</p>
 <p>Examples:</p>
 <div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">name</span><span class="tok-operator">:</span> <span class="tok-type">String</span> <span class="tok-operator">=</span> <span class="tok-number">1</span></span><span class="line"><span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">70000</span></span></code></pre></div>
-<p>Current diagnostics cover primitive mismatches, missing members, invalid calls,
-class contract failures, union narrowing failures, and selected constrained
-annotation failures.</p>
+<p>Common diagnostics cover primitive mismatches, missing members, invalid calls,
+class contract failures, union narrowing failures, and constrained annotation
+failures.</p>
 <h2>Evaluation Diagnostics</h2>
 <p>Evaluation diagnostics happen when runtime behavior cannot produce a value.</p>
 <p>Common cases:</p>
@@ -78,17 +68,16 @@ annotation failures.</p>
 <p>rejected runtime constraints</p>
 </li>
 <li>
-<p>unsupported stdlib calls</p>
+<p>failed resource reads</p>
 </li>
 </ul>
 <h2>Renderer Diagnostics</h2>
-<p>PCF rendering is implemented for the current value graph. JSON, YAML,
-properties, and plist rendering are roadmap work, so format-specific failures
-should be treated as missing feature work rather than Pkl model failures.</p>
-<h2>Future Shape</h2>
-<p>The CST preserves source positions, so diagnostics can grow into editor-grade
-messages with spans, related locations, and code actions. The current docs keep
-the stage model stable so richer diagnostics can slot into the same workflow.</p>
+<p>Renderer diagnostics happen after evaluation, when a value cannot be represented
+in the requested format or the output path cannot be written.</p>
+<h2>Editor Shape</h2>
+<p>Good editor diagnostics should point to the failing source span, name the stage,
+include related import locations when useful, and keep the CLI command
+reproducible.</p>
 </div>
         <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/projects.html"><span>Previous</span><strong>Projects Reference</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/advanced.html"><span>Next</span><strong>Advanced Reference</strong></a></nav>
       </article>

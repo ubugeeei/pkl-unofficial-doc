@@ -1,7 +1,7 @@
 ---
 title: Output Formats
 section: Reference
-description: PCF output today, planned JSON/YAML/properties/plist renderers, and renderer compatibility rules.
+description: PCF, JSON, YAML, properties, plist, and multiple-file output behavior.
 order: 130
 ---
 
@@ -12,7 +12,8 @@ document format.
 
 ## PCF
 
-PCF is the implemented format today.
+PCF keeps Pkl's own object, listing, and mapping shape visible. It is the most
+useful format while learning the language model.
 
 ```pkl
 name = "api"
@@ -22,42 +23,49 @@ ports = new Listing {
 }
 ```
 
-The renderer emits Pkl Configuration Format for:
+PCF is useful for:
 
 - primitive values
 - module-level object members
 - nested objects
 - listings
 - mappings
-- typed object values after implemented class default materialization
+- typed object values after class defaults are materialized
 
 ## JSON
 
-JSON is roadmap work. The planned behavior is to emit a JSON document
-equivalent to Apple Pkl's `pkl eval -f json` output for the implemented value
-graph.
+Use JSON when another program consumes generated configuration.
 
-Important rules to preserve:
+Important rules:
 
 - Listing becomes array
 - Mapping keys must become JSON object keys
 - Null maps to JSON null
-- hidden/local members should be omitted once implemented
+- hidden/local members should not become public output
 
 ## YAML
 
-YAML is roadmap work. It should use the same value graph as JSON while obeying
-YAML document conventions and scalar escaping rules.
+Use YAML when the downstream system expects human-edited configuration. YAML
+shares the same value model as JSON while adding its own scalar and document
+conventions.
 
 ## Java Properties
 
-Properties output is roadmap work. It matters for JVM and Spring-style
-configuration consumers, where nested data is flattened into dotted keys.
+Properties output matters for JVM and Spring-style consumers, where nested data
+is flattened into dotted keys.
 
 ## plist
 
-plist is not implemented. Treat it as a compatibility target after the JSON and
-YAML renderer rules are settled.
+plist is useful for Apple-platform tooling and configuration handoff.
+
+## Multiple Files
+
+Use multiple-file output when one Pkl module describes several generated files.
+Keep generated files under a dedicated output directory.
+
+```bash
+pkl eval --multiple-file-output-path build/generated files.pkl
+```
 
 ## Renderer Discipline
 
@@ -66,7 +74,8 @@ incorrectly, keep the debugging question precise:
 
 - is the runtime value wrong?
 - is only PCF output wrong?
-- is the planned format unsupported?
+- is the chosen format unable to represent the value?
 - does Apple Pkl have a special-case conversion rule?
 
-Use upstream gold files where possible for byte-for-byte compatibility.
+Use official CLI output as the compatibility baseline when exact formatting
+matters.

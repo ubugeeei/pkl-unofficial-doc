@@ -30,8 +30,8 @@ http: Port = 8080
 admin: Port = 9090
 ```
 
-The implementation preserves constrained typealias metadata for the supported
-numeric path so aliases do not silently erase validation.
+Type aliases should preserve the validation meaning of the constrained type so
+aliases do not silently erase the contract.
 
 ## Predicate Factories
 
@@ -42,8 +42,8 @@ const function above(min) = (x) -> x > min
 workers: Int(above(0)) = 4
 ```
 
-The current evaluator and typechecker support user-defined numeric predicate
-factories in the implemented constrained annotation paths.
+Use predicate factories when the rule is still simple enough to read at the
+annotation site.
 
 ## Class Property Constraints
 
@@ -68,8 +68,8 @@ contract of a module.
 function normalize(port: Int(isBetween(1, 65535))): Int(isPositive) = port
 ```
 
-The implementation checks constrained parameter and return annotations for the
-supported numeric predicates.
+Parameter and return annotations should fail at the call boundary when the
+function is used incorrectly.
 
 ## Good Constraint Messages
 
@@ -85,7 +85,6 @@ the values they protect so failures are easier to localize.
 
 ## Boundaries
 
-This page starts with numeric constraints because they are easy to read and
-common in configuration. Future examples should also cover String length and
-Regex predicates, Float predicates, Duration and DataSize rules, and constrained
-element types inside Listing and Mapping values.
+Numeric constraints are the easiest place to start. Once a package grows, also
+document String, Regex, Float, Duration, DataSize, Listing, and Mapping
+constraints near the public type aliases or classes that rely on them.

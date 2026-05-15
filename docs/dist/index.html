@@ -15,7 +15,7 @@
         <a class="home-brand" href="index.html" aria-label="Pkl home"><img src="assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
         <p class="home-kicker">Unofficial language documentation</p>
         <h1 id="home-title">Pkl</h1>
-        <p class="home-lede">Learn Pkl's configuration model, read the language rules, and follow a clearer path through the ecosystem without confusing this site with Apple's official docs.</p>
+        <p class="home-lede">Learn Pkl's configuration model, read the language rules, and keep the ecosystem surfaces close without confusing this site with Apple's official docs.</p>
       </div>
       <svg class="brand-mark" viewBox="0 0 520 360" role="img" aria-label="Pkl language specimen mark">
   <g class="specimen-lines" aria-hidden="true">
@@ -32,16 +32,17 @@
   </path>
 </svg>
     </section>
-    <nav class="home-index" aria-label="Primary"><a href="learn/">Getting Started</a><a href="reference/api.html">API Reference</a><a href="reference/language.html">Language Spec</a></nav>
+    <nav class="home-index" aria-label="Primary"><a href="learn/">Getting Started</a><a href="reference/api.html">Integration API</a><a href="reference/language.html">Language Spec</a></nav>
     <section class="track-grid" aria-label="Documentation paths">
   <a class="track" href="learn/index.html"><span>Learn</span><strong>Build the first mental model.</strong><small>Values, objects, modules, imports, constraints, and rendering.</small></a>
-  <a class="track" href="reference/api.html"><span>API</span><strong>Map the implementation surface.</strong><small>Parser, evaluator, typechecker, analysis session, and renderer entry points.</small></a>
-  <a class="track" href="reference/language.html"><span>Spec</span><strong>Separate language rules from source notes.</strong><small>Syntax, semantics, compatibility notes, and official source links.</small></a>
+  <a class="track" href="reference/cli.html"><span>CLI</span><strong>Run Pkl in real workflows.</strong><small>Evaluate modules, test packages, render files, and inspect projects.</small></a>
+  <a class="track" href="reference/api.html"><span>API</span><strong>Connect Pkl to systems.</strong><small>Bindings, server mode, codegen, external readers, and package docs.</small></a>
+  <a class="track" href="reference/language.html"><span>Spec</span><strong>Keep the language contract visible.</strong><small>Syntax, object semantics, modules, resources, output, and coverage notes.</small></a>
 </section>
-    <div class="home-meta" aria-label="Implementation stack">
-      <span>parser: mizchi/cst</span>
-      <span>analysis cache: mizchi/ripple</span>
+    <div class="home-meta" aria-label="Site stack">
       <span>source: Markdown</span>
+      <span>build: static HTML</span>
+      <span>status: unofficial</span>
     </div>
     <article class="home-notes markdown-body"><h1>Pkl</h1>
 <blockquote>
@@ -55,16 +56,21 @@ official Apple Pkl documentation.</p>
 <p>values, templates, functions, classes, constraints, imports, resources,
 projects, advanced syntax, debugging, evaluation, and output.</p>
 <ul>
-<li><strong>Reference</strong>: keep CLI usage, values, syntax, operators, resources,</li>
+<li><strong>Reference</strong>: keep CLI usage, integration surfaces, values, syntax, object</li>
 </ul>
-<p>projects, modules, semantics, standard library expectations, diagnostics, and
-output formats easy to scan.</p>
+<p>semantics, annotations, operators, resources, projects, modules, standard
+library expectations, diagnostics, and output formats easy to scan.</p>
 <ul>
-<li><strong>Language Spec</strong>: separate syntax, operators, module rules, semantics,</li>
+<li><strong>Language Spec</strong>: separate syntax, object rules, module rules, semantics,</li>
 </ul>
-<p>diagnostics, standard library expectations, output formats, and
-coverage notes so readers can tell what is language behavior and what is this
-site's editorial boundary.</p>
+<p>diagnostics, standard library expectations, output formats, and coverage notes
+so readers can tell what is language behavior and what is this site's
+editorial boundary.</p>
+<ul>
+<li><strong>Ecosystem</strong>: keep editor support, Pkldoc, package documentation, tooling,</li>
+</ul>
+<p>compatibility, upstream fixtures, and contributor workflow close to the
+language pages.</p>
 <h2>Why This Structure</h2>
 <p>The original Pkl docs mix learning material, reference material, and ecosystem
 surfaces in ways that make it hard to choose a path. This version keeps the
@@ -130,6 +136,22 @@ project.</p>
 </ul>
 <p>compatibility boundary, and official source links.</p>
 <ul>
+<li><strong>CLI Reference</strong>: <code>pkl eval</code>, <code>pkl test</code>, <code>pkl repl</code>, <code>pkl server</code>, project</li>
+</ul>
+<p>commands, package commands, and output options.</p>
+<ul>
+<li><strong>Integration API</strong>: CLI, server mode, Java, Kotlin, Swift, Go, Codegen, and</li>
+</ul>
+<p>external resource reader boundaries.</p>
+<ul>
+<li><strong>Object Model</strong>: properties, elements, entries, type context, amendments,</li>
+</ul>
+<p>late binding, and receiver keywords.</p>
+<ul>
+<li><strong>Annotations and Modifiers</strong>: Doc Comments, <code>@Deprecated</code>, visibility,</li>
+</ul>
+<p>constants, and extension modifiers.</p>
+<ul>
 <li><strong>Values Reference</strong>: scalar syntax, null handling, <code>Duration</code>, and</li>
 </ul>
 <p><code>DataSize</code> in compact form.</p>
@@ -149,6 +171,14 @@ project.</p>
 <li><strong>Standard Library</strong>: <code>pkl:</code> modules, core built-ins, and how to approach the</li>
 </ul>
 <p>official standard library reference.</p>
+<ul>
+<li><strong>Editor Support</strong>: VS Code, IntelliJ, Language Server, Pkldoc, and</li>
+</ul>
+<p>CLI-backed editor workflows.</p>
+<ul>
+<li><strong>Documentation Tools</strong>: Pkldoc, package documentation, doc comments,</li>
+</ul>
+<p>examples, and release artifacts.</p>
 <ul>
 <li><strong>Source Alignment</strong>: how this site uses official docs, examples, release</li>
 </ul>

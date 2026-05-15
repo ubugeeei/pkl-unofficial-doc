@@ -112,10 +112,9 @@ Instead:
 - use type aliases for repeated constraints
 - keep host-tool-specific output concerns out of the template when possible
 
-## Current Implementation Notes
+## Template Coverage Notes
 
-Pkl's core template path includes module `amends`, module
-`extends`, object amendments, typed object expressions, class property defaults,
-and numeric constraints. Broad stdlib helpers, generators, and non-PCF output
-formats are still roadmap work, so examples in this site stay on the supported
-subset unless marked otherwise.
+The core template path is module `amends`, module `extends`, object amendments,
+typed object expressions, class property defaults, and constraints. Keep
+templates readable before reaching for broad standard-library helpers,
+generators, or format-specific output behavior.

@@ -1,68 +1,112 @@
 ---
-title: API Reference
+title: Integration API
 section: Reference
-description: CLI, package, and integration surfaces readers commonly need.
-order: 100
+description: Choose between the CLI, server mode, language bindings, code generation, and resource readers.
+order: 101
 ---
 
-# API Reference
+# Integration API
 
-Pkl's most visible API is the `pkl` command-line interface. This page keeps the
-reader-facing surfaces in one place: CLI evaluation, expression evaluation,
-output rendering, project/package files, and embedding points.
+Pkl usually enters a system through one of five surfaces: the CLI, `pkl server`,
+host-language bindings, generated types, or external resource readers. This
+page is a routing guide for choosing the surface before reading the exhaustive
+official package or binding documentation.
 
-## CLI Shape
+## Surface Matrix
 
-```text
-pkl <subcommand> [options] [modules]
-```
+| Surface | Best For | Avoid When |
+| --- | --- | --- |
+| CLI | build scripts, CI checks, one-shot rendering, package publishing | the host process needs many repeated evaluations |
+| `pkl server` | editors, long-running tools, repeated evals with lower startup overhead | a shell command is simpler and startup cost is irrelevant |
+| Java / Kotlin | JVM services, Gradle builds, typed configuration loading | the runtime cannot carry a JVM dependency |
+| Swift | Apple-platform apps, Swift Package Manager projects | the configuration is only used at build time |
+| Go | services and command-line tools that want native Go values | dynamic output is enough and codegen adds maintenance cost |
+| Codegen | stable host-language contracts from Pkl classes | schemas are still changing every commit |
+| External readers | custom URI schemes, secrets, service discovery, generated data | ordinary file, env, or property reads are enough |
 
-Common commands:
+## CLI as the Boundary
 
-| Command | Use |
-| --- | --- |
-| `pkl eval` | Evaluate one or more modules and render output. |
-| `pkl repl` | Start an interactive session. |
-| `pkl test` | Run modules that extend `pkl:test`. |
-| `pkl project` | Work with project/package metadata. |
-| `pkl server` | Run the message-passing server for embeddings. |
-
-## Evaluation
+Use the CLI when a process can treat Pkl as an external compiler for
+configuration.
 
 ```bash
-pkl eval config.pkl
-pkl eval -x service.port config.pkl
-pkl eval -f json -o config.json config.pkl
+pkl eval --format json --output-path build/service.json config.pkl
+pkl test tests/*.pkl
+pkl project package
 ```
 
-Use `-x` for a single expression, `-f` for a renderer, and `-o` when output
-should be written to a file.
+The CLI boundary is easy to cache, easy to run in CI, and easy to debug because
+it uses the same commands a reader can reproduce locally.
 
-## Output Formats
+## Server Mode
 
-| Format | Example |
+`pkl server` keeps an evaluator process available for client tooling. It is the
+right abstraction when a program needs repeated evaluations, dependency graph
+reuse, or editor-style responsiveness.
+
+Good candidates:
+
+- editor integrations that evaluate snippets or resolve imports repeatedly
+- build tools that evaluate many related modules
+- language services that need diagnostics without starting a new process each
+  time
+
+## Language Bindings
+
+Use a binding when the host program owns evaluation and wants Pkl values inside
+the process.
+
+| Binding | Typical Shape |
 | --- | --- |
-| PCF | `pkl eval config.pkl` |
-| JSON | `pkl eval -f json config.pkl` |
-| YAML | `pkl eval -f yaml config.pkl` |
-| Properties | `pkl eval -f properties config.pkl` |
-| Plist | `pkl eval -f plist config.pkl` |
+| Java | evaluator manager, module sources, generated or dynamic values |
+| Kotlin | Kotlin-friendly APIs over the JVM evaluator |
+| Swift | Swift Package Manager integration and generated Swift models |
+| Go | generated Go types and runtime evaluation helpers |
 
-## Project and Packages
+Bindings should still preserve the same discipline as CLI usage: keep module
+paths explicit, decide resource access up front, and treat evaluation failures
+as configuration errors rather than ordinary missing defaults.
 
-Pkl projects use `PklProject` metadata to describe package name, version,
-dependencies, package URI, and evaluator settings. Package imports use
-`package://` URIs and resolve through package metadata.
+## Codegen
 
-Keep project-level setup separate from module syntax:
+Codegen turns Pkl classes into host-language types. Prefer it when:
 
-- module files teach values, objects, types, imports, and output
-- project files teach dependency and package boundaries
-- CLI flags decide how evaluated modules are rendered
+- the Pkl module is a stable contract consumed by application code
+- refactors should fail at compile time in the host language
+- generated documentation and host types need to stay aligned
 
-## Embedding Surface
+Avoid codegen while the shape is exploratory. In that phase, render JSON or YAML
+from the CLI and stabilize the Pkl classes first.
 
-The `pkl server` command exposes Pkl through a message-passing protocol used by
-language bindings and tools. Treat the server as an integration boundary: the
-language contract still lives in modules, types, evaluation, imports, and output
-rendering.
+## External Resource Readers
+
+External readers let tools provide custom resource schemes to `read`, `read?`,
+and `read*`.
+
+```pkl
+secrets = read("vault:/services/api")
+```
+
+Use them for organization-specific sources such as secret stores, inventory
+systems, or generated catalogs. Keep the URI scheme narrow and document the
+allowlist required to use it.
+
+## Choosing a Surface
+
+| Need | Start With |
+| --- | --- |
+| "Render config during a deploy" | CLI |
+| "Validate package tests in CI" | CLI |
+| "Evaluate many modules from one tool" | `pkl server` |
+| "Load config inside a JVM service" | Java or Kotlin binding |
+| "Use typed config in an iOS app" | Swift binding |
+| "Use typed config in a Go service" | Go binding and Codegen |
+| "Read from a custom source" | External resource reader |
+
+## Related Pages
+
+- **CLI Reference** covers concrete commands and options.
+- **Projects Reference** covers packages, dependencies, and publishing shape.
+- **Resources Reference** covers `read`, `read?`, `read*`, URI schemes, and
+  allowlists.
+- **Documentation Tools** covers Pkldoc and package documentation.

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Object Model - Pkl</title>
+  <meta name="description" content="Objects, amendments, late binding, receivers, and member shape in Pkl.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site-20260515.css">
+</head>
+<body data-section="Reference">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">Integration API</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/cli.html"><span>CLI Reference</span></a><a class="nav-link" href="../reference/api.html"><span>Integration API</span></a><a class="nav-link" href="../reference/integration.html"><span>Integration Patterns</span></a><a class="nav-link is-active" href="../reference/object-model.html"><span>Object Model</span></a><a class="nav-link" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/annotations-and-modifiers.html"><span>Annotations and Modifiers</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Ecosystem</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/editor-support.html"><span>Editor Support</span></a><a class="nav-link" href="../ecosystem/documentation-tools.html"><span>Documentation Tools</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Reference</p>
+          <h1>Object Model</h1>
+          <p>Objects, amendments, late binding, receivers, and member shape in Pkl.</p>
+        </header>
+        <div class="markdown-body"><h1>Object Model</h1>
+<p>Pkl objects are more than nested dictionaries. They are amendable values with
+properties, elements, entries, type context, and late-bound member lookup.</p>
+<h2>Object Members</h2>
+<p>Object bodies can contain three broad member shapes:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Shape</th>
+<th>Output Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Property</td>
+<td><code>name = value</code></td>
+<td>named field</td>
+</tr>
+<tr>
+<td>Element</td>
+<td><code>&quot;value&quot;</code></td>
+<td>ordered listing item</td>
+</tr>
+<tr>
+<td>Entry</td>
+<td><code>[&quot;key&quot;] = value</code></td>
+<td>mapping entry</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line">service <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span><span class="line">  <span class="tok-property">ports</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Listing</span> <span class="tok-punctuation">{</span></span><span class="line">    <span class="tok-number">8080</span></span><span class="line">    <span class="tok-number">8443</span></span><span class="line">  <span class="tok-punctuation">}</span></span><span class="line">  <span class="tok-property">metadata</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-type">Mapping</span> <span class="tok-punctuation">{</span></span><span class="line">    <span class="tok-punctuation">[</span><span class="tok-string">&quot;team&quot;</span><span class="tok-punctuation">]</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;platform&quot;</span></span><span class="line">  <span class="tok-punctuation">}</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<h2>Type Context</h2>
+<p><code>new</code> uses type context when one exists. A typed property, class property, or
+amended value can decide what kind of object is being constructed.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-keyword">class</span> Endpoint <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">host</span><span class="tok-operator">:</span> <span class="tok-type">String</span></span><span class="line">  <span class="tok-property">port</span><span class="tok-operator">:</span> <span class="tok-type">Int</span><span class="tok-punctuation">(</span><span class="tok-call">isBetween</span><span class="tok-punctuation">(</span><span class="tok-number">1</span><span class="tok-punctuation">,</span> <span class="tok-number">65535</span><span class="tok-punctuation">)</span><span class="tok-punctuation">)</span> <span class="tok-operator">=</span> <span class="tok-number">443</span></span><span class="line"><span class="tok-punctuation">}</span></span><span class="line"><span class="tok-property">endpoint</span><span class="tok-operator">:</span> <span class="tok-property">Endpoint</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api.example.com&quot;</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>The body only provides <code>host</code>; the class default supplies <code>port</code>.</p>
+<h2>Amendments</h2>
+<p>Amendments copy an existing value and replace or add members in a new object.
+This is the core shape behind environment overlays and reusable templates.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">base</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;localhost&quot;</span></span><span class="line">  <span class="tok-property">port</span> <span class="tok-operator">=</span> <span class="tok-number">8080</span></span><span class="line"><span class="tok-punctuation">}</span></span><span class="line"><span class="tok-property">production</span> <span class="tok-operator">=</span> <span class="tok-punctuation">(</span>base<span class="tok-punctuation">)</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api.example.com&quot;</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>Amendments should stay small. If an overlay replaces most of the base object,
+the base contract is probably too broad.</p>
+<h2>Late Binding</h2>
+<p>Late Binding means a member can observe amended values rather than only the
+original values present when the base object was written.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">base</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;localhost&quot;</span></span><span class="line">  <span class="tok-property">url</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;https://\(host)&quot;</span></span><span class="line"><span class="tok-punctuation">}</span></span><span class="line"><span class="tok-property">production</span> <span class="tok-operator">=</span> <span class="tok-punctuation">(</span>base<span class="tok-punctuation">)</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">host</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api.example.com&quot;</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p><code>production.url</code> resolves through the amended <code>host</code>. This is why reusable base
+modules can define derived values while overlays only replace the primitive
+inputs.</p>
+<h2>Receiver Keywords</h2>
+<p>Receiver keywords make name lookup explicit in nested bodies.</p>
+<table>
+<thead>
+<tr>
+<th>Receiver</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>this</code></td>
+<td>the current object</td>
+</tr>
+<tr>
+<td><code>outer</code></td>
+<td>the surrounding object</td>
+</tr>
+<tr>
+<td><code>super</code></td>
+<td>the value being amended</td>
+</tr>
+<tr>
+<td><code>module</code></td>
+<td>the module object</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line">service <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span><span class="line">  endpoint <span class="tok-punctuation">{</span></span><span class="line">    <span class="tok-property">path</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;/v1&quot;</span></span><span class="line">    <span class="tok-property">url</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;https://\(outer.name).example.com\(this.path)&quot;</span></span><span class="line">  <span class="tok-punctuation">}</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>Use receivers when a nested object has a member with the same name as an outer
+object. Explicit lookup is cheaper for the next reader than guessing.</p>
+<h2><code>super</code></h2>
+<p><code>super</code> is useful when an amendment wants to derive from the previous value
+instead of replacing it completely.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">base</span> <span class="tok-operator">=</span> <span class="tok-keyword">new</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">retries</span> <span class="tok-operator">=</span> <span class="tok-number">2</span></span><span class="line"><span class="tok-punctuation">}</span></span><span class="line"><span class="tok-property">production</span> <span class="tok-operator">=</span> <span class="tok-punctuation">(</span>base<span class="tok-punctuation">)</span> <span class="tok-punctuation">{</span></span><span class="line">  <span class="tok-property">retries</span> <span class="tok-operator">=</span> super<span class="tok-punctuation">.</span>retries <span class="tok-operator">+</span> <span class="tok-number">1</span></span><span class="line"><span class="tok-punctuation">}</span></span></code></pre></div>
+<p>Keep <code>super</code> expressions close to the amended member so the inheritance line is
+easy to audit.</p>
+<h2>Design Rules</h2>
+<ul>
+<li>Put required shape in classes.</li>
+<li>Put environment-specific values in amendments.</li>
+<li>Use late-bound derived values for URLs, file names, and labels.</li>
+<li>Use <code>this</code>, <code>outer</code>, and <code>super</code> when a reader might otherwise misread lookup.</li>
+<li>Keep collection elements and mapping entries visually separate from named</li>
+</ul>
+<p>properties.</p>
+</div>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/integration.html"><span>Previous</span><strong>Integration Patterns</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/values.html"><span>Next</span><strong>Values Reference</strong></a></nav>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site-20260515.js"></script>
+</body>
+</html>

@@ -1,41 +1,55 @@
 ---
 title: Compatibility
-section: Contributing
-description: How this documentation relates to official Pkl docs, examples, and release notes.
+section: Ecosystem
+description: How this unofficial documentation relates to Apple Pkl, official tools, package docs, and release changes.
 order: 210
 ---
 
 # Compatibility
 
-This site is an unofficial Pkl language reference. It should be honest about the
-compatibility boundary: Pkl is the subject, and official Apple Pkl documentation,
-release notes, and CLI behavior remain the source of truth.
+This site is an unofficial Pkl language reference. It should be useful because
+it reorganizes the learning path, not because it pretends to replace Apple's
+official documentation or implementation.
 
 ## Sources of Truth
 
 | Source | Role |
 | --- | --- |
-| Official Pkl docs | Primary language and tool documentation |
-| Pkl CLI behavior | Practical baseline for Learn examples |
-| Release notes | Version-specific changes and migration notes |
-| Upstream examples | Source material for compact examples |
-| This site | Reorganized learning path and commentary |
+| Official Pkl docs | language behavior, CLI behavior, package docs, and tool manuals |
+| Pkl CLI | executable behavior for evaluation, tests, packages, resources, and output |
+| Official tools | editor support, language server behavior, Pkldoc, and build integrations |
+| Release notes | version changes and migration details |
+| Package documentation | exhaustive signatures for public modules and bindings |
 
-## Compatibility Checks
+## Site Role
 
-Use official sources in three ways:
+This site should do four things well:
 
-- confirm that examples match current CLI behavior
-- cite release-specific behavior when it matters
-- avoid inventing semantics that are not present upstream
+- give readers a linear learning path
+- provide compact reference pages that are easier to scan than upstream pages
+- keep CLI, API, language, editor, and documentation surfaces close together
+- point back to official sources when exact behavior or version details matter
 
-## Documentation Rule
+## Compatibility Labels
 
-Each page should distinguish:
+Pages should make the boundary clear:
 
-- **Pkl model**: what the language concept means
-- **Official source**: where upstream behavior is documented or demonstrated
-- **Editorial note**: why this site groups or explains the topic differently
+- **Pkl model**: the language behavior readers should learn.
+- **Official source**: where the behavior is specified, documented, or executed.
+- **Editorial note**: why this site groups or explains the material differently.
 
-That split is the main reason this site should be easier to navigate than the
-official docs while still respecting upstream behavior.
+Avoid presenting commentary as specification. If a page compresses behavior,
+include a link to the relevant official source.
+
+## Version Discipline
+
+When Pkl releases change CLI flags, package behavior, stdlib members, or tool
+support, this site should update the affected page and note the version when the
+difference matters.
+
+## What Not to Do
+
+- Do not mirror the official information architecture.
+- Do not send beginners away for basic setup that belongs in Getting Started.
+- Do not turn implementation notes into the main language narrative.
+- Do not copy generated package documentation when a focused link is clearer.
