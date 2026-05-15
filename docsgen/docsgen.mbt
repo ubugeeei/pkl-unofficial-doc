@@ -792,6 +792,13 @@ fn home_tracks_html() -> String {
 }
 
 ///|
+fn github_links_html(class_name : String) -> String {
+  "<nav class=\"" +
+  class_name +
+  "\" aria-label=\"GitHub links\"><a href=\"https://github.com/apple/pkl\" target=\"_blank\" rel=\"noreferrer\">apple/pkl</a><a href=\"https://github.com/ubugeeei/pkl-unofficial-doc\" target=\"_blank\" rel=\"noreferrer\">docs source</a></nav>"
+}
+
+///|
 fn brand_mark_html() -> String {
   (
     #|<svg class="brand-mark" viewBox="0 0 520 360" role="img" aria-label="Pkl language specimen mark">
@@ -818,6 +825,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
   let top = top_links(current, pages)
   let tracks = home_tracks_html()
   let mark = brand_mark_html()
+  let github = github_links_html("home-source-links")
   (
     $|<!doctype html>
     $|<html lang="en">
@@ -846,6 +854,7 @@ fn render_home_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|      <span>source: Markdown</span>
     $|      <span>build: static HTML</span>
     $|      <span>status: unofficial</span>
+    $|      \{github}
     $|    </div>
     $|    <article class="home-notes markdown-body">\{current.html}</article>
     $|  </main>
@@ -874,6 +883,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
   let nav = nav_html(current, pages)
   let page_nav = page_nav_html(current, pages)
   let top = top_links(current, pages)
+  let github = github_links_html("source-links")
   (
     $|<!doctype html>
     $|<html lang="en">
@@ -889,6 +899,7 @@ fn render_page(current : DocPage, pages : Array[DocPage]) -> String {
     $|  <header class="topbar">
     $|    <a class="brand" href="\{depth_prefix(current.path)}index.html" aria-label="Pkl home"><img class="brand-logo" src="\{depth_prefix(current.path)}assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
     $|    <nav class="topnav" aria-label="Primary">\{top}</nav>
+    $|    \{github}
     $|    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
     $|    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
     $|  </header>
@@ -1237,10 +1248,11 @@ fn site_css() -> String {
     #|
     #|.track-grid {
     #|  display: grid;
-    #|  grid-template-columns: repeat(3, minmax(0, 1fr));
-    #|  gap: 1px;
+    #|  grid-template-columns: repeat(4, minmax(0, 1fr));
+    #|  gap: 0;
     #|  margin-top: clamp(38px, 6vh, 62px);
-    #|  background: var(--line);
+    #|  border-top: 1px solid var(--line);
+    #|  border-bottom: 1px solid var(--line);
     #|}
     #|
     #|.track {
@@ -1248,8 +1260,13 @@ fn site_css() -> String {
     #|  align-content: start;
     #|  gap: 10px;
     #|  min-height: 190px;
-    #|  background: var(--paper);
+    #|  border-left: 1px solid var(--line);
+    #|  background: transparent;
     #|  padding: 20px 20px 22px 0;
+    #|}
+    #|
+    #|.track:first-child {
+    #|  border-left: 0;
     #|}
     #|
     #|.track + .track {
@@ -1284,6 +1301,7 @@ fn site_css() -> String {
     #|.home-meta {
     #|  display: flex;
     #|  flex-wrap: wrap;
+    #|  align-items: center;
     #|  gap: 10px 24px;
     #|  border-top: 1px solid var(--line);
     #|  border-bottom: 1px solid var(--line);
@@ -1292,6 +1310,30 @@ fn site_css() -> String {
     #|  color: var(--muted);
     #|  font-size: 12px;
     #|  font-weight: 680;
+    #|}
+    #|
+    #|.home-source-links,
+    #|.source-links {
+    #|  display: flex;
+    #|  gap: 14px;
+    #|  color: var(--muted);
+    #|  font-size: 12px;
+    #|  font-weight: 650;
+    #|}
+    #|
+    #|.home-source-links a,
+    #|.source-links a {
+    #|  color: inherit;
+    #|  text-decoration: none;
+    #|}
+    #|
+    #|.home-source-links a:hover,
+    #|.home-source-links a:focus-visible,
+    #|.source-links a:hover,
+    #|.source-links a:focus-visible {
+    #|  color: var(--ink);
+    #|  text-decoration: underline;
+    #|  text-underline-offset: 4px;
     #|}
     #|
     #|.home-notes {
@@ -1817,12 +1859,19 @@ fn site_css() -> String {
     #|    justify-content: flex-start;
     #|  }
     #|
+    #|  .source-links {
+    #|    display: none;
+    #|  }
+    #|
     #|  .track-grid {
     #|    grid-template-columns: 1fr;
+    #|    border-bottom: 0;
     #|  }
     #|
     #|  .track,
     #|  .track + .track {
+    #|    border-left: 0;
+    #|    border-bottom: 1px solid var(--line);
     #|    min-height: 0;
     #|    padding: 18px 0;
     #|  }

@@ -155,6 +155,11 @@ test "rendered site shell exposes learning api and spec routes" {
   inspect(home.html.contains("sigil-orbit"), content="false")
   inspect(home.html.contains("<text"), content="false")
   inspect(home.html.contains("track-grid"), content="true")
+  inspect(home.html.contains("https://github.com/apple/pkl"), content="true")
+  inspect(
+    home.html.contains("https://github.com/ubugeeei/pkl-unofficial-doc"),
+    content="true",
+  )
   inspect(home.html.contains("home-lanes"), content="false")
   inspect(home.html.contains("home-gallery"), content="false")
   inspect(home.html.contains("cover-sheet"), content="false")
@@ -172,6 +177,11 @@ test "rendered site shell exposes learning api and spec routes" {
   inspect(home.html.contains("markdown-body"), content="true")
   let learn = rendered[1]
   inspect(learn.html.contains("class=\"sidebar\""), content="true")
+  inspect(learn.html.contains("https://github.com/apple/pkl"), content="true")
+  inspect(
+    learn.html.contains("https://github.com/ubugeeei/pkl-unofficial-doc"),
+    content="true",
+  )
   inspect(learn.html.contains("<small>Learn Pkl</small>"), content="false")
   inspect(learn.html.contains("<small>API surface</small>"), content="false")
   inspect(learn.html.contains("<small>Language rules</small>"), content="false")
@@ -221,6 +231,28 @@ test "site theme stays neutral and markdown first" {
   inspect(css.contains("--amber"), content="false")
   inspect(css.contains("--rose"), content="false")
   inspect(css.contains("repeating-linear-gradient"), content="false")
+  inspect(
+    css.contains("grid-template-columns: repeat(4, minmax(0, 1fr));"),
+    content="true",
+  )
+  inspect(
+    css.contains("grid-template-columns: repeat(3, minmax(0, 1fr));"),
+    content="false",
+  )
+  inspect(
+    css.contains(
+      ".track-grid {\n  display: grid;\n  grid-template-columns: repeat(4, minmax(0, 1fr));\n  gap: 0;\n  margin-top: clamp(38px, 6vh, 62px);\n  border-top: 1px solid var(--line);\n  border-bottom: 1px solid var(--line);",
+    ),
+    content="true",
+  )
+  inspect(
+    css.contains(
+      ".track-grid {\n  display: grid;\n  grid-template-columns: repeat(4, minmax(0, 1fr));\n  gap: 1px;",
+    ),
+    content="false",
+  )
+  inspect(css.contains(".track:first-child"), content="true")
+  inspect(css.contains(".source-links"), content="true")
   inspect(css.contains(".topbar {\n  position: sticky;"), content="true")
   inspect(css.contains(".home-index {\n  position: sticky;"), content="true")
   inspect(
