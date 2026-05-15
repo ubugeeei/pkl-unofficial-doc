@@ -606,9 +606,7 @@ fn nav_html(current : DocPage, pages : Array[DocPage]) -> String {
       html_escape(nav_href(current, page)) +
       "\"><span>" +
       html_escape(page.title) +
-      "</span><small>" +
-      html_escape(page.description) +
-      "</small></a>",
+      "</span></a>",
     )
   }
   if last_section != "" {
@@ -1273,12 +1271,6 @@ fn site_css() -> String {
     #|.nav-link span {
     #|  font-size: 14px;
     #|  font-weight: 700;
-    #|}
-    #|
-    #|.nav-link small {
-    #|  color: var(--muted);
-    #|  font-size: 12px;
-    #|  line-height: 1.35;
     #|}
     #|
     #|.nav-link:hover,

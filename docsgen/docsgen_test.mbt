@@ -160,6 +160,12 @@ test "rendered site shell exposes learning api and spec routes" {
     content="true",
   )
   inspect(home.html.contains("markdown-body"), content="true")
+  let learn = rendered[1]
+  inspect(learn.html.contains("class=\"sidebar\""), content="true")
+  inspect(learn.html.contains("<small>Learn Pkl</small>"), content="false")
+  inspect(learn.html.contains("<small>API surface</small>"), content="false")
+  inspect(learn.html.contains("<small>Language rules</small>"), content="false")
+  inspect(learn.html.contains("<small>"), content="false")
 }
 
 ///|

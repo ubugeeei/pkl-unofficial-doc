@@ -390,12 +390,6 @@ body.home-page {
   font-weight: 700;
 }
 
-.nav-link small {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.35;
-}
-
 .nav-link:hover,
 .nav-link.is-active {
   border-left-color: var(--ink);
