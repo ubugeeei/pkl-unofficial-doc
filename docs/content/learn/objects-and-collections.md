@@ -45,8 +45,8 @@ server {
 hostname = server.host
 ```
 
-Pkl's type model tracks object members enough to reject missing fields in
-the implemented subset.
+Typed object contracts can reject missing or incompatible fields before output
+is produced.
 
 ## Object Amendments
 
@@ -72,15 +72,14 @@ Listings are ordered collections.
 
 ```pkl
 tags = new Listing {
-  "moonbit"
+  "config"
   "pkl"
 }
 first = tags[0]
 ```
 
-Current implementation status: explicit `new Listing { ... }` values and
-subscript access are supported. Broad `pkl:base` collection methods such as
-`map`, `filter`, `fold`, and `join` are roadmap work.
+Use listings for ordered values such as arguments, hosts, tags, or rule
+pipelines.
 
 ## Mappings
 
@@ -94,13 +93,11 @@ ports = new Mapping {
 apiPort = ports["api"]
 ```
 
-Current implementation status: explicit `new Mapping { [key] = value }` values
-and subscript access are supported. Mapping methods such as `keys`, `values`,
-`containsKey`, and `getOrNull` are not complete yet.
+Use mappings when the key is part of the data model and lookup by key matters.
 
 ## Rendering Shape
 
-The current renderer emits PCF-style output. Module objects render without an
+PCF output keeps Pkl's object shape readable. Module objects render without an
 outer `new { ... }` wrapper; nested objects render as blocks.
 
 ```pkl
@@ -110,5 +107,5 @@ server {
 }
 ```
 
-JSON, YAML, plist, and Java properties output are tracked as renderer roadmap
-items.
+Use `pkl eval -f json`, `pkl eval -f yaml`, and other renderers when another
+tool needs a different format.

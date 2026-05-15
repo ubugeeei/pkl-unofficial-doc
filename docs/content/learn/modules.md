@@ -21,8 +21,7 @@ port: Int(isBetween(1, 65535)) = defaultPort
 
 ## Module Declaration
 
-`module app.config` names the module. Pkl preserves the
-module name for parsing and diagnostics; evaluation still returns the module's
+`module app.config` names the module. Evaluation still returns the module's
 object-shaped value.
 
 Use a module declaration when the file is meant to be imported or checked as a
@@ -37,9 +36,8 @@ import "database.pkl" as db
 url = db.host + ":" + db.port
 ```
 
-Relative import paths are resolved from the importing file. `AnalysisSession`
-stores each source by path and caches parse, typecheck, and evaluation work
-against that source graph.
+Relative import paths are resolved from the importing file. Prefer explicit
+aliases so the dependency is visible at the top of the module.
 
 ## `import()` Expressions
 
@@ -50,8 +48,8 @@ database = import("database.pkl")
 label = database.name
 ```
 
-Implementation note: both import declarations and `import()` expressions resolve
-through the same source graph in the CLI and `AnalysisSession`.
+Both import declarations and `import()` expressions resolve modules by URI, then
+expose the imported module's evaluated value.
 
 ## Amends and Extends
 
@@ -65,8 +63,9 @@ port = 9000
 `amends` is the common configuration-specialization path: start with a template,
 override the pieces this module owns, and keep the rest from the base.
 
-`extends` is the other base-module relation. Use **Coverage Status** when a
-more advanced inheritance case needs clearer documentation in this site.
+`extends` is the other base-module relation. Reach for it only when the
+relationship really is a reusable module family rather than an environment
+overlay.
 
 ## Local Bindings
 
@@ -78,6 +77,5 @@ local host = "127.0.0.1"
 address = host + ":8080"
 ```
 
-Implementation note: module-level `local` bindings are supported. Object-body
-`hidden` / `local` rendering distinctions are tracked separately because they
-affect every renderer.
+Use `local` for helpers that clarify the module without becoming part of the
+output contract.

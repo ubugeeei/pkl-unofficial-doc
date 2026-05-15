@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Values Reference - Pkl</title>
+  <meta name="description" content="Scalar value syntax, comments, strings, null handling, Duration, and DataSize.">
+  <link rel="icon" type="image/svg+xml" href="../assets/pkl-icon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-section="Reference">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Pkl home"><img class="brand-logo" src="../assets/pkl-icon.svg" alt=""><span>Pkl</span><strong>Unofficial</strong></a>
+    <nav class="topnav" aria-label="Primary"><a href="../learn/">Getting Started</a><a href="../reference/api.html">API Reference</a><a href="../reference/language.html">Language Spec</a></nav>
+    <label class="search-box"><span>Search docs</span><input type="search" placeholder="Search docs" aria-label="Search docs"></label>
+    <button class="menu-button" type="button" aria-controls="site-shell" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div id="site-shell" class="site-shell">
+    <aside class="sidebar" aria-label="Documentation navigation"><div class="nav-section"><p class="nav-section-title">Overview</p><a class="nav-link" href="../index.html"><span>Pkl</span></a></div><div class="nav-section"><p class="nav-section-title">Learn</p><a class="nav-link" href="../learn/"><span>Getting Started</span></a><a class="nav-link" href="../learn/core-concepts.html"><span>Core Concepts</span></a><a class="nav-link" href="../learn/values-and-literals.html"><span>Values and Literals</span></a><a class="nav-link" href="../learn/modules.html"><span>Modules and Imports</span></a><a class="nav-link" href="../learn/authoring-templates.html"><span>Authoring Templates</span></a><a class="nav-link" href="../learn/objects-and-collections.html"><span>Objects and Collections</span></a><a class="nav-link" href="../learn/functions-and-control-flow.html"><span>Functions and Control Flow</span></a><a class="nav-link" href="../learn/types-and-constraints.html"><span>Types and Constraints</span></a><a class="nav-link" href="../learn/classes-and-methods.html"><span>Classes and Methods</span></a><a class="nav-link" href="../learn/imports-and-modules.html"><span>Import Patterns</span></a><a class="nav-link" href="../learn/constraints-in-practice.html"><span>Constraints in Practice</span></a><a class="nav-link" href="../learn/resources-and-readers.html"><span>Resources and Readers</span></a><a class="nav-link" href="../learn/projects-and-packages.html"><span>Projects and Packages</span></a><a class="nav-link" href="../learn/advanced-language-features.html"><span>Advanced Language Features</span></a><a class="nav-link" href="../learn/evaluation-and-output.html"><span>Evaluation and Output</span></a><a class="nav-link" href="../learn/debugging-diagnostics.html"><span>Debugging and Diagnostics</span></a></div><div class="nav-section"><p class="nav-section-title">Reference</p><a class="nav-link" href="../reference/api.html"><span>API Reference</span></a><a class="nav-link is-active" href="../reference/values.html"><span>Values Reference</span></a><a class="nav-link" href="../reference/syntax.html"><span>Syntax Reference</span></a><a class="nav-link" href="../reference/operators.html"><span>Operators Reference</span></a><a class="nav-link" href="../reference/collections.html"><span>Collections Reference</span></a><a class="nav-link" href="../reference/language.html"><span>Language Spec</span></a><a class="nav-link" href="../reference/module-system.html"><span>Module System Reference</span></a><a class="nav-link" href="../reference/semantics.html"><span>Semantics Reference</span></a><a class="nav-link" href="../reference/resources.html"><span>Resources Reference</span></a><a class="nav-link" href="../reference/projects.html"><span>Projects Reference</span></a><a class="nav-link" href="../reference/diagnostics.html"><span>Diagnostics Reference</span></a><a class="nav-link" href="../reference/advanced.html"><span>Advanced Reference</span></a><a class="nav-link" href="../reference/status.html"><span>Coverage Status</span></a><a class="nav-link" href="../reference/stdlib.html"><span>Standard Library</span></a><a class="nav-link" href="../reference/output-formats.html"><span>Output Formats</span></a></div><div class="nav-section"><p class="nav-section-title">Contributing</p><a class="nav-link" href="../ecosystem/tooling.html"><span>Tooling</span></a><a class="nav-link" href="../ecosystem/upstream-fixtures.html"><span>Source Alignment</span></a><a class="nav-link" href="../ecosystem/compatibility.html"><span>Compatibility</span></a><a class="nav-link" href="../ecosystem/contributor-workflow.html"><span>Contributor Workflow</span></a></div></aside>
+    <main class="content">
+      <article class="doc">
+        <header class="doc-header">
+          <p class="section-label">Reference</p>
+          <h1>Values Reference</h1>
+          <p>Scalar value syntax, comments, strings, null handling, Duration, and DataSize.</p>
+        </header>
+        <div class="markdown-body"><h1>Values Reference</h1>
+<p>This page is a compact checklist for value-level syntax.</p>
+<h2>Comments</h2>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>//</code></td>
+<td>Line comment</td>
+</tr>
+<tr>
+<td><code>/* ... */</code></td>
+<td>Nestable block comment</td>
+</tr>
+<tr>
+<td><code>///</code></td>
+<td>Doc comment for generated documentation</td>
+</tr>
+</tbody>
+</table>
+<h2>Numbers</h2>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Int</code></td>
+<td>64-bit signed integer</td>
+</tr>
+<tr>
+<td><code>Float</code></td>
+<td>64-bit double-precision value</td>
+</tr>
+<tr>
+<td><code>0xff</code>, <code>0b1010</code>, <code>0o755</code></td>
+<td>Hex, binary, and octal integer literals</td>
+</tr>
+<tr>
+<td><code>1_000_000</code></td>
+<td>Underscores improve readability</td>
+</tr>
+<tr>
+<td><code>NaN</code>, <code>Infinity</code></td>
+<td>Standard-library float values</td>
+</tr>
+</tbody>
+</table>
+<h2>Booleans</h2>
+<p>Boolean values are <code>true</code> and <code>false</code>. Core operators are <code>!</code>, <code>&amp;&amp;</code>, and <code>||</code>;
+the standard library also exposes Boolean methods such as <code>xor</code> and <code>implies</code>.</p>
+<h2>Strings</h2>
+<p>Strings are Unicode text. They support escapes, interpolation with <code>\(expr)</code>,
+multiline string literals, and custom delimiters for backslash-heavy text.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;api&quot;</span></span><span class="line"><span class="tok-property">label</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;\(name)-prod&quot;</span></span><span class="line"><span class="tok-property">pattern</span> <span class="tok-operator">=</span> #<span class="tok-string">&quot;\d+\.\d+&quot;</span>#</span></code></pre></div>
+<h2>Null Values</h2>
+<p><code>null</code> is not implicit for every type. Use <code>?</code> for nullable annotations, <code>??</code>
+for defaults, <code>?.</code> for null-safe access, and <code>!!</code> only when failure is the right
+result.</p>
+<h2>Durations</h2>
+<p><code>Duration</code> combines a numeric value with a unit. Common units include <code>ns</code>,
+<code>us</code>, <code>ms</code>, <code>s</code>, <code>min</code>, <code>h</code>, and <code>d</code>.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">timeout</span> <span class="tok-operator">=</span> <span class="tok-number">30.</span>s</span><span class="line"><span class="tok-property">retryAfter</span> <span class="tok-operator">=</span> <span class="tok-number">250.</span>ms</span><span class="line"><span class="tok-property">retention</span> <span class="tok-operator">=</span> <span class="tok-number">7.</span>d</span></code></pre></div>
+<h2>DataSize</h2>
+<p><code>DataSize</code> combines a numeric value with a byte unit. Use it for memory, disk,
+and transfer budgets instead of plain strings.</p>
+<div class="code-block" data-language="pkl"><div class="code-block-toolbar"><span class="code-language">pkl</span><button class="copy-code-button" type="button" aria-label="Copy code">Copy</button></div><pre class="highlight pkl-highlight"><code><span class="line"><span class="tok-property">memory</span> <span class="tok-operator">=</span> <span class="tok-number">512.</span>mb</span><span class="line"><span class="tok-property">disk</span> <span class="tok-operator">=</span> <span class="tok-number">20.</span>gb</span></code></pre></div>
+</div>
+        <nav class="page-nav" aria-label="Page navigation"><a class="page-nav-link is-prev" rel="prev" href="../reference/api.html"><span>Previous</span><strong>API Reference</strong></a><a class="page-nav-link is-next" rel="next" href="../reference/syntax.html"><span>Next</span><strong>Syntax Reference</strong></a></nav>
+      </article>
+    </main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

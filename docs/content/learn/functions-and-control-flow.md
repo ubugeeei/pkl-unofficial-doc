@@ -38,8 +38,8 @@ isPublic = port == 443 || port == 80
 isEphemeral = port > 49152
 ```
 
-The implementation supports arithmetic, comparison, boolean, coalescing, `is`,
-and unary operators in the core expression path.
+Pkl supports arithmetic, comparison, boolean, coalescing, type-test, and unary
+operators in ordinary expressions.
 
 ## Null Handling
 
@@ -51,8 +51,7 @@ displayName =
   if (label != null) label else "unnamed"
 ```
 
-Use a null guard when the expression needs a definite value. The typechecker
-understands the implemented null guard path.
+Use a null guard when the expression needs a definite value.
 
 ## Function Declarations
 
@@ -64,8 +63,7 @@ function clampPort(port: Int): Int =
 port = clampPort(9000)
 ```
 
-Parameter and return annotations are checked for the implemented primitive,
-union, alias, callable, and numeric constraint subset.
+Parameter and return annotations make function boundaries explicit.
 
 ## Lambdas
 
@@ -80,7 +78,7 @@ to a constraint or a small transformation.
 
 ## Callable Values
 
-Callable values can be stored and passed around in the implemented runtime.
+Callable values can be stored and passed around like other values.
 
 ```pkl
 function checkPort(p: Int(isBetween(1, 65535))): Int = p
@@ -88,8 +86,8 @@ selected = checkPort
 port = selected(8080)
 ```
 
-The evaluator preserves lexical captures for scalar, object, and callable
-bindings in the current callable slice.
+Keep callable values close to the rule they represent so captured values remain
+obvious.
 
 ## Control Flow Discipline
 

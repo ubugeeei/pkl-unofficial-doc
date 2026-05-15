@@ -290,7 +290,7 @@ body.home-page {
   padding: 9px 12px;
   color: var(--muted);
   font-size: 13px;
-  font-weight: 640;
+  font-weight: 500;
 }
 
 .topnav a:hover {
@@ -373,9 +373,9 @@ body.home-page {
 .nav-section-title {
   margin: 0 0 8px;
   color: var(--muted);
-  font-size: 11px;
-  font-weight: 760;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
 }
 
 .nav-link {
@@ -387,7 +387,7 @@ body.home-page {
 
 .nav-link span {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 450;
 }
 
 .nav-link:hover,
@@ -404,8 +404,8 @@ body.home-page {
   margin: 0 0 12px;
   color: var(--muted);
   font-size: 12px;
-  font-weight: 780;
-  text-transform: uppercase;
+  font-weight: 500;
+  text-transform: none;
 }
 
 .doc {
@@ -554,6 +554,61 @@ body.home-page {
   border: 0;
 }
 
+.markdown-body .install-tabs {
+  margin: 18px 0 28px;
+  border: 1px solid var(--line);
+  background: rgba(18, 21, 15, 0.72);
+  overflow: hidden;
+}
+
+.markdown-body .tab-list {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 8, 6, 0.36);
+}
+
+.markdown-body .tab-button {
+  appearance: none;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.markdown-body .tab-button[aria-selected="true"] {
+  color: var(--ink);
+  background: rgba(200, 217, 135, 0.09);
+}
+
+.markdown-body .tab-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.markdown-body .tab-panel {
+  padding: 16px;
+}
+
+.markdown-body .tab-panel[hidden] {
+  display: none;
+}
+
+.markdown-body .tab-panel h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.markdown-body .tab-panel p {
+  margin-top: 0;
+}
+
 .markdown-body .highlight {
   background: var(--code) !important;
   color: var(--code-text) !important;
@@ -639,9 +694,9 @@ body.home-page {
 
 .page-nav-link span {
   color: var(--muted);
-  font-size: 11px;
-  font-weight: 760;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
 }
 
 .page-nav-link strong {

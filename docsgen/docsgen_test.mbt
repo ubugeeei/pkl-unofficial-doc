@@ -213,11 +213,28 @@ test "site theme stays neutral and markdown first" {
   inspect(css.contains("repeating-linear-gradient"), content="false")
   inspect(css.contains(".topbar {\n  position: sticky;"), content="true")
   inspect(css.contains(".home-index {\n  position: sticky;"), content="true")
+  inspect(
+    css.contains(
+      ".nav-section-title {\n  margin: 0 0 8px;\n  color: var(--muted);\n  font-size: 12px;\n  font-weight: 500;\n  text-transform: none;",
+    ),
+    content="true",
+  )
+  inspect(
+    css.contains(".nav-link span {\n  font-size: 14px;\n  font-weight: 450;"),
+    content="true",
+  )
   inspect(css.contains("backdrop-filter: blur(18px);"), content="true")
   inspect(css.contains(".page-nav"), content="true")
   inspect(css.contains(".copy-code-button"), content="true")
+  inspect(css.contains(".install-tabs"), content="true")
+  inspect(css.contains(".tab-button"), content="true")
   inspect(js.contains("navigator.clipboard.writeText"), content="true")
   inspect(js.contains("document.execCommand(\"copy\")"), content="true")
+  inspect(js.contains("querySelectorAll(\".line\")"), content="true")
+  inspect(
+    js.contains("document.querySelectorAll(\"[data-tabs]\")"),
+    content="true",
+  )
   inspect(js.contains("Copied"), content="true")
   inspect(js.contains("Selected"), content="true")
 }
@@ -256,18 +273,25 @@ test "code blocks use compact line rhythm" {
 ///|
 test "documentation code samples do not render empty spacer lines" {
   let pages = [
-    "docs/content/learn/authoring-templates.md", "docs/content/learn/classes-and-methods.md",
-    "docs/content/learn/constraints-in-practice.md", "docs/content/learn/core-concepts.md",
-    "docs/content/learn/debugging-diagnostics.md", "docs/content/learn/functions-and-control-flow.md",
-    "docs/content/learn/imports-and-modules.md", "docs/content/learn/modules.md",
-    "docs/content/learn/objects-and-collections.md", "docs/content/learn/types-and-constraints.md",
-    "docs/content/reference/module-system.md", "docs/content/reference/stdlib.md",
-    "docs/content/reference/syntax.md",
+    "docs/content/learn/advanced-language-features.md", "docs/content/learn/authoring-templates.md",
+    "docs/content/learn/classes-and-methods.md", "docs/content/learn/constraints-in-practice.md",
+    "docs/content/learn/core-concepts.md", "docs/content/learn/debugging-diagnostics.md",
+    "docs/content/learn/functions-and-control-flow.md", "docs/content/learn/imports-and-modules.md",
+    "docs/content/learn/index.md", "docs/content/learn/modules.md", "docs/content/learn/objects-and-collections.md",
+    "docs/content/learn/projects-and-packages.md", "docs/content/learn/resources-and-readers.md",
+    "docs/content/learn/types-and-constraints.md", "docs/content/learn/values-and-literals.md",
+    "docs/content/reference/advanced.md", "docs/content/reference/module-system.md",
+    "docs/content/reference/projects.md", "docs/content/reference/resources.md",
+    "docs/content/reference/stdlib.md", "docs/content/reference/syntax.md", "docs/content/reference/values.md",
   ]
   for path in pages {
     let source = @fs.read_file_to_string(path) catch { _ => "" }
     let page = page_from_markdown(path, source)
     inspect(page.html.contains("<span class=\"line\"></span>"), content="false")
+    inspect(
+      page.html.contains("</span>\n<span class=\"line\">"),
+      content="false",
+    )
   }
 }
 
@@ -279,12 +303,15 @@ test "documentation covers learning api language and ecosystem paths" {
     "docs/content/learn/functions-and-control-flow.md", "docs/content/learn/modules.md",
     "docs/content/learn/objects-and-collections.md", "docs/content/learn/types-and-constraints.md",
     "docs/content/learn/imports-and-modules.md", "docs/content/learn/evaluation-and-output.md",
+    "docs/content/learn/values-and-literals.md", "docs/content/learn/resources-and-readers.md",
+    "docs/content/learn/projects-and-packages.md", "docs/content/learn/advanced-language-features.md",
     "docs/content/reference/syntax.md", "docs/content/reference/collections.md",
     "docs/content/reference/diagnostics.md", "docs/content/reference/module-system.md",
     "docs/content/reference/operators.md", "docs/content/reference/output-formats.md",
     "docs/content/reference/semantics.md", "docs/content/reference/stdlib.md", "docs/content/reference/api.md",
-    "docs/content/ecosystem/compatibility.md", "docs/content/ecosystem/contributor-workflow.md",
-    "docs/content/ecosystem/upstream-fixtures.md",
+    "docs/content/reference/values.md", "docs/content/reference/resources.md", "docs/content/reference/projects.md",
+    "docs/content/reference/advanced.md", "docs/content/ecosystem/compatibility.md",
+    "docs/content/ecosystem/contributor-workflow.md", "docs/content/ecosystem/upstream-fixtures.md",
   ]
   for path in expected {
     inspect(@fs.path_exists(path), content="true")
@@ -305,6 +332,39 @@ test "documentation covers learning api language and ecosystem paths" {
     _ => ""
   }
   inspect(templates.contains("Template Contract"), content="true")
+  let getting_started = @fs.read_file_to_string("docs/content/learn/index.md") catch {
+    _ => ""
+  }
+  inspect(getting_started.contains("Values and Literals"), content="true")
+  inspect(getting_started.contains("Resources and Readers"), content="true")
+  inspect(getting_started.contains("Projects and Packages"), content="true")
+  inspect(
+    getting_started.contains("Advanced Language Features"),
+    content="true",
+  )
+  let values = @fs.read_file_to_string("docs/content/reference/values.md") catch {
+    _ => ""
+  }
+  inspect(values.contains("Numbers"), content="true")
+  inspect(values.contains("Durations"), content="true")
+  inspect(values.contains("DataSize"), content="true")
+  let resources = @fs.read_file_to_string("docs/content/reference/resources.md") catch {
+    _ => ""
+  }
+  inspect(resources.contains("read?"), content="true")
+  inspect(resources.contains("read*"), content="true")
+  inspect(resources.contains("allowed-resources"), content="true")
+  let projects = @fs.read_file_to_string("docs/content/reference/projects.md") catch {
+    _ => ""
+  }
+  inspect(projects.contains("PklProject"), content="true")
+  inspect(projects.contains("package://"), content="true")
+  let advanced = @fs.read_file_to_string("docs/content/reference/advanced.md") catch {
+    _ => ""
+  }
+  inspect(advanced.contains("When Generators"), content="true")
+  inspect(advanced.contains("Spread Syntax"), content="true")
+  inspect(advanced.contains("Member Predicates"), content="true")
 }
 
 ///|
@@ -313,7 +373,24 @@ test "getting started begins with installation" {
     _ => ""
   }
   inspect(source.contains("## Installation"), content="true")
+  inspect(source.contains("## IDE Support"), content="true")
   inspect(source.contains("## First Module"), content="true")
+  inspect(
+    source.contains("https://pkl-lang.org/main/current/tools.html"),
+    content="true",
+  )
+  inspect(
+    source.contains("https://pkl-lang.org/vscode/current/index.html"),
+    content="true",
+  )
+  inspect(
+    source.contains("https://pkl-lang.org/intellij/current/index.html"),
+    content="true",
+  )
+  inspect(
+    source.contains("https://pkl-lang.org/lsp/current/index.html"),
+    content="true",
+  )
   inspect(
     source.contains("https://pkl-lang.org/main/current/pkl-cli/index.html"),
     content="true",
@@ -328,6 +405,25 @@ test "getting started begins with installation" {
   let page = page_from_markdown("docs/content/learn/index.md", source)
   inspect(page.html.contains("<pre><code>"), content="false")
   inspect(page.html.contains("<ol start="), content="false")
+  inspect(page.html.contains("class=\"install-tabs\""), content="true")
+  inspect(page.html.contains("role=\"tablist\""), content="true")
+  inspect(
+    page.html.contains(
+      "<button class=\"tab-button\" type=\"button\" role=\"tab\" id=\"tab-nix\"",
+    ),
+    content="true",
+  )
+  inspect(page.html.contains("id=\"panel-nix\""), content="true")
+  inspect(page.html.contains("nixpkgs"), content="true")
+  inspect(page.html.contains("pkl-macos-aarch64"), content="true")
+  inspect(page.html.contains("pkl-linux-amd64"), content="true")
+  inspect(page.html.contains("winget"), content="true")
+  inspect(page.html.contains("Apple"), content="true")
+  inspect(page.html.contains("pkl-cli-java-0.31.1.jar"), content="true")
+  inspect(
+    page.html.contains("Use the official Pkl CLI documentation"),
+    content="false",
+  )
   let installation_first = match source.find("## Installation") {
     Some(installation) =>
       match source.find("## First Module") {
@@ -337,13 +433,23 @@ test "getting started begins with installation" {
     None => false
   }
   inspect(installation_first, content="true")
+  let ide_before_first_module = match source.find("## IDE Support") {
+    Some(ide) =>
+      match source.find("## First Module") {
+        Some(first_module) => ide < first_module
+        None => false
+      }
+    None => false
+  }
+  inspect(ide_before_first_module, content="true")
 }
 
 ///|
 test "learn pages do not require repository implementation commands" {
   let learn_pages = [
     "docs/content/learn/index.md", "docs/content/learn/evaluation-and-output.md",
-    "docs/content/learn/debugging-diagnostics.md",
+    "docs/content/learn/debugging-diagnostics.md", "docs/content/learn/resources-and-readers.md",
+    "docs/content/learn/projects-and-packages.md",
   ]
   for path in learn_pages {
     let source = @fs.read_file_to_string(path) catch { _ => "" }

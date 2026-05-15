@@ -1,7 +1,7 @@
 ---
 title: Classes and Methods
 section: Learn
-description: Class contracts, defaults, typed objects, inheritance, methods, and current support.
+description: Class contracts, defaults, typed objects, inheritance, and methods.
 order: 55
 ---
 
@@ -31,8 +31,8 @@ server: Server = new Server {
 }
 ```
 
-The implementation checks supplied members against the class contract and
-materializes class defaults during evaluation for the implemented subset.
+Pkl checks supplied members against the class contract and materializes defaults
+when the typed object omits them.
 
 ## Defaults as Documentation
 
@@ -94,21 +94,19 @@ person: library.Person = new library.Person {
 }
 ```
 
-This is an important source-graph feature: tools should make every imported
-source reachable before checking or evaluating a module.
+This keeps contracts reusable without forcing every module to define the same
+class locally.
 
-## Current Boundaries
-
-Core model:
+## What to Practice
 
 - class property annotations and defaults
 - typed object checking
 - typed object default materialization
 - inheritance for property contracts and defaults
-- imported class metadata for supported qualified names
+- imported class contracts through qualified names
 - method declarations and calls
 
-Topics that deserve deeper examples:
+Then move to deeper examples:
 
 - generic class parameters
 - broader stdlib class integration

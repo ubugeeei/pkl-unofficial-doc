@@ -8,19 +8,25 @@ order: 10
 # Getting Started
 
 Install the Pkl CLI first. This site is an unofficial Pkl language guide, so the
-learning path should start from the official `pkl` command rather than this
-repository's implementation tools.
+learning path starts from the official `pkl` command.
 
 ## Installation
 
 ### 1. Install Pkl
 
-Use the [official Pkl CLI documentation](https://pkl-lang.org/main/current/pkl-cli/index.html)
-to choose the install path for your OS and environment. The official page covers
-native downloads, package-managed installs, Mise setup, Windows setup, and the
-Java executable.
+Choose the tab that matches your environment. Native executables are the default
+choice for everyday use; the Java executable is useful when a Java 17+ runtime
+is the easiest shared dependency.
 
-This guide does not assume a particular platform or install manager.
+{{ install-tabs }}
+
+The commands mirror the current [official Pkl CLI installation notes](https://pkl-lang.org/main/current/pkl-cli/index.html),
+but this page keeps the common paths together so setup does not require jumping
+between pages.
+
+For Nix, the package version follows the nixpkgs input or channel you choose.
+Check [Nix package search](https://search.nixos.org/packages?query=pkl) or pin
+nixpkgs when an exact Pkl version matters.
 
 ### 2. Confirm the CLI
 
@@ -48,8 +54,20 @@ pkl eval config.pkl
 pkl eval -f json config.pkl
 ```
 
-If you are editing this repository rather than learning Pkl as a language, use
-the **Tooling** page for local implementation commands.
+After the first module runs, move through the learning path below instead of
+jumping straight into reference pages.
+
+## IDE Support
+
+Install editor support early, before modules become large enough that syntax
+errors and missing imports are annoying to spot manually.
+
+| Editor | Use |
+| --- | --- |
+| [VS Code](https://pkl-lang.org/vscode/current/index.html) | Pkl language support for Visual Studio Code. |
+| [IntelliJ](https://pkl-lang.org/intellij/current/index.html) | Rich support for IntelliJ IDEA, GoLand, PyCharm, and other IntelliJ Platform editors. |
+| [Language Server](https://pkl-lang.org/lsp/current/index.html) | LSP-backed language services for editor integrations. |
+| [Tools overview](https://pkl-lang.org/main/current/tools.html) | Official index for CLI, Pkldoc, Gradle, and editor support. |
 
 ## First Module
 
@@ -69,16 +87,20 @@ tags = new Listing {
 ## Learning Path
 
 1. Read **Core Concepts** to understand modules, values, object bodies, and member lookup.
-2. Read **Modules and Imports** before splitting a configuration across files.
-3. Read **Authoring Templates** before designing base modules and environment overlays.
-4. Read **Objects and Collections** when you need nested output, listings, mappings, or amendments.
-5. Read **Functions and Control Flow** when derived values start to repeat.
-6. Read **Types and Constraints** before relying on class contracts, callable signatures, nullable values, unions, or numeric predicates.
-7. Read **Classes and Methods** when object contracts need defaults, inheritance, or behavior.
-8. Read **Constraints in Practice** before turning validation into reusable rules.
-9. Read **Evaluation and Output** to understand `parse`, `check`, `eval`, PCF, and current renderer gaps.
-10. Read **Debugging and Diagnostics** when a module parses but does not check, evaluate, or render as expected.
-11. Use **Language Spec** and **Coverage Status** when this site needs to distinguish language behavior from editorial coverage.
+2. Read **Values and Literals** before adding type contracts.
+3. Read **Modules and Imports** before splitting a configuration across files.
+4. Read **Authoring Templates** before designing base modules and environment overlays.
+5. Read **Objects and Collections** when you need nested output, listings, mappings, or amendments.
+6. Read **Functions and Control Flow** when derived values start to repeat.
+7. Read **Types and Constraints** before relying on class contracts, callable signatures, nullable values, unions, or numeric predicates.
+8. Read **Classes and Methods** when object contracts need defaults, inheritance, or behavior.
+9. Read **Constraints in Practice** before turning validation into reusable rules.
+10. Read **Resources and Readers** before depending on environment, properties, files, URLs, or custom schemes.
+11. Read **Projects and Packages** when modules need shared settings, dependencies, or published package boundaries.
+12. Read **Advanced Language Features** when generators, spreads, predicates, receiver keywords, or glob patterns appear.
+13. Read **Evaluation and Output** to understand `pkl eval`, output formats, and renderer behavior.
+14. Read **Debugging and Diagnostics** when a module parses but does not check, evaluate, or render as expected.
+15. Use **Language Spec** and **Coverage Status** when this site needs to distinguish language behavior from editorial coverage.
 
 ## Run the Pkl CLI
 
@@ -95,12 +117,16 @@ or another supported renderer when you want output for a specific consumer.
 | Need | Page |
 | --- | --- |
 | "What is a module?" | Modules and Imports |
+| "How do literals, null, durations, and data sizes work?" | Values and Literals |
 | "How should I make reusable config?" | Authoring Templates |
 | "How do nested values render?" | Objects and Collections |
 | "Where should I put derived logic?" | Functions and Control Flow |
 | "Which annotations are enforced?" | Types and Constraints |
 | "How do I model an object contract?" | Classes and Methods |
 | "How do I make constraints reusable?" | Constraints in Practice |
+| "How do I read environment values or files?" | Resources and Readers |
+| "How do I structure reusable modules?" | Projects and Packages |
+| "Where are generators, spreads, and predicates?" | Advanced Language Features |
 | "Which command should I run?" | Evaluation and Output |
 | "How do I debug a failing module?" | Debugging and Diagnostics |
 | "Is this Apple Pkl compatible yet?" | Compatibility |

@@ -12,8 +12,8 @@ official Pkl project and CLI remain the source of truth for language behavior.
 
 | Area | Current Shape |
 | --- | --- |
-| Learn | Linear path from installation to modules, objects, functions, types, classes, constraints, evaluation, and debugging. |
-| Reference | Syntax, operators, collections, module system, semantics, diagnostics, stdlib, and output formats. |
+| Learn | Linear path from installation to values, modules, objects, functions, types, classes, constraints, resources, projects, advanced syntax, evaluation, and debugging. |
+| Reference | Values, syntax, operators, collections, resources, projects, module system, semantics, diagnostics, stdlib, and output formats. |
 | CLI/API | Reader-facing command and integration surfaces. |
 | Compatibility | Notes on how this site relates to official docs, release notes, and examples. |
 

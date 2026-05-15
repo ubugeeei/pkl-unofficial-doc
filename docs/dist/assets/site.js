@@ -68,10 +68,12 @@ for (const copyButton of copyButtons) {
     const block = copyButton.closest(".code-block");
     const code = block ? block.querySelector("pre code") : null;
     if (!code) return;
+    const lines = Array.from(code.querySelectorAll(".line"));
+    const text = lines.length > 0 ? lines.map((line) => line.textContent).join("\n") : code.textContent.replace(/\n$/, "");
     const previousText = copyButton.textContent;
     const previousState = copyButton.dataset.state || "";
     try {
-      const copied = await copyText(code.textContent.replace(/\n$/, ""));
+      const copied = await copyText(text);
       if (!copied) throw new Error("Clipboard unavailable");
       copyButton.textContent = "Copied";
       copyButton.dataset.state = "copied";
@@ -85,4 +87,31 @@ for (const copyButton of copyButtons) {
       copyButton.dataset.state = previousState;
     }, 1400);
   });
+}
+
+for (const group of document.querySelectorAll("[data-tabs]")) {
+  const tabButtons = Array.from(group.querySelectorAll('[role="tab"]'));
+  const panels = Array.from(group.querySelectorAll('[role="tabpanel"]'));
+  const activate = (selected) => {
+    for (const tabButton of tabButtons) {
+      const active = tabButton === selected;
+      tabButton.setAttribute("aria-selected", active ? "true" : "false");
+      tabButton.tabIndex = active ? 0 : -1;
+    }
+    for (const panel of panels) {
+      panel.hidden = panel.id !== selected.getAttribute("aria-controls");
+    }
+  };
+  for (const tabButton of tabButtons) {
+    tabButton.addEventListener("click", () => activate(tabButton));
+    tabButton.addEventListener("keydown", (event) => {
+      const current = tabButtons.indexOf(tabButton);
+      const next = event.key === "ArrowRight" ? current + 1 : event.key === "ArrowLeft" ? current - 1 : current;
+      if (next === current) return;
+      event.preventDefault();
+      const wrapped = (next + tabButtons.length) % tabButtons.length;
+      tabButtons[wrapped].focus();
+      activate(tabButtons[wrapped]);
+    });
+  }
 }

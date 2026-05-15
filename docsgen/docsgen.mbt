@@ -427,13 +427,16 @@ fn highlight_plain(source : String) -> String {
 
 ///|
 fn highlight_code(lang : String, source : String) -> String {
-  match lang {
+  let highlighted = match lang {
     "pkl" => highlight_pkl(source)
     "bash" | "sh" | "shell" => @highlight_bash.highlight_bash(source)
     "moonbit" | "mbt" => @highlight_moonbit.highlight_moonbit(source)
     "json" => @highlight_json.highlight_json(source)
     _ => highlight_plain(source)
   }
+  replace_all(
+    highlighted, "</span>\n<span class=\"line\">", "</span><span class=\"line\">",
+  )
 }
 
 ///|
@@ -519,6 +522,91 @@ fn highlight_code_blocks(html : String) -> String {
 }
 
 ///|
+fn install_tab_button(id : String, label : String, selected : Bool) -> String {
+  "<button class=\"tab-button\" type=\"button\" role=\"tab\" id=\"tab-" +
+  id +
+  "\" aria-controls=\"panel-" +
+  id +
+  "\" aria-selected=\"" +
+  (if selected { "true" } else { "false" }) +
+  "\" tabindex=\"" +
+  (if selected { "0" } else { "-1" }) +
+  "\">" +
+  html_escape(label) +
+  "</button>"
+}
+
+///|
+fn install_tab_panel(
+  id : String,
+  label : String,
+  summary : String,
+  code : String,
+  selected : Bool,
+) -> String {
+  "<section class=\"tab-panel\" role=\"tabpanel\" id=\"panel-" +
+  id +
+  "\" aria-labelledby=\"tab-" +
+  id +
+  "\"" +
+  (if selected { "" } else { " hidden" }) +
+  "><h3>" +
+  html_escape(label) +
+  "</h3><p>" +
+  html_escape(summary) +
+  "</p>" +
+  render_code_block("bash", code) +
+  "</section>"
+}
+
+///|
+fn install_tabs_html() -> String {
+  "<div class=\"install-tabs\" data-tabs><div class=\"tab-list\" role=\"tablist\" aria-label=\"Pkl installation methods\">" +
+  install_tab_button("nix", "Nix", true) +
+  install_tab_button("mise", "Mise", false) +
+  install_tab_button("macos", "macOS", false) +
+  install_tab_button("linux", "Linux", false) +
+  install_tab_button("windows", "Windows", false) +
+  install_tab_button("java", "Java", false) +
+  "</div><div class=\"tab-panels\">" +
+  install_tab_panel(
+    "nix", "Nix", "Use the nixpkgs package for reproducible shells, profile installs, or project flakes.",
+    "# Try Pkl without installing it globally\nnix shell nixpkgs#pkl -c pkl --version\n# Install it into your user profile\nnix profile install nixpkgs#pkl\npkl --version\n# Add to a dev shell\n# packages = [ pkgs.pkl ];",
+    true,
+  ) +
+  install_tab_panel(
+    "mise", "Mise", "Versioned install for macOS, Linux, and Windows.", "# Install and activate Pkl globally\nmise use -g pkl@0.31.1\npkl --version\n# Or activate it in the current project\nmise use pkl@0.31.1",
+    false,
+  ) +
+  install_tab_panel(
+    "macos", "macOS", "Use the native executable directly, or use Homebrew if that is how the machine is managed.",
+    "# Apple Silicon\ncurl -L -o pkl https://github.com/apple/pkl/releases/download/0.31.1/pkl-macos-aarch64\nchmod +x pkl\n./pkl --version\n# Intel\ncurl -L -o pkl https://github.com/apple/pkl/releases/download/0.31.1/pkl-macos-amd64\nchmod +x pkl\n./pkl --version\n# Package-manager option\nbrew install pkl",
+    false,
+  ) +
+  install_tab_panel(
+    "linux", "Linux", "Use the glibc native executable for common distributions, or the Alpine build for musl-based environments.",
+    "# aarch64\ncurl -L -o pkl https://github.com/apple/pkl/releases/download/0.31.1/pkl-linux-aarch64\nchmod +x pkl\n./pkl --version\n# amd64\ncurl -L -o pkl https://github.com/apple/pkl/releases/download/0.31.1/pkl-linux-amd64\nchmod +x pkl\n./pkl --version\n# Alpine amd64\ncurl -L -o pkl https://github.com/apple/pkl/releases/download/0.31.1/pkl-alpine-linux-amd64\nchmod +x pkl\n./pkl --version",
+    false,
+  ) +
+  install_tab_panel(
+    "windows", "Windows", "Use Windows Package Manager, or download the native executable manually.",
+    "# Windows Package Manager\nwinget install Apple.Pkl\npkl --version\n# Manual native executable\nInvoke-WebRequest https://github.com/apple/pkl/releases/download/0.31.1/pkl-windows-amd64.exe -OutFile pkl.exe\n.\\pkl.exe --version",
+    false,
+  ) +
+  install_tab_panel(
+    "java", "Java", "Use the Java executable when a Java 17+ runtime is the most portable option.",
+    "# macOS / Linux\ncurl -L -o jpkl https://repo1.maven.org/maven2/org/pkl-lang/pkl-cli-java/0.31.1/pkl-cli-java-0.31.1.jar\nchmod +x jpkl\n./jpkl --version\n# Windows\nInvoke-WebRequest https://repo1.maven.org/maven2/org/pkl-lang/pkl-cli-java/0.31.1/pkl-cli-java-0.31.1.jar -OutFile jpkl.bat\n.\\jpkl.bat --version",
+    false,
+  ) +
+  "</div></div>"
+}
+
+///|
+fn expand_components(html : String) -> String {
+  replace_all(html, "<p>{{ install-tabs }}</p>", install_tabs_html())
+}
+
+///|
 pub fn page_from_markdown(path : String, source : String) -> DocPage {
   let parsed = @markdown.parse(source)
   let frontmatter = parsed.document.frontmatter
@@ -533,7 +621,9 @@ pub fn page_from_markdown(path : String, source : String) -> DocPage {
     section: metadata_string(frontmatter, "section", "Guides"),
     description: metadata_string(frontmatter, "description", ""),
     order: metadata_int(frontmatter, "order", 1000),
-    html: highlight_code_blocks(@markdown.render_html(parsed.document)),
+    html: expand_components(
+      highlight_code_blocks(@markdown.render_html(parsed.document)),
+    ),
   }
 }
 
@@ -914,10 +1004,12 @@ fn site_js() -> String {
     #|    const block = copyButton.closest(".code-block");
     #|    const code = block ? block.querySelector("pre code") : null;
     #|    if (!code) return;
+    #|    const lines = Array.from(code.querySelectorAll(".line"));
+    #|    const text = lines.length > 0 ? lines.map((line) => line.textContent).join("\n") : code.textContent.replace(/\n$/, "");
     #|    const previousText = copyButton.textContent;
     #|    const previousState = copyButton.dataset.state || "";
     #|    try {
-    #|      const copied = await copyText(code.textContent.replace(/\n$/, ""));
+    #|      const copied = await copyText(text);
     #|      if (!copied) throw new Error("Clipboard unavailable");
     #|      copyButton.textContent = "Copied";
     #|      copyButton.dataset.state = "copied";
@@ -931,6 +1023,33 @@ fn site_js() -> String {
     #|      copyButton.dataset.state = previousState;
     #|    }, 1400);
     #|  });
+    #|}
+    #|
+    #|for (const group of document.querySelectorAll("[data-tabs]")) {
+    #|  const tabButtons = Array.from(group.querySelectorAll('[role="tab"]'));
+    #|  const panels = Array.from(group.querySelectorAll('[role="tabpanel"]'));
+    #|  const activate = (selected) => {
+    #|    for (const tabButton of tabButtons) {
+    #|      const active = tabButton === selected;
+    #|      tabButton.setAttribute("aria-selected", active ? "true" : "false");
+    #|      tabButton.tabIndex = active ? 0 : -1;
+    #|    }
+    #|    for (const panel of panels) {
+    #|      panel.hidden = panel.id !== selected.getAttribute("aria-controls");
+    #|    }
+    #|  };
+    #|  for (const tabButton of tabButtons) {
+    #|    tabButton.addEventListener("click", () => activate(tabButton));
+    #|    tabButton.addEventListener("keydown", (event) => {
+    #|      const current = tabButtons.indexOf(tabButton);
+    #|      const next = event.key === "ArrowRight" ? current + 1 : event.key === "ArrowLeft" ? current - 1 : current;
+    #|      if (next === current) return;
+    #|      event.preventDefault();
+    #|      const wrapped = (next + tabButtons.length) % tabButtons.length;
+    #|      tabButtons[wrapped].focus();
+    #|      activate(tabButtons[wrapped]);
+    #|    });
+    #|  }
     #|}
   )
 }
@@ -1230,7 +1349,7 @@ fn site_css() -> String {
     #|  padding: 9px 12px;
     #|  color: var(--muted);
     #|  font-size: 13px;
-    #|  font-weight: 640;
+    #|  font-weight: 500;
     #|}
     #|
     #|.topnav a:hover {
@@ -1313,9 +1432,9 @@ fn site_css() -> String {
     #|.nav-section-title {
     #|  margin: 0 0 8px;
     #|  color: var(--muted);
-    #|  font-size: 11px;
-    #|  font-weight: 760;
-    #|  text-transform: uppercase;
+    #|  font-size: 12px;
+    #|  font-weight: 500;
+    #|  text-transform: none;
     #|}
     #|
     #|.nav-link {
@@ -1327,7 +1446,7 @@ fn site_css() -> String {
     #|
     #|.nav-link span {
     #|  font-size: 14px;
-    #|  font-weight: 700;
+    #|  font-weight: 450;
     #|}
     #|
     #|.nav-link:hover,
@@ -1344,8 +1463,8 @@ fn site_css() -> String {
     #|  margin: 0 0 12px;
     #|  color: var(--muted);
     #|  font-size: 12px;
-    #|  font-weight: 780;
-    #|  text-transform: uppercase;
+    #|  font-weight: 500;
+    #|  text-transform: none;
     #|}
     #|
     #|.doc {
@@ -1494,6 +1613,61 @@ fn site_css() -> String {
     #|  border: 0;
     #|}
     #|
+    #|.markdown-body .install-tabs {
+    #|  margin: 18px 0 28px;
+    #|  border: 1px solid var(--line);
+    #|  background: rgba(18, 21, 15, 0.72);
+    #|  overflow: hidden;
+    #|}
+    #|
+    #|.markdown-body .tab-list {
+    #|  display: flex;
+    #|  gap: 0;
+    #|  overflow-x: auto;
+    #|  border-bottom: 1px solid var(--line);
+    #|  background: rgba(7, 8, 6, 0.36);
+    #|}
+    #|
+    #|.markdown-body .tab-button {
+    #|  appearance: none;
+    #|  border: 0;
+    #|  border-right: 1px solid var(--line);
+    #|  background: transparent;
+    #|  color: var(--muted);
+    #|  padding: 10px 14px;
+    #|  font: inherit;
+    #|  font-size: 0.86rem;
+    #|  cursor: pointer;
+    #|  white-space: nowrap;
+    #|}
+    #|
+    #|.markdown-body .tab-button[aria-selected="true"] {
+    #|  color: var(--ink);
+    #|  background: rgba(200, 217, 135, 0.09);
+    #|}
+    #|
+    #|.markdown-body .tab-button:focus-visible {
+    #|  outline: 2px solid var(--accent);
+    #|  outline-offset: -2px;
+    #|}
+    #|
+    #|.markdown-body .tab-panel {
+    #|  padding: 16px;
+    #|}
+    #|
+    #|.markdown-body .tab-panel[hidden] {
+    #|  display: none;
+    #|}
+    #|
+    #|.markdown-body .tab-panel h3 {
+    #|  margin-top: 0;
+    #|  font-size: 1rem;
+    #|}
+    #|
+    #|.markdown-body .tab-panel p {
+    #|  margin-top: 0;
+    #|}
+    #|
     #|.markdown-body .highlight {
     #|  background: var(--code) !important;
     #|  color: var(--code-text) !important;
@@ -1579,9 +1753,9 @@ fn site_css() -> String {
     #|
     #|.page-nav-link span {
     #|  color: var(--muted);
-    #|  font-size: 11px;
-    #|  font-weight: 760;
-    #|  text-transform: uppercase;
+    #|  font-size: 12px;
+    #|  font-weight: 500;
+    #|  text-transform: none;
     #|}
     #|
     #|.page-nav-link strong {

@@ -8,8 +8,7 @@ order: 70
 # Evaluation and Output
 
 Pkl evaluation turns a module into a structured value. For language learning,
-use the official `pkl` CLI as the baseline. Implementation-stage commands for
-this repository live in **Tooling**.
+use the official `pkl` CLI as the baseline.
 
 ## Evaluate a Module
 
@@ -63,18 +62,11 @@ Evaluation must parse the module, resolve imports, enforce type annotations, and
 run constraints before output is produced. If a constraint fails, fix the source
 instead of treating rendering as a separate step.
 
-## Implementation Boundary
-
-This documentation repository has lower-level generator and site tooling for
-contributors. The learning model still starts from the language-level `pkl eval`
-behavior and only calls out source differences when they affect compatibility.
-
 ## Output Formats
 
 Pkl's CLI supports multiple renderers through `-f`. This documentation treats
 PCF, JSON, YAML, properties, plist, and related formats as language-facing output
-contracts. The port's implementation status page tracks which of those contracts
-are implemented locally.
+contracts.
 
 | Format | CLI Usage |
 | --- | --- |

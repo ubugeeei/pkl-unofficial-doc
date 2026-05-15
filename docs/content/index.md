@@ -13,10 +13,11 @@ order: 1
 The site is organized around three reader jobs:
 
 - **Learn Pkl**: move from module shape to objects, collections, types,
-  templates, functions, classes, constraints, imports, debugging, evaluation,
-  and output.
-- **Reference**: keep CLI usage, syntax, operators, modules, semantics,
-  standard library expectations, diagnostics, and output formats easy to scan.
+  values, templates, functions, classes, constraints, imports, resources,
+  projects, advanced syntax, debugging, evaluation, and output.
+- **Reference**: keep CLI usage, values, syntax, operators, resources,
+  projects, modules, semantics, standard library expectations, diagnostics, and
+  output formats easy to scan.
 - **Language Spec**: separate syntax, operators, module rules, semantics,
   diagnostics, standard library expectations, output formats, and
   coverage notes so readers can tell what is language behavior and what is this
@@ -39,6 +40,8 @@ project.
 ## Map
 
 - **Getting Started**: Pkl CLI installation, first module, and output rendering.
+- **Values and Literals**: comments, numbers, booleans, strings, null,
+  durations, and data sizes.
 - **Authoring Templates**: how to shape reusable base modules and environment
   overlays.
 - **Functions and Control Flow**: conditionals, operators, declarations,
@@ -53,10 +56,24 @@ project.
   generics, unions, classes, callable annotations, and numeric constraints.
 - **Constraints in Practice**: how to apply built-ins, type aliases, predicate
   factories, class property constraints, and callable boundaries.
+- **Resources and Readers**: `read`, `read?`, `read*`, resource schemes,
+  allowlists, and external readers.
+- **Projects and Packages**: `PklProject`, dependency boundaries, package URIs,
+  local dependencies, and publishing flow.
+- **Advanced Language Features**: generators, spreads, member predicates,
+  receiver keywords, casts, annotations, glob patterns, and name resolution.
 - **Debugging and Diagnostics**: reduce failures through syntax, imports,
   typing, constraints, evaluation, and rendering.
 - **Language Spec**: syntax map, operator rules, module system, semantic model,
   compatibility boundary, and official source links.
+- **Values Reference**: scalar syntax, null handling, `Duration`, and
+  `DataSize` in compact form.
+- **Resources Reference**: read forms, URI schemes, allowlists, caching, and
+  external readers.
+- **Projects Reference**: project files, dependency resolution, package
+  metadata, and publishing boundaries.
+- **Advanced Reference**: `new`, `let`, casts, annotations, generators,
+  spreads, predicates, receivers, and glob patterns.
 - **Standard Library**: `pkl:` modules, core built-ins, and how to approach the
   official standard library reference.
 - **Source Alignment**: how this site uses official docs, examples, release

@@ -15,6 +15,8 @@ make the concepts easier to scan.
 
 Use **Syntax Reference** for the compact grammar map. The high-level shape is:
 
+- values: comments, scalar literals, strings, null, durations, data sizes, and
+  interpolation
 - modules: declarations, imports, relations, bindings, and declarations
 - module system: source graphs, `pkl:` built-ins, cache boundaries, and
   relation failures
@@ -24,6 +26,12 @@ Use **Syntax Reference** for the compact grammar map. The high-level shape is:
   amendments
 - types: primitives, nullable types, collections, unions, aliases, classes, and
   constrained annotations
+- resources: resource reads, globbed reads, resource policies, and external
+  readers
+- projects: `PklProject`, dependency resolution, package metadata, and package
+  URIs
+- advanced syntax: generators, spreads, predicates, receiver keywords,
+  annotations, casts, and glob patterns
 
 ## Expressions
 
@@ -51,6 +59,28 @@ Use **Module System Reference** for import resolution, source graph semantics,
 Pkl typechecking covers primitive types, nullable types, collections, union-style
 narrowing, class inheritance, imported class metadata, and constrained
 annotations.
+
+## Values
+
+Use **Values Reference** for comments, numeric bases, booleans, strings,
+interpolation, custom string delimiters, null handling, `Duration`, and
+`DataSize`.
+
+## Resources
+
+Use **Resources Reference** for `read`, `read?`, `read*`, built-in URI schemes,
+allowlists, caching, and external readers.
+
+## Projects and Packages
+
+Use **Projects Reference** for `PklProject`, package metadata, dependencies,
+local package testing, package URIs, and publishing boundaries.
+
+## Advanced Features
+
+Use **Advanced Reference** for `new`, `let`, type tests, casts, annotations,
+anonymous functions, generators, spreads, member predicates, receiver keywords,
+glob patterns, name resolution, and reserved names.
 
 ## Semantic Model
 

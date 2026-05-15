@@ -1,14 +1,14 @@
 ---
 title: Import Patterns
 section: Learn
-description: Practical patterns for source-backed module graphs and cache-aware edits.
+description: Practical patterns for module graphs, templates, imports, and missing sources.
 order: 60
 ---
 
 # Import Patterns
 
-This page turns the module model into practical patterns for a docs reader or
-tooling author.
+This page turns the module model into practical patterns for readers who need
+more than one file.
 
 ## Template plus Environment
 
@@ -50,24 +50,24 @@ database = import("database.pkl")
 port = database.port
 ```
 
-## Cache Boundary
+## Import Graphs
 
-`AnalysisSession` is the cache boundary. A host tool supplies sources, asks for a
-path, and gets typecheck/evaluation results.
+Treat imports as a graph of reviewed source files. Keep shared constants,
+classes, and templates in small modules, then import them from the modules that
+own rendered output.
 
-```moonbit
-let session = @pkl.AnalysisSession::new()
-session.set_source("base.pkl", "name = \"api\"")
-session.set_source("main.pkl", "import \"base.pkl\" as base\nname = base.name")
-let result = session.eval_path("main.pkl")
+```pkl
+// shared.pkl
+defaultPort = 8080
 ```
 
-When a source changes, ripple-backed queries recompute affected paths while
-preserving unrelated work.
+```pkl
+// service.pkl
+import "shared.pkl" as shared
+port = shared.defaultPort
+```
 
 ## Cycles and Missing Sources
 
-The session reports unresolved imports and cyclic imports as diagnostics. That
-behavior is important for editors: a document can stay open and analyzable even
-while a neighboring file is missing or temporarily invalid.
-
+Unresolved imports and cyclic imports should be treated as source-graph errors.
+Fix the graph first, then debug types or output.

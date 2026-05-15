@@ -9,14 +9,14 @@ order: 20
 
 ## Modules
 
-A module is the top-level unit. Top-level properties evaluate to an object
-value; in Pkl, import clauses are resolved through
-`AnalysisSession`.
+A module is the top-level unit. Top-level properties evaluate to an
+object-shaped value, and imports let one module reuse the values exported by
+another.
 
 ```pkl
 module demo
-name = "hawk"
-age = 2
+name = "api"
+port = 8080
 ```
 
 ## Objects
@@ -46,5 +46,5 @@ class Service {
 
 ## Imports
 
-Source-backed imports are cached through `AnalysisSession`, which is where
-incremental analysis and future typecheck cache behavior belong.
+Imports connect modules into a source graph. Keep imported modules small enough
+that the relationship is obvious from the importing file.
